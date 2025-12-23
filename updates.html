@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daily updates from AIET IN STEM 2025 - Workshop summaries, discussion highlights, and key takeaways.">
+  <title>Daily Updates | AIET IN STEM 2025</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .update-full-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .update-full-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .update-full-date {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .update-full-day {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .update-full-month {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .update-full-title h2 {
+      color: white;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .update-full-title p {
+      color: rgba(255,255,255,0.85);
+      margin: 0.25rem 0 0;
+      font-size: 0.95rem;
+    }
+
+    .update-full-body {
+      padding: 2rem;
+    }
+
+    .update-section {
+      margin-bottom: 2rem;
+    }
+
+    .update-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .update-section h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--background-alt);
+    }
+
+    .update-section h4 {
+      color: var(--secondary);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .update-section p, .update-section li {
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .update-section ul {
+      padding-left: 1.5rem;
+    }
+
+    .update-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .key-takeaway {
+      background: linear-gradient(135deg, var(--background-alt) 0%, #E8F4FD 100%);
+      border-left: 4px solid var(--secondary);
+      padding: 1.25rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .key-takeaway p {
+      margin: 0;
+      font-style: italic;
+    }
+
+    .update-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .update-tag {
+      background: var(--background-alt);
+      color: var(--text-light);
+      padding: 0.375rem 0.875rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    .no-updates {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--background-alt);
+      border-radius: 16px;
+    }
+
+    .no-updates h3 {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .no-updates p {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .coming-soon-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .speaker-mini-card {
+      display: flex;
+      gap: 1rem;
+      background: var(--background-alt);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .speaker-mini-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .speaker-mini-info h4 {
+      margin: 0 0 0.25rem 0;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .speaker-mini-info p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-light);
+    }
+
+    .speaker-mini-info .topic {
+      color: var(--secondary);
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="speakers.html" class="nav-link">Speakers</a></li>
+        <li><a href="program.html" class="nav-link">Program</a></li>
+        <li><a href="travel.html" class="nav-link">Travel & Accommodation</a></li>
+        <li><a href="updates.html" class="nav-link active">Updates</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="event2023.html" class="nav-link">2023 Event</a></li>
+      </ul>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Daily Updates</h1>
+      <p>Workshop summaries, discussion highlights, and key takeaways</p>
+    </div>
+  </header>
+
+  <!-- Updates Section -->
+  <section class="section">
+    <div class="container">
+
+      <!-- December 17, 2024 Update -->
+      <div class="update-full-card">
+        <div class="update-full-header">
+          <div class="update-full-date">
+            <div class="update-full-day">17</div>
+            <div class="update-full-month">December 2024</div>
+          </div>
+          <div class="update-full-title">
+            <h2>Joint Workshop with Jeju Science High School Students</h2>
+            <p>Session 13: International Expert Panel • 145 minutes</p>
+          </div>
+        </div>
+
+        <div class="update-full-body">
+          <!-- Overview Section -->
+          <div class="update-section">
+            <h3>Session Overview</h3>
+            <p>Four international speakers presented on AI in science and mathematics education. Topics included AI-based assessment systems, personalized learning platforms, and teacher professional development tools, followed by student discussion on AI usage and concerns.</p>
+          </div>
+
+          <!-- Featured Speakers -->
+          <div class="update-section">
+            <h3>Featured Speakers</h3>
+
+            <div class="speakers-grid">
+              <div class="speaker-mini-card">
+                <img src="images/17일/knut.jpeg" alt="Prof. Dr. Knut Neumann">
+                <div class="speaker-mini-info">
+                  <h4>Prof. Dr. Knut Neumann</h4>
+                  <p>IPN - Leibniz Institute for Science and Mathematics Education, Germany</p>
+                  <p class="topic">AI-Powered Learning Analytics</p>
+                </div>
+              </div>
+
+              <div class="speaker-mini-card">
+                <img src="images/17일/Mei.jpeg" alt="Prof. Mei-Hung Chiu">
+                <div class="speaker-mini-info">
+                  <h4>Prof. Mei-Hung Chiu, Ed.D.</h4>
+                  <p>National Taiwan Normal University, Taiwan</p>
+                  <p class="topic">AI in Science Assessment & Facial Expression Recognition</p>
+                </div>
+              </div>
+
+              <div class="speaker-mini-card">
+                <img src="images/17일/aj.jpeg" alt="Alden Jack AJ Edson">
+                <div class="speaker-mini-info">
+                  <h4>Alden Jack "AJ" Edson, Ph.D.</h4>
+                  <p>Michigan State University, USA</p>
+                  <p class="topic">Connected Mathematics Project & AI Integration</p>
+                </div>
+              </div>
+
+              <div class="speaker-mini-card">
+                <img src="images/17일/yessemin.jpeg" alt="Prof. Yasemin Copur-Gencturk">
+                <div class="speaker-mini-info">
+                  <h4>Prof. Yasemin Copur-Gencturk, Ph.D.</h4>
+                  <p>University of Southern California, USA</p>
+                  <p class="topic">AI-Based Teacher Professional Development</p>
+                </div>
+              </div>
+
+              <div class="speaker-mini-card">
+                <img src="images/17일/Janice.jpeg" alt="Prof. Janice Gobert">
+                <div class="speaker-mini-info">
+                  <h4>Prof. Janice Gobert, Ph.D.</h4>
+                  <p>Rutgers University & CEO of Inq-ITS, USA</p>
+                  <p class="topic">Panel Respondent</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Speaker Presentations -->
+          <div class="update-section">
+            <h3>Presentation Highlights</h3>
+
+            <h4>Prof. Knut Neumann - Two-Loop AI System for Science Education</h4>
+            <p>Dr. Neumann presented work on AI-powered learning analytics for physics education. His research addresses challenges in science education:</p>
+            <ul>
+              <li><strong>Problem Identification:</strong> Many students fail to reach basic science competence; curriculum lacks coherence and cumulative learning</li>
+              <li><strong>Solution:</strong> Digital learning environments with Evidence-Centered Design, using LLMs for automated student response analysis</li>
+              <li><strong>Innovation:</strong> Two-loop system - Inner loop (AI provides immediate student feedback) + Outer loop (alerts teacher at critical moments)</li>
+              <li><strong>Vision:</strong> Generic platform where teachers upload any worksheet and AI automatically tracks learning without requiring technical expertise</li>
+            </ul>
+
+            <h4>Prof. Mei-Hung Chiu - Facial Expression Recognition & AI Assessment</h4>
+            <p>Prof. Chiu shared research on using AI to detect learning through student facial expressions:</p>
+            <ul>
+              <li><strong>Key Finding:</strong> Surprise expressions correlate with conceptual change; repeated viewings show learning progression</li>
+              <li><strong>Counterintuitive Experiments:</strong> Boiling water with ice on top, falling ball trajectories - students' facial reactions reveal understanding</li>
+              <li><strong>AI Scoring with Gemini 2.0:</strong> Iterative rubric refinement improved accuracy from 0.55 to 0.74 for CER (Claim-Evidence-Reasoning) assessment</li>
+              <li><strong>Core Message:</strong> "AI is co-pilot, not pilot" - students and teachers must learn to ask good questions</li>
+            </ul>
+
+            <h4>AJ Edson - Connected Mathematics Project Digital Transformation</h4>
+            <p>Author of CMP4, AJ presented 40 years of curriculum evolution and AI integration in mathematics education:</p>
+            <ul>
+              <li><strong>Philosophy:</strong> Teaching mathematics THROUGH problem-solving, not FOR problem-solving</li>
+              <li><strong>Research Base:</strong> Most researched US math curriculum (550+ papers); field-tested in South Korea</li>
+              <li><strong>Digital Platform:</strong> $10M NSF-funded system enabling real-time collaboration and teacher monitoring</li>
+              <li><strong>AI Integration:</strong> Classifies student strategies (additive vs multiplicative reasoning), tracks growth over time, explains reasoning to students</li>
+              <li><strong>Key Principle:</strong> Must solve "Problems of Practice" - not technology for technology's sake</li>
+            </ul>
+
+            <h4>Prof. Yasemin Copur-Gencturk - Evidence-Based AI Professional Development</h4>
+            <p>Prof. Copur-Gencturk presented AI-powered teacher professional development with RCT results:</p>
+            <ul>
+              <li><strong>Design Philosophy:</strong> AI asks questions rather than giving answers; guides learning through practice</li>
+              <li><strong>Four AI Agents:</strong> Filter (relevance), Judge (evaluation), Responder (hints), Facilitator (safety net after 3 attempts)</li>
+              <li><strong>RCT Results:</strong> Three-level impact:
+                <ul>
+                  <li>Level 1: Teacher knowledge improved (PCK)</li>
+                  <li>Level 2: Teaching practice changed</li>
+                  <li>Level 3: Student achievement improved - nearly 1/4 grade level difference</li>
+                </ul>
+              </li>
+              <li><strong>Critical Message:</strong> "Content experts must create meaningful AI tools" - domain knowledge is essential</li>
+            </ul>
+          </div>
+
+          <!-- Key Takeaways -->
+          <div class="update-section">
+            <h3>Key Takeaways</h3>
+
+            <div class="key-takeaway">
+              <p>"AI is co-pilot, not pilot. The quality of the question determines the quality of the answer." - Prof. Mei-Hung Chiu</p>
+            </div>
+
+            <div class="key-takeaway">
+              <p>"AI won't replace human. But humans who don't use AI will be replaced." - Panel Discussion</p>
+            </div>
+
+            <div class="key-takeaway">
+              <p>"Not technology for technology's sake - must genuinely solve Problems of Practice in the classroom." - AJ Edson</p>
+            </div>
+
+            <div class="key-takeaway">
+              <p>"We need content experts to create meaningful tools. Many AI tools forget the most important thing: domain-specific expertise." - Prof. Yasemin Copur-Gencturk</p>
+            </div>
+
+            <ul style="margin-top: 1.5rem;">
+              <li><strong>Personalized Learning at Scale:</strong> All speakers emphasized AI enables 1-to-1 feedback while maintaining quality</li>
+              <li><strong>Teacher Support, Not Replacement:</strong> AI handles routine tasks, freeing teachers for critical moments</li>
+              <li><strong>Evidence-Based Approach:</strong> Rigorous evaluation (RCTs) validates effectiveness; document actual impact</li>
+              <li><strong>Cultural Context Matters:</strong> Privacy concerns, educational priorities, and adoption rates vary by country</li>
+            </ul>
+          </div>
+
+          <!-- Student Discussion -->
+          <div class="update-section">
+            <h3>Student Voice: AI Usage & Concerns</h3>
+            <p>Jeju Science High School and Jeju National University students discussed AI in their education:</p>
+
+            <h4>How Students Use AI</h4>
+            <ul>
+              <li>Assignment and report writing (framework development, not full text generation)</li>
+              <li>Coding support (error troubleshooting, syntax clarification)</li>
+              <li>Research assistance (finding references, methodology decisions)</li>
+              <li>Paper comprehension (summarization, translation)</li>
+              <li>Exam preparation (problem generation with Gemini Quiz)</li>
+            </ul>
+
+            <h4>Student Concerns (Critical Thinking Demonstrated)</h4>
+            <ul>
+              <li><strong>Accuracy Issues:</strong> "We often spot errors in replies" - AI makes frequent mistakes</li>
+              <li><strong>Over-Reliance:</strong> Some students copy-paste without understanding, losing learning opportunities</li>
+              <li><strong>Plagiarism Detection Flaws:</strong> GPT detection unreliable - sometimes flags original work, misses AI content</li>
+              <li><strong>Verification Necessity:</strong> "Should cross-check if information is correct" - cannot blindly trust</li>
+            </ul>
+
+            <h4>Student Recommendations</h4>
+            <div class="key-takeaway">
+              <p>"We shouldn't necessarily rely everything on AI. We should be skeptical as well. AI can have a good future if we use it as a guide." - Science High School Student</p>
+            </div>
+            <ul style="margin-top: 1rem;">
+              <li>Use AI as guide, not authority (like Google replacement)</li>
+              <li>Know what you're doing before copying</li>
+              <li>Create society where humans coexist with AI</li>
+              <li>Need legal/ethical systems and regulatory frameworks</li>
+            </ul>
+          </div>
+
+          <!-- Research Impact -->
+          <div class="update-section">
+            <h3>Research Impact & Future Directions</h3>
+            <ul>
+              <li><strong>Student Impact:</strong> Prof. Copur-Gencturk's RCT showed nearly 1/4 grade level difference from teacher-level intervention</li>
+              <li><strong>Scalability:</strong> Prof. Neumann proposed generic platforms requiring no technical expertise from teachers</li>
+              <li><strong>Evidence Standards:</strong> Speakers emphasized rigorous evaluation over marketing claims</li>
+              <li><strong>International Collaboration:</strong> Germany, Taiwan, USA, Turkey, and South Korea perspectives on complementary approaches</li>
+              <li><strong>Student Perspective:</strong> Students demonstrated critical thinking in AI evaluation</li>
+            </ul>
+          </div>
+
+          <!-- Tags -->
+          <div class="update-tags">
+            <span class="update-tag">AI in Education</span>
+            <span class="update-tag">Learning Analytics</span>
+            <span class="update-tag">Teacher Professional Development</span>
+            <span class="update-tag">Mathematics Education</span>
+            <span class="update-tag">Science Assessment</span>
+            <span class="update-tag">Student Voice</span>
+            <span class="update-tag">Evidence-Based Research</span>
+            <span class="update-tag">International Collaboration</span>
+          </div>
+
+          <!-- Link to Full Summary -->
+          <p style="margin-top: 2rem; text-align: center;">
+            <a href="transcripts/Session_13_Summary.md" class="cta-button" style="display: inline-block; text-decoration: none;">
+              Read Full Summary Report (16,000 words) →
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Sample Update Template (Hidden - for reference) -->
+      <!--
+      <div class="update-full-card">
+        <div class="update-full-header">
+          <div class="update-full-date">
+            <div>
+              <span class="update-full-day">16</span>
+              <span class="update-full-month">December 2025</span>
+            </div>
+          </div>
+          <div class="update-full-title">
+            <h2>Day One: AI and Assessment</h2>
+            <p>Introduction, AI Assessment, Emerging Technologies, AI Literacy</p>
+          </div>
+        </div>
+        <div class="update-full-body">
+          <div class="update-section">
+            <h3>Morning Sessions</h3>
+
+            <h4>Introduction and Connector (8:30 - 9:00)</h4>
+            <p>Dr. Namsoo Shin opened the forum with a warm welcome to all participants and outlined the goals and expected deliverables for AIET in STEM. Key points included...</p>
+
+            <h4>AI and Assessment (9:00 - 10:00)</h4>
+            <p>Prof. Jiliang Tang presented on "Generative AI-enhanced assessment to provide timely, tailored teacher and student feedback." The session explored...</p>
+
+            <div class="key-takeaway">
+              <p>"AI-enhanced assessment has the potential to transform how we provide feedback to students, making it more personalized and timely than ever before." - Jiliang Tang</p>
+            </div>
+          </div>
+
+          <div class="update-section">
+            <h3>Key Takeaways</h3>
+            <ul>
+              <li>Point 1 from today's discussions</li>
+              <li>Point 2 from today's discussions</li>
+              <li>Point 3 from today's discussions</li>
+            </ul>
+          </div>
+
+          <div class="update-tags">
+            <span class="update-tag">AI Assessment</span>
+            <span class="update-tag">Emerging Technologies</span>
+            <span class="update-tag">AI Literacy</span>
+            <span class="update-tag">Day 1</span>
+          </div>
+        </div>
+      </div>
+      -->
+
+      <!-- Example of how updates will look -->
+      <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">Preview: How Updates Will Appear</h2>
+
+      <div class="update-full-card" style="opacity: 0.7;">
+        <div class="update-full-header">
+          <div class="update-full-date">
+            <div>
+              <span class="update-full-day">16</span>
+              <span class="update-full-month">December 2025</span>
+            </div>
+          </div>
+          <div class="update-full-title">
+            <h2>Day One: AI and Assessment</h2>
+            <p>Introduction, AI Assessment, Emerging Technologies, AI Literacy</p>
+          </div>
+        </div>
+        <div class="update-full-body">
+          <div class="update-section">
+            <h3>Morning Sessions</h3>
+
+            <h4>Introduction and Connector (8:30 - 9:00)</h4>
+            <p>[Summary of introduction session will appear here...]</p>
+
+            <h4>AI and Assessment (9:00 - 10:00)</h4>
+            <p>[Summary of AI and Assessment session with presentations by Jiliang Tang and Namsoo Shin...]</p>
+
+            <div class="key-takeaway">
+              <p>"Key quote or insight from the session will be highlighted here."</p>
+            </div>
+
+            <h4>AI and Emerging Technologies (10:20 - 11:20)</h4>
+            <p>[Summary of emerging technologies session led by Umesh Ramnarain...]</p>
+
+            <h4>AI Literacy (11:20 - 12:20)</h4>
+            <p>[Summary of AI Literacy session with Janice Gobert and Ethel Cormier...]</p>
+          </div>
+
+          <div class="update-section">
+            <h3>Afternoon Sessions</h3>
+            <p>[Summary of afternoon guideline development sessions...]</p>
+          </div>
+
+          <div class="update-section">
+            <h3>Key Takeaways</h3>
+            <ul>
+              <li>Key insight 1 from the day's discussions</li>
+              <li>Key insight 2 from the day's discussions</li>
+              <li>Key insight 3 from the day's discussions</li>
+            </ul>
+          </div>
+
+          <div class="update-tags">
+            <span class="update-tag">AI Assessment</span>
+            <span class="update-tag">Emerging Technologies</span>
+            <span class="update-tag">AI Literacy</span>
+            <span class="update-tag">Day 1</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Subscribe Section -->
+  <section class="section section-alt">
+    <div class="container text-center">
+      <h2>Stay Informed</h2>
+      <p style="max-width: 600px; margin: 0 auto 2rem;">Bookmark this page and check back daily during the forum for the latest updates, insights, and highlights from each session.</p>
+      <a href="program.html" class="btn btn-primary">View Full Program</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM 2025</h4>
+          <p>Global Initiative on AI and Emerging Technologies in STEM Education</p>
+          <p style="margin-top: 1rem;">December 16-20, 2025<br>Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="speakers.html">Speakers</a></li>
+            <li><a href="program.html">Program</a></li>
+            <li><a href="travel.html">Travel & Accommodation</a></li>
+            <li><a href="updates.html">Daily Updates</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Organizers</h4>
+          <p><strong>Jeju National University</strong><br>South Korea</p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute</strong><br>Michigan State University, USA</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>For inquiries about the forum:</p>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Supported by Jeju National University RISE Initiative</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

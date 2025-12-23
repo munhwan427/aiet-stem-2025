@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Travel and accommodation information for AIET IN STEM 2025 - How to get to Jeju Island and Grand Hyatt Jeju.">
+  <title>Travel & Accommodation | AIET IN STEM 2025</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .venue-hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=1600') center/cover;
+      padding: 6rem 0;
+      color: white;
+      text-align: center;
+      margin-bottom: 3rem;
+      border-radius: 16px;
+    }
+
+    .venue-hero h2 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .venue-hero p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+    }
+
+    .info-box {
+      background: #808894;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .info-box h4 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-box p {
+      color: rgba(255,255,255,0.9);
+      margin: 0;
+    }
+
+    .info-box-warning {
+      background: #808894;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .info-box-warning h4 {
+      color: white;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .info-box-warning p {
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .flight-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .flight-table th,
+    .flight-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .flight-table th {
+      background: var(--background-alt);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .flight-table tr:hover {
+      background: var(--background-alt);
+    }
+
+    .transport-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .transport-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #2f616a 0%, #3d7d8a 100%);
+      color: white;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(47, 97, 106, 0.25);
+    }
+
+    .transport-details h4 {
+      margin-bottom: 0.25rem;
+    }
+
+    .transport-details p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .transport-price {
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+
+    .hotel-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .hotel-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--background-alt);
+      border-radius: 8px;
+    }
+
+    .hotel-feature-icon {
+      font-size: 1.25rem;
+    }
+
+    .weather-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .weather-temp {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .weather-desc {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    .emergency-contact {
+      background: #6b7280;
+      color: white;
+      padding: 2rem;
+      border-radius: 16px;
+      margin-top: 2rem;
+    }
+
+    .emergency-contact h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.3rem;
+    }
+
+    .emergency-contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .emergency-contact-item h4 {
+      color: white;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .emergency-contact-item p {
+      color: rgba(255,255,255,0.9);
+      margin: 0.25rem 0;
+    }
+
+    .emergency-contact-item a {
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="speakers.html" class="nav-link">Speakers</a></li>
+        <li><a href="program.html" class="nav-link">Program</a></li>
+        <li><a href="travel.html" class="nav-link active">Travel & Accommodation</a></li>
+        <li><a href="updates.html" class="nav-link">Updates</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="event2023.html" class="nav-link">2023 Event</a></li>
+      </ul>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Travel & Accommodation</h1>
+      <p>Everything you need to know about getting to Jeju Island</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Venue Hero -->
+      <div class="venue-hero">
+        <h2>Accommodation in Jeju</h2>
+        <p>Grand Hyatt Jeju (Sun-Tue) & Shinhwa World Hotel (Wed-Fri)</p>
+      </div>
+
+      <!-- Getting to Jeju - Full Width -->
+      <div class="travel-card">
+        <h3>
+          <span class="travel-card-icon"><i class="fas fa-plane"></i></span>
+          Getting to Jeju Island
+        </h3>
+
+        <div class="info-box" style="margin-top: 1.5rem;">
+          <h4 style="font-size: 1.1rem;">Your Domestic Flight Has Been Arranged</h4>
+          <p>The organizing committee will book your domestic flight from <strong>Gimpo Airport (GMP)</strong> to <strong>Jeju Airport (CJU)</strong>. Your flight itinerary will be sent to you separately.</p>
+        </div>
+
+        <div class="info-box-warning" style="margin-top: 1.5rem;">
+          <h4>Transfer Assistance Provided</h4>
+          <p>After arriving at Incheon International Airport (ICN), a representative from <strong>Jeju National University</strong> will meet you and guide you directly to <strong>Gimpo Airport (GMP)</strong> for your domestic flight to Jeju.</p>
+          <p style="margin-top: 0.75rem;"><strong>Please keep your mobile phone available so the JNU representative can contact you upon your arrival at Incheon Airport.</strong></p>
+          <p style="margin-top: 1rem; padding: 0.75rem; background: rgba(255,255,255,0.15); border-radius: 8px;">
+            <i class="fab fa-whatsapp" style="font-size: 1.2rem; margin-right: 0.5rem;"></i>
+            <strong>WhatsApp Contact:</strong> <a href="https://wa.me/821056986867" target="_blank" style="color: white; text-decoration: underline;">+82 10-5698-6867</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Arrival at Jeju Airport -->
+      <div class="travel-card" style="margin-top: 2rem;">
+        <h3>
+          <span class="travel-card-icon"><i class="fas fa-map-marker-alt"></i></span>
+          Upon Arrival at Jeju Airport
+        </h3>
+
+        <div class="info-box-warning">
+          <h4>Important: Airport Pickup Service</h4>
+          <p>A representative from <strong>Jeju National University</strong> will meet you at Jeju International Airport (CJU) and pick you up directly. You do not need to arrange your own transportation from the airport.</p>
+          <p style="margin-top: 0.75rem;"><strong>Please keep your mobile phone available so the JNU representative can contact you upon your arrival.</strong></p>
+        </div>
+
+        <p style="margin-top: 1rem;">Please share your flight details (flight number and arrival time) with the organizing committee in advance so we can arrange your airport pickup.</p>
+      </div>
+
+      <!-- Hotel Information -->
+      <div class="travel-card" style="margin-top: 2rem;">
+        <h3>
+          <span class="travel-card-icon"><i class="fas fa-hotel"></i></span>
+          Accommodation
+        </h3>
+        <p>During the event, you will stay at two different hotels depending on the day:</p>
+
+        <div class="info-box" style="margin-top: 1.5rem; background: linear-gradient(135deg, #2f616a 0%, #3d7d8a 100%);">
+          <h4 style="font-size: 1.1rem;"><i class="fas fa-calendar-day"></i> Sun · Mon · Tue (Dec 14-16)</h4>
+          <p style="font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem;">Grand Hyatt Jeju</p>
+          <p style="margin-top: 0.5rem;">12 Noyeon-ro, Jeju-si, Jeju-do 63082</p>
+        </div>
+
+        <div class="info-box" style="margin-top: 1rem; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+          <h4 style="font-size: 1.1rem;"><i class="fas fa-calendar-day"></i> Wed · Thu · Fri (Dec 17-19)</h4>
+          <p style="font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem;">Shinhwa World Hotel</p>
+          <p style="margin-top: 0.5rem;">38 Sinhwayeoksa-ro 304beon-gil, Andeok-myeon, Seogwipo-si, Jeju-do</p>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h4 style="margin-bottom: 1rem;"><i class="fas fa-building"></i> Grand Hyatt Jeju</h4>
+          <p>A world-class luxury resort on Jeju's northern coast with stunning ocean views and modern amenities.</p>
+          <div class="hotel-features" style="margin-top: 1rem;">
+            <div class="hotel-feature">
+              <span class="hotel-feature-icon"><i class="fas fa-utensils"></i></span>
+              <span>Multiple Restaurants</span>
+            </div>
+            <div class="hotel-feature">
+              <span class="hotel-feature-icon"><i class="fas fa-swimming-pool"></i></span>
+              <span>Swimming Pool</span>
+            </div>
+            <div class="hotel-feature">
+              <span class="hotel-feature-icon"><i class="fas fa-water"></i></span>
+              <span>Ocean Views</span>
+            </div>
+          </div>
+          <ul style="list-style: disc; padding-left: 1.5rem; margin-top: 1rem;">
+            <li><strong>Phone:</strong> +82 64-907-1234</li>
+            <li><strong>Website:</strong> <a href="https://www.hyatt.com/en-US/hotel/south-korea/grand-hyatt-jeju/cjugh" target="_blank">Grand Hyatt Jeju Official Site</a></li>
+          </ul>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <h4 style="margin-bottom: 1rem;"><i class="fas fa-building"></i> Shinhwa World Hotel</h4>
+          <p>Part of the Jeju Shinhwa World resort complex, featuring theme parks, entertainment, and premium accommodations.</p>
+          <div class="hotel-features" style="margin-top: 1rem;">
+            <div class="hotel-feature">
+              <span class="hotel-feature-icon"><i class="fas fa-ticket-alt"></i></span>
+              <span>Theme Park Access</span>
+            </div>
+            <div class="hotel-feature">
+              <span class="hotel-feature-icon"><i class="fas fa-spa"></i></span>
+              <span>Spa & Wellness</span>
+            </div>
+            <div class="hotel-feature">
+              <span class="hotel-feature-icon"><i class="fas fa-shopping-bag"></i></span>
+              <span>Shopping Complex</span>
+            </div>
+          </div>
+          <ul style="list-style: disc; padding-left: 1.5rem; margin-top: 1rem;">
+            <li><strong>Phone:</strong> +82 64-908-8800</li>
+            <li><strong>Website:</strong> <a href="https://www.shinhwaworld.com" target="_blank">Shinhwa World Official Site</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.7!2d126.4862!3d33.4996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x350c5!2sGrand%20Hyatt%20Jeju!5e0!3m2!1sen!2skr!4v1!5m2!1sen!2skr"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- Weather & Tips -->
+      <div class="travel-grid" style="margin-top: 3rem;">
+        <div class="weather-card">
+          <h3 style="color: white; margin-bottom: 1rem;">December Weather in Jeju</h3>
+          <br>
+          <div class="weather-temp">5-10°C</div>
+          <div class="weather-desc">41-50°F • Mild Winter</div>
+          <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem;">
+            Jeju has a milder winter compared to mainland Korea. Expect cool temperatures with occasional rain. Bring layers and a light jacket.
+          </p>
+        </div>
+
+        <div class="travel-card">
+          <h3>
+            <span class="travel-card-icon"><i class="fas fa-clipboard-list"></i></span>
+            Travel Tips
+          </h3>
+          <ul class="travel-steps">
+            <li class="travel-step">
+              <span class="travel-step-number">1</span>
+              <div class="travel-step-content">
+                <h4>Visa Requirements</h4>
+                <p>Check visa requirements for South Korea based on your nationality. Many countries have visa-free access for short stays.</p>
+              </div>
+            </li>
+            <li class="travel-step">
+              <span class="travel-step-number">2</span>
+              <div class="travel-step-content">
+                <h4>Currency</h4>
+                <p>South Korean Won (KRW). Credit cards are widely accepted. ATMs available at airport and hotels.</p>
+              </div>
+            </li>
+            <li class="travel-step">
+              <span class="travel-step-number">3</span>
+              <div class="travel-step-content">
+                <h4>SIM Card / WiFi</h4>
+                <p>Purchase a Korean SIM card or rent a portable WiFi device at the airport for internet access.</p>
+              </div>
+            </li>
+            <li class="travel-step">
+              <span class="travel-step-number">4</span>
+              <div class="travel-step-content">
+                <h4>Language</h4>
+                <p>Korean is the primary language. English is spoken in hotels and tourist areas. Translation apps are helpful.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- About Jeju -->
+      <div class="travel-card" style="margin-top: 2rem;">
+        <h3>
+          <span class="travel-card-icon"><i class="fas fa-map-marked-alt"></i></span>
+          About Jeju Island
+        </h3>
+        <p>Jeju Island is South Korea's largest island and a UNESCO World Heritage site, known for its volcanic landscapes, pristine beaches, and unique culture. Often called the "Hawaii of South Korea," it offers a perfect blend of natural beauty and modern infrastructure.</p>
+
+        <h4 style="margin-top: 1.5rem;">Must-See Attractions (Free Time)</h4>
+        <div class="hotel-features">
+          <div class="hotel-feature">
+            <span class="hotel-feature-icon"><i class="fas fa-mountain"></i></span>
+            <span>Hallasan Mountain (UNESCO)</span>
+          </div>
+          <div class="hotel-feature">
+            <span class="hotel-feature-icon"><i class="fas fa-monument"></i></span>
+            <span>Seongsan Ilchulbong Peak</span>
+          </div>
+          <div class="hotel-feature">
+            <span class="hotel-feature-icon"><i class="fas fa-dungeon"></i></span>
+            <span>Manjanggul Lava Tube</span>
+          </div>
+          <div class="hotel-feature">
+            <span class="hotel-feature-icon"><i class="fas fa-hiking"></i></span>
+            <span>Jeju Olle Walking Trails</span>
+          </div>
+          <div class="hotel-feature">
+            <span class="hotel-feature-icon"><i class="fas fa-swimmer"></i></span>
+            <span>Traditional Haenyeo Divers</span>
+          </div>
+          <div class="hotel-feature">
+            <span class="hotel-feature-icon"><i class="fas fa-drumstick-bite"></i></span>
+            <span>Local Cuisine & Black Pork</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Contact -->
+      <div class="emergency-contact">
+        <h3><i class="fas fa-phone-alt"></i> Emergency Contact (Korea Organizer)</h3>
+        <div class="emergency-contact-info">
+          <div class="emergency-contact-item" style="padding-left: 2.5rem;">
+            <h4 style="font-size: 1.1rem;">Ahn, Munhoan</h4>
+            <p style="font-size: 0.9rem;">Korea-side Organizer</p>
+            <p style="font-size: 0.9rem;"><strong>Phone:</strong> +82 10-5698-6867</p>
+            <p style="font-size: 0.9rem;"><strong>Email:</strong> <a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+          </div>
+          <div class="emergency-contact-item" style="padding-left: 2.5rem;">
+            <h4 style="font-size: 1.1rem;">For Urgent Matters</h4>
+            <p style="font-size: 0.9rem;">If you have any urgent questions or need assistance upon arrival in Korea, please contact the number above.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Available for calls and messages (KakaoTalk, WhatsApp)</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM 2025</h4>
+          <p>Global Initiative on AI and Emerging Technologies in STEM Education</p>
+          <p style="margin-top: 1rem;">December 16-20, 2025<br>Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="speakers.html">Speakers</a></li>
+            <li><a href="program.html">Program</a></li>
+            <li><a href="travel.html">Travel & Accommodation</a></li>
+            <li><a href="updates.html">Daily Updates</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Organizers</h4>
+          <p><strong>Jeju National University</strong><br>South Korea</p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute</strong><br>Michigan State University, USA</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>For inquiries about the forum:</p>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p style="margin-top: 0.5rem;"><strong>Korea Contact:</strong></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Supported by Jeju National University RISE Initiative</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

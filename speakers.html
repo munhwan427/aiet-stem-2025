@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the distinguished speakers at AIET IN STEM 2025 - World-renowned experts in AI, education, and STEM research.">
+  <title>Speakers | AIET IN STEM 2025</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .speaker-detail-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .speaker-detail-header {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 2rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+    }
+
+    .speaker-detail-image {
+      width: 250px;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+      object-position: top;
+      border: 4px solid rgba(255,255,255,0.3);
+    }
+
+    .speaker-detail-image-placeholder {
+      width: 250px;
+      height: 250px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: 700;
+      border: 4px solid rgba(255,255,255,0.3);
+    }
+
+    .speaker-detail-meta h2 {
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .speaker-detail-title {
+      font-size: 1.1rem;
+      color: white;
+      margin-bottom: 0.25rem;
+    }
+
+    .speaker-detail-affiliation {
+      font-size: 1rem;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    .speaker-detail-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .speaker-detail-contact a {
+      color: var(--white);
+      background: rgba(255,255,255,0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      transition: var(--transition);
+    }
+
+    .speaker-detail-contact a:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .speaker-detail-body {
+      padding: 2rem;
+    }
+
+    .speaker-detail-bio {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .speaker-detail-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .speaker-highlight-tag {
+      background: var(--background-alt);
+      color: var(--text-light);
+      padding: 0.375rem 0.875rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    .speaker-awards {
+      background: var(--background-alt);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .speaker-awards h4 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .speaker-awards ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .speaker-awards li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .speaker-awards li::before {
+      content: "★";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .speaker-detail-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .speaker-detail-image,
+      .speaker-detail-image-placeholder {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+      }
+
+      .speaker-detail-contact {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="speakers.html" class="nav-link active">Speakers</a></li>
+        <li><a href="program.html" class="nav-link">Program</a></li>
+        <li><a href="travel.html" class="nav-link">Travel & Accommodation</a></li>
+        <li><a href="updates.html" class="nav-link">Updates</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="event2023.html" class="nav-link">2023 Event</a></li>
+      </ul>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Speakers</h1>
+      <p>World-renowned experts in AI, education, and STEM research</p>
+    </div>
+  </header>
+
+  <!-- Speakers Section -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Speaker 1: Joseph Krajcik (Co-Director) -->
+      <div class="speaker-detail-card" id="krajcik">
+        <div class="speaker-detail-header">
+          <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/education/education-images/faculty/krajcik-joseph.jpg" alt="Prof. Joseph Krajcik" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">JK</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Joseph Krajcik, Ph.D.</h2>
+            <p class="speaker-detail-title">Lappan-Phillips Professor of Science Education</p>
+            <p class="speaker-detail-affiliation">Michigan State University, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:krajcik@msu.edu">krajcik@msu.edu</a>
+              <a href="https://education.msu.edu/people/k/krajcik-joseph" target="_blank">MSU Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Joseph Krajcik serves as the Director of the CREATE for STEM Institute and holds the Lappan-Phillips Professorship in Science Education at Michigan State University. He is also a University Distinguished Professor.
+          </p>
+          <p class="speaker-detail-bio">
+            Throughout his distinguished career, Dr. Krajcik has focused on collaborating with science teachers to design and evaluate learning environments that transform science teaching practices. His research emphasizes student learning and engagement within project-based learning settings. He served as lead writer for developing Physical Science Standards for the Next Generation Science Standards (NGSS) and the Physical Science Design team for the Framework for K-12 Science Education.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Science Education</span>
+            <span class="speaker-highlight-tag">Project-Based Learning</span>
+            <span class="speaker-highlight-tag">Disciplinary Learning</span>
+            <span class="speaker-highlight-tag">Curriculum Design</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Selected Honors</h4>
+            <ul>
+              <li>McGraw Prize in Pre-K-12 Education (2020)</li>
+              <li>Elected to National Academy of Education (2019)</li>
+              <li>ISDDE Prize for Excellence in Education Design (2021)</li>
+              <li>Fellow of the American Association for the Advancement of Science (AAAS)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 2: Umesh Ramnarain (Co-Director) -->
+      <div class="speaker-detail-card" id="ramnarain">
+        <div class="speaker-detail-header">
+          <img src="https://www.uj.ac.za/wp-content/uploads/2021/11/ramnarain-1080.jpg" alt="Prof. Umesh Ramnarain" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">UR</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Umesh Ramnarain, Ph.D.</h2>
+            <p class="speaker-detail-title">Distinguished Professor of Science Education</p>
+            <p class="speaker-detail-affiliation">University of Johannesburg, South Africa</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:uramnarain@uj.ac.za">uramnarain@uj.ac.za</a>
+              <a href="https://www.uj.ac.za/members/prof-umesh-ramnarain/" target="_blank">UJ Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Prof. Umesh Ramnarain is a Professor of Science Education and Head of Department at the University of Johannesburg, where he also serves as Director of the Centre for Advanced Learning Technologies in STEAM (CALTSTEAM).
+          </p>
+          <p class="speaker-detail-bio">
+            His research focuses on inquiry-based learning and its implementation in South African classrooms characterized by diversity and complexity. As Director of CALTSTEAM, he leads initiatives integrating emerging technologies—including AI, VR, and AR—into STEM education across South Africa. Prof. Ramnarain is an NRF B-rated Researcher and member of the Academy of Science of South Africa (ASSAf).
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Emerging Technologies</span>
+            <span class="speaker-highlight-tag">AI in Education</span>
+            <span class="speaker-highlight-tag">VR/AR</span>
+            <span class="speaker-highlight-tag">Inquiry-Based Learning</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Selected Honors</h4>
+            <ul>
+              <li>NRF Champion of Research Capacity Development Award (2024)</li>
+              <li>NRF B-rated Researcher</li>
+              <li>Member, Academy of Science of South Africa (ASSAf)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 3: Knut Neumann (Co-Director) -->
+      <div class="speaker-detail-card" id="neumann">
+        <div class="speaker-detail-header">
+          <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Prof. Dr. Knut Neumann" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">KN</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Dr. Knut Neumann</h2>
+            <p class="speaker-detail-title">Director, Department of Physics Education</p>
+            <p class="speaker-detail-affiliation">IPN - Leibniz Institute for Science and Mathematics Education, Germany</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:neumann@leibniz-ipn.de">neumann@leibniz-ipn.de</a>
+              <a href="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann" target="_blank">IPN Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Prof. Dr. Knut Neumann is the Head of the Department of Physics Education at IPN (Leibniz Institute for Science and Mathematics Education) and Professor for Physics Education at Kiel University in Germany.
+          </p>
+          <p class="speaker-detail-bio">
+            His research interests center on diagnosing abilities in physics, the development of physics competencies among school students, and physics teachers' professional competence development. He leads several major research projects including ELeVATE-HS (Supporting High School Students in Constructing Quantitative Knowledge of Energy) and lernen:digital Transferstelle. Dr. Neumann earned his doctorate in Physics Education from the University of Education at Heidelberg (2004).
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Physics Education</span>
+            <span class="speaker-highlight-tag">Competence Development</span>
+            <span class="speaker-highlight-tag">Teacher Professional Development</span>
+            <span class="speaker-highlight-tag">Learning Analytics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 4: Namsoo Shin -->
+      <div class="speaker-detail-card" id="shin">
+        <div class="speaker-detail-header">
+          <img src="images/speakers/Shin_Photo1.jpg" alt="Dr. Namsoo Shin" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">NS</div>
+          <div class="speaker-detail-meta">
+            <h2>Dr. Namsoo Shin</h2>
+            <p class="speaker-detail-title">Associate Professor</p>
+            <p class="speaker-detail-affiliation">Michigan State University, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a>
+              <a href="https://create4stem.msu.edu/people/namsoo-shin" target="_blank">CREATE Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Dr. Namsoo Shin is an Associate Professor in Counseling, Educational Psychology, and Special Education (CEPSE) and serves as Associate Director of Innovation and Research at the CREATE for STEM Institute at Michigan State University.
+          </p>
+          <p class="speaker-detail-bio">
+            Her research focuses on the development of individualized, customized learning environments to support the learning of all students. She specializes in evidence-based learning progressions that inform curriculum design, instruction, and assessment, with particular attention to helping learners develop problem-solving capabilities. Dr. Shin earned her Ph.D. in Instructional Systems from Pennsylvania State University and spent a decade at the University of Michigan before joining MSU in 2015.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Learning Sciences</span>
+            <span class="speaker-highlight-tag">Generative AI</span>
+            <span class="speaker-highlight-tag">Learning Progressions</span>
+            <span class="speaker-highlight-tag">Assessment Design</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Selected Honors</h4>
+            <ul>
+              <li>Principal Investigator, U.S. Department of Education grant ($10 million) for research on Artificial Intelligence in Education (2025–2029)</li>
+              <li>Young Researcher Award, Association for Educational Communications and Technology (1999)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 5: Jiliang Tang -->
+      <div class="speaker-detail-card" id="tang">
+        <div class="speaker-detail-header">
+          <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Prof. Jiliang Tang" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">JT</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Jiliang Tang, Ph.D.</h2>
+            <p class="speaker-detail-title">University Foundation Professor</p>
+            <p class="speaker-detail-affiliation">Michigan State University, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:tangjili@msu.edu">tangjili@msu.edu</a>
+              <a href="https://engineering.msu.edu/faculty/jiliang-tang" target="_blank">MSU Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Prof. Jiliang Tang is a University Foundation Professor in the Department of Computer Science and Engineering at Michigan State University, where he directs the Data Science and Engineering (DSE) Lab.
+          </p>
+          <p class="speaker-detail-bio">
+            His research expertise spans graph neural networks, trustworthy AI (including safety, robustness, and fairness), and AI applications in education and biology. With over 50,000 citations on Google Scholar, he is recognized as one of the leading researchers in machine learning and data mining. Dr. Tang earned his Ph.D. from Arizona State University (2015) and previously served as a Research Scientist at Yahoo Labs.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Machine Learning</span>
+            <span class="speaker-highlight-tag">Graph Neural Networks</span>
+            <span class="speaker-highlight-tag">Trustworthy AI</span>
+            <span class="speaker-highlight-tag">AI in Education</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Recent Recognition</h4>
+            <ul>
+              <li>Gates Foundation Project Funding</li>
+              <li>NVIDIA Academic Grant</li>
+              <li>11 PhD students placed as professors at major universities</li>
+              <li>50,000+ Google Scholar citations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 6: Janice Gobert -->
+      <div class="speaker-detail-card" id="gobert">
+        <div class="speaker-detail-header">
+          <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Prof. Janice Gobert" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">JG</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Janice Gobert, Ph.D.</h2>
+            <p class="speaker-detail-title">Distinguished Professor | CEO, Apprendis/Inq-ITS</p>
+            <p class="speaker-detail-affiliation">Rutgers University, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:janice.gobert@gse.rutgers.edu">janice.gobert@gse.rutgers.edu</a>
+              <a href="https://gse.rutgers.edu/faculty/janice-gobert/" target="_blank">Rutgers Profile</a>
+              <a href="https://www.inqits.com" target="_blank">Inq-ITS</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Janice Gobert, Ph.D. (Cognitive Science, University of Toronto) is a Distinguished Professor of Educational Psychology and Learning Sciences at Rutgers Graduate School of Education. She has 25+ years' experience designing, implementing, and evaluating STEM learning and assessment tools using expertise with quantitative data (logs and classical assessment data) and qualitative data (think aloud data, students' explanations, models/drawings).
+          </p>
+          <p class="speaker-detail-bio">
+            Gobert is the visionary on Inq-ITS, a virtual learning and assessment platform for science, and the lead inventor on Inq-ITS' three AI algorithms that assess and scaffold students' science competencies, and alert teachers on students' performance on these in real time. She also holds 3 other patents for eye-tracking technology. Her expertise on AI in Education has been recognized in many ways. In 2024, she received an Innovation award for Inq-ITS from the University of Toronto; she has served on panels for the AI and future of skills committee for Organisation for Economic Co-operation and Development (OECD), the United States White House Office of Science and Technology (in October 2016 & August 2022), and testified to the UK Parliament on the validity of AI to determine students' university placement at the onset of COVID.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Learning Sciences</span>
+            <span class="speaker-highlight-tag">AI in Education</span>
+            <span class="speaker-highlight-tag">Intelligent Tutoring</span>
+            <span class="speaker-highlight-tag">Science Assessment</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Selected Achievements</h4>
+            <ul>
+              <li>7 Patents for Educational Technology</li>
+              <li>White House EdTech Review (Obama Administration, 2016)</li>
+              <li>$25M+ in Federal Research Funding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 7: Mei-Hung Chiu -->
+      <div class="speaker-detail-card" id="chiu">
+        <div class="speaker-detail-header">
+          <img src="https://scholar.lib.ntnu.edu.tw/files-asset/105108388/meihungchiu.png" alt="Prof. Mei-Hung Chiu" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">MC</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Mei-Hung Chiu, Ed.D.</h2>
+            <p class="speaker-detail-title">Science Education Professor Emerita</p>
+            <p class="speaker-detail-affiliation">National Taiwan Normal University, Taiwan</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:mhchiu@gapps.ntnu.edu.tw">mhchiu@gapps.ntnu.edu.tw</a>
+              <a href="https://scholar.lib.ntnu.edu.tw/en/persons/mei-hung-chiu/" target="_blank">NTNU Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Prof. Mei-Hung Chiu is a Science Education Professor Emerita at the Graduate Institute of Science Education at National Taiwan Normal University. She holds an Ed.D. from Harvard University.
+          </p>
+          <p class="speaker-detail-bio">
+            Her research addresses conceptual change in students' understanding of scientific phenomena, model-based inquiry, and the application of mobile technology and augmented reality in science education. She has published over 100 articles in international and national journals. Prof. Chiu served as Chair of the IUPAC Committee on Chemistry Education (2012-2015) and as an elected member of the IUPAC Bureau and Executive Committee (2016-2023). She is currently an elected member of the International Science Council (ISC) Board.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Science Education</span>
+            <span class="speaker-highlight-tag">Conceptual Change</span>
+            <span class="speaker-highlight-tag">AR in Education</span>
+            <span class="speaker-highlight-tag">Model-Based Inquiry</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Selected Honors</h4>
+            <ul>
+              <li>IUPAC Distinguished Woman in Chemistry or Chemical Engineering (2021)</li>
+              <li>Distinguished Contribution to Science Education Award, EASE (2016)</li>
+              <li>ISC Board Member (Current)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 8: Yasemin Copur-Gencturk -->
+      <div class="speaker-detail-card" id="copur-gencturk">
+        <div class="speaker-detail-header">
+          <img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg?itok=X5NbW6aE" alt="Prof. Yasemin Copur-Gencturk" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">YC</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Yasemin Copur-Gencturk, Ph.D.</h2>
+            <p class="speaker-detail-title">Associate Professor | Co-Director, USC STEM Center</p>
+            <p class="speaker-detail-affiliation">University of Southern California, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:copurgen@usc.edu">copurgen@usc.edu</a>
+              <a href="https://rossier.usc.edu/faculty-research/directory/yasemin-copur-gencturk" target="_blank">USC Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Prof. Yasemin Copur-Gencturk is an Associate Professor at USC's Rossier School of Education, holding the Katzman/Ernst Chair for Educational Entrepreneurship, Technology and Innovation. She serves as Co-Director of the USC STEM Center.
+          </p>
+          <p class="speaker-detail-bio">
+            Her research focuses on identification and development of the knowledge needed for quality teaching and student learning, and understanding the role of teachers' knowledge and implicit beliefs in equity in mathematics classrooms. She is pioneering AI-powered professional development models to improve math instruction. Dr. Copur-Gencturk earned her Ph.D. in Mathematics Education from the University of Illinois at Urbana-Champaign.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Mathematics Education</span>
+            <span class="speaker-highlight-tag">AI-Powered PD</span>
+            <span class="speaker-highlight-tag">Teacher Knowledge</span>
+            <span class="speaker-highlight-tag">Equity in Education</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Selected Honors</h4>
+            <ul>
+              <li>NSF CAREER Award (2018)</li>
+              <li>$6.7M NSF Grant (2024) — Largest NSF grant by USC Rossier faculty</li>
+              <li>Excellence in Research Award, USC Rossier (2020)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 9: Chungjae Lim -->
+      <div class="speaker-detail-card" id="lim">
+        <div class="speaker-detail-header">
+          <img src="data:image/jpeg;base64,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" alt="Prof. Chungjae Lim" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">CL</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Chungjae Lim, Ph.D.</h2>
+            <p class="speaker-detail-title">Professor | Department of Game Software</p>
+            <p class="speaker-detail-affiliation">Keimyung University, South Korea</p>
+            <div class="speaker-detail-contact">
+              <a href="https://app.rndcircle.io/lab/9ffc05d6-d455-419c-8711-8e83dce4f3ca/professor" target="_blank">Lab Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Prof. Chungjae Lim is a Professor in the Department of Game Software at Keimyung University, where he has been a faculty member since 2006. His laboratory specializes in game software development alongside video processing and immersive media technologies.
+          </p>
+          <p class="speaker-detail-bio">
+            His research spans 3D graphics, animation, real-time rendering, functional and educational game development, AI integration, and AR/VR applications. Before joining Keimyung University, he served as a researcher at the Korea Electronics and Telecommunications Research Institute (ETRI) from 1993-1998 and held faculty positions at Daedeok University and Dongseo University. He has served on the Editorial Advisory Board of the Asia Pacific Journal of Innovation and Entrepreneurship and as Director of the Korean Game Society.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Game Development</span>
+            <span class="speaker-highlight-tag">Educational Games</span>
+            <span class="speaker-highlight-tag">AR/VR</span>
+            <span class="speaker-highlight-tag">AI Integration</span>
+          </div>
+          <div class="speaker-awards">
+            <h4>Research Output</h4>
+            <ul>
+              <li>57 Patents</li>
+              <li>30 Academic Papers</li>
+              <li>24 Books/Publications</li>
+              <li>Director, Korean Game Society (2018-2019)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 10: Christopher Quintana -->
+      <div class="speaker-detail-card" id="quintana">
+        <div class="speaker-detail-header">
+          <img src="https://online.umich.edu/media/instructors/Chris_Quintana_001_FINAL.jpg" alt="Prof. Christopher Quintana" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">CQ</div>
+          <div class="speaker-detail-meta">
+            <h2>Prof. Christopher Quintana, Ph.D.</h2>
+            <p class="speaker-detail-title">Associate Professor</p>
+            <p class="speaker-detail-affiliation">University of Michigan, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:quintana@umich.edu">quintana@umich.edu</a>
+              <a href="https://marsal.umich.edu/directory/faculty-staff/christopher-quintana" target="_blank">U-M Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Prof. Chris Quintana is an Associate Professor at the Marsal Family School of Education at the University of Michigan. His work spans learning sciences, human-computer interaction, and computer science.
+          </p>
+          <p class="speaker-detail-bio">
+            He has focused much of his research on software-based scaffolding for middle school science students. His Zydeco Project, funded by the National Science Foundation, explores how mobile and web-based technologies can support content-rich nomadic inquiry, bridging K-12 formal and informal learning settings such as classrooms and museums. His recent work explores the use of wearable technologies by K-12 teachers and the integration of generative AI in learning design. He developed the "Generative AI as a Learning Design Partner" online series available on Michigan Online.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Educational Technology</span>
+            <span class="speaker-highlight-tag">Mobile Learning</span>
+            <span class="speaker-highlight-tag">AI in Learning Design</span>
+            <span class="speaker-highlight-tag">HCI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 11: Alden Jack "AJ" Edson -->
+      <div class="speaker-detail-card" id="edson">
+        <div class="speaker-detail-header">
+          <img src="https://prime.natsci.msu.edu/_assets/images/directory/Edson_AJ_2025_380Square.jpg" alt="Alden Jack AJ Edson" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">AE</div>
+          <div class="speaker-detail-meta">
+            <h2>Alden Jack "AJ" Edson, Ph.D.</h2>
+            <p class="speaker-detail-title">Research Associate Professor</p>
+            <p class="speaker-detail-affiliation">Michigan State University, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:edsona@msu.edu">edsona@msu.edu</a>
+              <a href="https://prime.natsci.msu.edu/directory/faculty.aspx" target="_blank">PRIME Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Dr. AJ Edson is a Research Associate Professor in the Program in Mathematics Education (PRIME) at Michigan State University and an author of the Connected Mathematics Project (CMP4).
+          </p>
+          <p class="speaker-detail-bio">
+            His research and development interests center on improving the teaching and learning of mathematics through innovations in curriculum and technology. He specifically studies the enactment of problem-based, inquiry-oriented mathematics curriculum by students and teachers in a digital world, examining the affordances of innovative curriculum materials as a context for teacher learning. Dr. Edson earned his Ph.D. in Mathematics Education from Western Michigan University (2014).
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">Mathematics Education</span>
+            <span class="speaker-highlight-tag">Digital Curriculum</span>
+            <span class="speaker-highlight-tag">Problem-Based Learning</span>
+            <span class="speaker-highlight-tag">Statistics Education</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 12: Ethel Cormier -->
+      <div class="speaker-detail-card" id="cormier">
+        <div class="speaker-detail-header">
+          <img src="https://msufoundation.org/wp-content/uploads/2025/04/ecormier-400x400.jpg" alt="Dr. Ethel Cormier" class="speaker-detail-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="speaker-detail-image-placeholder" style="display:none;">EC</div>
+          <div class="speaker-detail-meta">
+            <h2>Dr. Ethel Cormier</h2>
+            <p class="speaker-detail-title">Innovator/Investigator</p>
+            <p class="speaker-detail-affiliation">MSU Research Foundation Board, USA</p>
+            <div class="speaker-detail-contact">
+              <a href="mailto:ethelcormier@aol.com">ethelcormier@aol.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="speaker-detail-body">
+          <p class="speaker-detail-bio">
+            Dr. Ethel Cormier is an accomplished research and development leader with extensive experience in bringing scientific innovations from laboratory to market. She serves on the Michigan State University Research Foundation Board of Directors.
+          </p>
+          <p class="speaker-detail-bio">
+            Dr. Cormier retired from a distinguished management career at Procter & Gamble Co., where she worked across multiple R&D divisions including beauty care, food and beverages, health care, pharmaceuticals, and family care. Her experience includes an Asia regional assignment in Kobe, Japan. She is a co-founder of P&G's RTCI Program, a recruiting conference for outstanding doctoral and postdoctoral candidates from underrepresented groups. Dr. Cormier earned her Ph.D. in Molecular Biology from the University of Wisconsin-Madison and her B.S. in Microbiology from Michigan State University.
+          </p>
+          <div class="speaker-detail-highlights">
+            <span class="speaker-highlight-tag">R&D Management</span>
+            <span class="speaker-highlight-tag">Innovation</span>
+            <span class="speaker-highlight-tag">Diversity in STEM</span>
+            <span class="speaker-highlight-tag">Molecular Biology</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM 2025</h4>
+          <p>Global Initiative on AI and Emerging Technologies in STEM Education</p>
+          <p style="margin-top: 1rem;">December 16-20, 2025<br>Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="speakers.html">Speakers</a></li>
+            <li><a href="program.html">Program</a></li>
+            <li><a href="travel.html">Travel & Accommodation</a></li>
+            <li><a href="updates.html">Daily Updates</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Organizers</h4>
+          <p><strong>Jeju National University</strong><br>South Korea</p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute</strong><br>Michigan State University, USA</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>For inquiries about the forum:</p>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Supported by Jeju National University RISE Initiative</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

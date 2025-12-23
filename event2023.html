@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="International EdTech Innovation Week 2023 - Jeju National University">
+  <title>2023 Event | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .event-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 8rem 2rem 5rem;
+      text-align: center;
+      margin-top: 70px;
+    }
+
+    .event-hero h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .event-hero .event-date {
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-hero .event-location {
+      font-size: 1.1rem;
+      color: white;
+    }
+
+    .event-theme {
+      background: var(--background-alt);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .event-theme h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .event-theme p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-left: 4px solid var(--primary);
+      padding: 2rem;
+      border-radius: 0 12px 12px 0;
+      margin: 2rem 0;
+    }
+
+    .highlight-box h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .schedule-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .schedule-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 1.5rem 2rem;
+    }
+
+    .schedule-header h3 {
+      color: white;
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .schedule-header p {
+      color: rgba(255,255,255,0.9);
+      margin: 0.5rem 0 0;
+      font-size: 0.95rem;
+    }
+
+    .schedule-body {
+      padding: 2rem;
+    }
+
+    .session-block {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .session-block:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .session-title {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--background-alt);
+    }
+
+    .program-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .program-item:last-child {
+      border-bottom: none;
+    }
+
+    .program-time {
+      min-width: 100px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .program-content {
+      flex: 1;
+    }
+
+    .program-content strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .program-content span {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .program-content em {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-style: normal;
+    }
+
+    .news-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .news-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .news-source {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .speaker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .speaker-card-mini {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .speaker-card-mini h4 {
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .speaker-card-mini .affiliation {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .speaker-card-mini .topic {
+      color: var(--text);
+      font-size: 0.9rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .keynote-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .presentation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .presentation-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .presentation-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .presentation-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .presentation-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .presentation-info {
+      padding: 1.25rem;
+    }
+
+    .presentation-info h4 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .presentation-info p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .btn-outline-white {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-white:hover {
+      background: white;
+      color: #2D3748;
+    }
+
+    @media (max-width: 640px) {
+      .program-item {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .program-time {
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="speakers.html" class="nav-link">Speakers</a></li>
+        <li><a href="program.html" class="nav-link">Program</a></li>
+        <li><a href="travel.html" class="nav-link">Travel & Accommodation</a></li>
+        <li><a href="updates.html" class="nav-link">Updates</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="event2023.html" class="nav-link active">2023 Event</a></li>
+      </ul>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Event Hero -->
+  <section class="event-hero">
+    <div class="container">
+      <p class="event-date">December 11-12, 2023</p>
+      <h1>International EdTech Innovation Week</h1>
+      <p class="event-location">Jeju National University, South Korea</p>
+    </div>
+  </section>
+
+  <!-- Event Theme -->
+  <section class="event-theme">
+    <div class="container">
+      <h2>Transforming Global Education</h2>
+      <p>Artificial Intelligence and Emerging Technologies in K-16 Teaching and Learning</p>
+    </div>
+  </section>
+
+  <!-- Purpose Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Purpose & Significance</h2>
+        <p>Building a global platform for educational innovation</p>
+      </div>
+
+      <div class="travel-grid">
+        <div class="travel-card">
+          <h3>
+            <span class="travel-card-icon"><i class="fas fa-bullseye"></i></span>
+            Background
+          </h3>
+          <p>Artificial intelligence and immersive media technologies are rapidly advancing, leading to various innovations in the field of education worldwide. Global academic experts gathered to share best practices for innovation and discuss new trends to inspire further research and development efforts that will shape the future of education.</p>
+        </div>
+
+        <div class="travel-card">
+          <h3>
+            <span class="travel-card-icon"><i class="fas fa-rocket"></i></span>
+            Vision
+          </h3>
+          <p>With this event, the goal was to evolve into a global educational innovation platform where leading researchers in educational innovation can network and collaborate. This initiative laid the foundation for ongoing international cooperation in STEM education.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <h3>MOU Signing Ceremony</h3>
+        <p>A significant milestone was achieved with the signing of a Memorandum of Understanding between <strong>Jeju National University</strong> and <strong>Michigan State University's CREATE for STEM Institute</strong>, establishing a framework for the establishment of a joint research institute and ongoing collaboration in STEM education research and innovation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Schedule -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Program Schedule</h2>
+        <p>Two days of presentations, discussions, and collaboration</p>
+      </div>
+
+      <!-- Day 1 -->
+      <div class="schedule-card">
+        <div class="schedule-header">
+          <h3>Day 1: December 11, 2023 (Monday)</h3>
+          <p>Special Lectures & Industry-Academia Exchange</p>
+        </div>
+        <div class="schedule-body">
+          <div class="session-block">
+            <h4 class="session-title">Special Lectures at Jeju National University</h4>
+            <div class="program-item">
+              <span class="program-time">14:00 - 15:00</span>
+              <div class="program-content">
+                <strong>Equitable Global Education Innovation</strong>
+                <span>Building an Educational System that Integrates Learning Science Principles with Artificial Intelligence</span>
+                <em>Prof. Namsoo Shin (Michigan State University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">15:00 - 16:00</span>
+              <div class="program-content">
+                <strong>Media Psychology and ICT Innovation</strong>
+                <span>Implications for the Innovation in Educational Technologies</span>
+                <em>Prof. Kwan Min Lee (Nanyang Technological University)</em>
+              </div>
+            </div>
+          </div>
+
+          <div class="session-block">
+            <h4 class="session-title">Council for Korea-US EdTech Industry-Academia-Research Exchange</h4>
+            <div class="program-item">
+              <span class="program-time">17:00 - 20:00</span>
+              <div class="program-content">
+                <strong>Networking & Collaboration Discussion</strong>
+                <span>Presenters, EdTech companies, and officials introduced organizations and ongoing projects, exploring future cooperation plans.</span>
+                <em>Venue: Maison de Glad, Jeju</em>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="schedule-card">
+        <div class="schedule-header">
+          <h3>Day 2: December 12, 2023 (Tuesday)</h3>
+          <p>International Symposium & MOU Signing Ceremony</p>
+        </div>
+        <div class="schedule-body">
+          <div class="session-block">
+            <h4 class="session-title">Opening & MOU Ceremony</h4>
+            <div class="program-item">
+              <span class="program-time">10:00 - 10:20</span>
+              <div class="program-content">
+                <strong>Opening Ceremony</strong>
+                <span>Welcome remarks by JNU President Kim Il-hwan; Congratulatory remarks by Director Lee Young-chan, Ministry of Education</span>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">10:20 - 10:30</span>
+              <div class="program-content">
+                <strong>MOU Signing Ceremony</strong>
+                <span>Jeju National University & CREATE for STEM Institute, Michigan State University</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="session-block">
+            <h4 class="session-title">Session 1: Innovation in Global Education - AI and Emerging Technologies for K-16</h4>
+            <div class="program-item">
+              <span class="program-time">10:30 - 11:00</span>
+              <div class="program-content">
+                <strong>Keynote: Transforming Global Education through Emerging Technologies</strong>
+                <span>Evidence-based Instructional Strategies</span>
+                <em>Prof. Joseph Krajcik (Michigan State University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">11:00 - 11:20</span>
+              <div class="program-content">
+                <strong>Integrating Learning Science Principles with AI</strong>
+                <span>Creating an Equitable Education System</span>
+                <em>Prof. Namsoo Shin (Michigan State University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">11:20 - 11:40</span>
+              <div class="program-content">
+                <strong>Educational Innovation Presentation</strong>
+                <em>Prof. Daehong Jeong (Seoul National University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">12:00 - 12:30</span>
+              <div class="program-content">
+                <strong>Panel Discussion</strong>
+                <span>Moderated by Prof. Namsoo Shin with all Session 1 presenters</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="session-block">
+            <h4 class="session-title">Session 2: Innovative Educational Methodologies for Higher Education</h4>
+            <div class="program-item">
+              <span class="program-time">13:30 - 13:50</span>
+              <div class="program-content">
+                <strong>Keynote: Key Dimensions for Human-Centered Design of Education Technologies</strong>
+                <em>Prof. Kwan Min Lee (Nanyang Technological University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">13:50 - 14:20</span>
+              <div class="program-content">
+                <strong>Mediated Reality: Designing Persuasive Messages in VR for Education</strong>
+                <em>Prof. Jih-Hsuan Tammy Lin (NCCU, Taiwan)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">14:20 - 14:40</span>
+              <div class="program-content">
+                <strong>Transforming Pedagogy with 3D Computer Vision</strong>
+                <em>Prof. David Jeong (Santa Clara University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">14:40 - 15:00</span>
+              <div class="program-content">
+                <strong>Future Direction for Educational Innovations with Emerging Technologies</strong>
+                <span>Toward Socially Responsive, Responsible, and Reflective Educational Innovation</span>
+                <em>Prof. Ikseon Choi (Emory University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">15:00 - 15:20</span>
+              <div class="program-content">
+                <strong>Immersive Media for Educational Content Creation</strong>
+                <em>Prof. Chungjae Lim (Keimyung University)</em>
+              </div>
+            </div>
+            <div class="program-item">
+              <span class="program-time">15:20 - 15:50</span>
+              <div class="program-content">
+                <strong>Panel Discussion</strong>
+                <span>Moderated by Prof. Kwan Min Lee with all Session 2 presenters</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="session-block">
+            <div class="program-item">
+              <span class="program-time">16:00 - 19:00</span>
+              <div class="program-content">
+                <strong>Closing Banquet & Networking</strong>
+                <span>All participants</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Speakers -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Speakers</h2>
+        <p>Distinguished scholars from around the world</p>
+      </div>
+
+      <div class="travel-card">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="color: var(--primary);">Joe Krajcik</strong> - Director, CREATE for STEM Institute, Lappan-Phillips Professor of Science Education at Michigan State University
+          </li>
+          <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="color: var(--primary);">Namsoo Shin</strong> - Research Professor, Michigan State University
+          </li>
+          <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="color: var(--primary);">Daehong Jeong</strong> - Vice Dean, College of Education, Seoul National University
+          </li>
+          <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="color: var(--primary);">Kwan Min Lee</strong> - Distinguished Professor of New Media, Nanyang Technological University, Singapore. International Communication Association (ICA) Fellow.
+          </li>
+          <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="color: var(--primary);">David Jeong</strong> - Professor, Santa Clara University, Silicon Valley. Providing education and research to students through AI, Metaverse, etc.
+          </li>
+          <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="color: var(--primary);">Ikseon Choi</strong> - Emory University, Vice Dean of Educational Systems Science. Educational innovation using next-generation technologies such as AR/VR.
+          </li>
+          <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+            <strong style="color: var(--primary);">Jih-Hsuan Tammy Lin</strong> - Distinguished Professor, NCCU, Taiwan. Lectures on innovation in educational use of games and metaverse.
+          </li>
+          <li style="padding: 1rem 0;">
+            <strong style="color: var(--primary);">Chungjae Lim</strong> - Professor, Keimyung University, Department of Game and Mobile Contents.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Coverage -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>News Coverage</h2>
+        <p>Media highlights from the event</p>
+      </div>
+
+      <div class="news-card">
+        <span class="news-source">Jeju Maeil</span>
+        <h3><i class="fas fa-newspaper"></i> JNU Hosts International EdTech Innovation Week</h3>
+        <p>Jeju National University successfully hosted the International EdTech Innovation Week from December 11-12, 2023. The event featured special lectures, a symposium, and an MOU signing ceremony focused on innovative approaches to educational technology and STEM education.</p>
+        <p style="margin-top: 1rem;">The symposium, themed "Transforming Global Education: AI and Emerging Technologies in K-16 Teaching and Learning," brought together distinguished scholars from Korea, the United States, Singapore, and Taiwan to discuss the future of AI in education, pedagogical strategies for technology integration, and collaborative research opportunities.</p>
+        <p style="margin-top: 1rem;">A key outcome was the MOU signing between Jeju National University and Michigan State University's CREATE for STEM Institute, establishing a framework for ongoing collaboration and marking the beginning of a new era in international STEM education partnership.</p>
+        <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;"><em>Source: Jeju Maeil - December 2023</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Presentations -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Presentation Materials</h2>
+        <p>Key topics discussed during the symposium</p>
+      </div>
+
+      <div class="presentation-grid">
+        <div class="presentation-card">
+          <div class="presentation-image">
+            <img src="images/presentations/presentation1.png" alt="EdTech Innovation" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;far fa-file-alt&quot; style=&quot;font-size: 3rem;&quot;></i>';">
+          </div>
+          <div class="presentation-info">
+            <h4>Transforming Global Education</h4>
+            <p>Emerging Technologies and Evidence-based Instructional Strategies</p>
+          </div>
+        </div>
+
+        <div class="presentation-card">
+          <div class="presentation-image">
+            <img src="images/presentations/presentation2.png" alt="AI in Education" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;far fa-lightbulb&quot; style=&quot;font-size: 3rem;&quot;></i>';">
+          </div>
+          <div class="presentation-info">
+            <h4>Human-Centered Education Design</h4>
+            <p>Key Dimensions for Educational Technologies</p>
+          </div>
+        </div>
+
+        <div class="presentation-card">
+          <div class="presentation-image">
+            <img src="images/presentations/presentation3.png" alt="VR Education" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;far fa-eye&quot; style=&quot;font-size: 3rem;&quot;></i>';">
+          </div>
+          <div class="presentation-info">
+            <h4>VR and Immersive Learning</h4>
+            <p>Designing Persuasive Messages for Education</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connection to 2025 -->
+  <section class="section" style="background: linear-gradient(135deg, #4A5568 0%, #2D3748 100%); color: white;">
+    <div class="container text-center">
+      <h2 style="color: white; margin-bottom: 1rem;">Building on Success</h2>
+      <p style="color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 2rem;">The 2023 International EdTech Innovation Week laid the foundation for AIET IN STEM 2025, expanding our network and deepening our commitment to transforming STEM education globally through the JNU-MSU partnership.</p>
+      <a href="index.html" class="btn btn-outline-white">Learn About AIET IN STEM 2025</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM 2025</h4>
+          <p>Global Initiative on AI and Emerging Technologies in STEM Education</p>
+          <p style="margin-top: 1rem;">December 16-20, 2025<br>Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="speakers.html">Speakers</a></li>
+            <li><a href="program.html">Program</a></li>
+            <li><a href="travel.html">Travel & Accommodation</a></li>
+            <li><a href="updates.html">Daily Updates</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Organizers</h4>
+          <p><strong>Jeju National University</strong><br>South Korea</p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute</strong><br>Michigan State University, USA</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>For inquiries about the forum:</p>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Supported by Jeju National University RISE Initiative</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

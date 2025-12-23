@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo gallery from AIET IN STEM 2025 - Capturing moments from the Global Forum on AI in STEM Education.">
+  <title>Gallery | AIET IN STEM 2025</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .gallery-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 2rem 0;
+      text-align: center;
+      color: white;
+      margin-bottom: 0;
+    }
+
+    .gallery-hero h2 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-hero p {
+      opacity: 0.9;
+    }
+
+    .gallery-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-stat {
+      text-align: center;
+    }
+
+    .gallery-stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .gallery-stat-label {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: white;
+      padding: 3rem 1rem 1rem;
+    }
+
+    .gallery-caption h4 {
+      color: white;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    .gallery-caption p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.75rem;
+      margin: 0;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      text-align: center;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: 8px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .lightbox-prev { left: 2rem; }
+    .lightbox-next { right: 2rem; }
+
+    .lightbox-caption {
+      color: white;
+      text-align: center;
+      margin-top: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lightbox-caption h4 {
+      color: white;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .lightbox-caption p {
+      color: rgba(255,255,255,0.7);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Section titles */
+    .gallery-section-title {
+      text-align: center;
+      margin: 2rem 0 1.5rem;
+      position: relative;
+    }
+
+    .gallery-section-title:first-of-type {
+      margin-top: 1rem;
+    }
+
+    .gallery-section-title h2 {
+      display: inline-block;
+      background: white;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-section-title::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+
+    @media (max-width: 968px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-stats { gap: 2rem; }
+
+      .lightbox-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+      }
+
+      .lightbox-prev { left: 1rem; }
+      .lightbox-next { right: 1rem; }
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-stats {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .gallery-item img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="speakers.html" class="nav-link">Speakers</a></li>
+        <li><a href="program.html" class="nav-link">Program</a></li>
+        <li><a href="travel.html" class="nav-link">Travel & Accommodation</a></li>
+        <li><a href="updates.html" class="nav-link">Updates</a></li>
+        <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+        <li><a href="event2023.html" class="nav-link">2023 Event</a></li>
+      </ul>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Photo Gallery</h1>
+      <p>Moments from AIET IN STEM 2025</p>
+    </div>
+  </header>
+
+  <!-- Gallery Section -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container">
+
+      <!-- Opening & Keynotes -->
+      <div class="gallery-section-title">
+        <h2>Opening & Keynote Sessions</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(0)">
+          <img src="images/activity/kickoff.jpg" alt="Forum Kickoff">
+          <div class="gallery-caption">
+            <h4>2024 JNU RISEFLOW Global Forum Kickoff</h4>
+            <p>ChulUng Kang, Director, JNU RISE - Opening Ceremony</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(1)">
+          <img src="images/17일/안.jpg" alt="Opening Remarks">
+          <div class="gallery-caption">
+            <h4>Opening Remarks</h4>
+            <p>Prof. Namsoo Shin & Moonhwan Ahn, Organizers</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(2)">
+          <img src="images/17일/임2.jpg" alt="Prof. Lim">
+          <div class="gallery-caption">
+            <h4>AI as an Innovative Solution</h4>
+            <p>Prof. ChungJae Lim, Forum Introduction</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker Sessions - Day 1 -->
+      <div class="gallery-section-title">
+        <h2>Speaker Sessions</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(3)">
+          <img src="images/17일/chris.jpeg" alt="Chris Dede">
+          <div class="gallery-caption">
+            <h4>AI as "Design Partner"</h4>
+            <p>Prof. Chris Dede, Harvard University</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(4)">
+          <img src="images/17일/knut.jpeg" alt="Knut Neumann">
+          <div class="gallery-caption">
+            <h4>AI-Powered Learning Analytics</h4>
+            <p>Prof. Knut Neumann, IPN Leibniz Institute</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(5)">
+          <img src="images/17일/Mei.jpeg" alt="Mei-Hung Chiu">
+          <div class="gallery-caption">
+            <h4>Facial Expression Recognition in Learning</h4>
+            <p>Prof. Mei-Hung Chiu, National Taiwan Normal University</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(6)">
+          <img src="images/17일/aj.jpeg" alt="AJ Edson">
+          <div class="gallery-caption">
+            <h4>Artificial Intelligence in K-12 Math</h4>
+            <p>AJ Edson, Michigan State University</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(7)">
+          <img src="images/17일/yessemin.jpeg" alt="Yasemin Copur-Gencturk">
+          <div class="gallery-caption">
+            <h4>Successful Integration of AI into Education</h4>
+            <p>Prof. Yasemin Copur-Gencturk, USC</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(8)">
+          <img src="images/17일/umesh.jpg" alt="Umesh Nagarkatte">
+          <div class="gallery-caption">
+            <h4>Learning Analytics for Virtual Reality (LAViR)</h4>
+            <p>Prof. Umesh Ramnarain, University of Johannesburg</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(9)">
+          <img src="images/17일/janice2.jpg" alt="Janice Gobert">
+          <div class="gallery-caption">
+            <h4>AI in Science Education</h4>
+            <p>Prof. Janice Gobert, Rutgers University</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(10)">
+          <img src="images/17일/namsoo (2).jpeg" alt="Namsoo Shin">
+          <div class="gallery-caption">
+            <h4>GenAI-Enhanced Assessment Framework</h4>
+            <p>Prof. Namsoo Shin, Michigan State University</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(11)">
+          <img src="images/17일/tag2.jpg" alt="Speaker">
+          <div class="gallery-caption">
+            <h4>A Brief Story of Modern AI</h4>
+            <p>Prof. Jiliang Tang, Michigan State University</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(12)">
+          <img src="images/17일/임.jpg" alt="Prof. Lim">
+          <div class="gallery-caption">
+            <h4>Bridging Technical Models and Real-World Complexity</h4>
+            <p>Researcher Lim - AI Simulation</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expert Presentations from Activity -->
+      <div class="gallery-section-title">
+        <h2>Presentation Highlights</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(13)">
+          <img src="images/activity/AI is co-pilot, not pilot. The quality of the question determines the quality of the answer..jpg" alt="Prof. Mei-Hung Chiu">
+          <div class="gallery-caption">
+            <h4>"AI is co-pilot, not pilot"</h4>
+            <p>The quality of the question determines the quality of the answer</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(14)">
+          <img src="images/activity/Teaching mathematics THROUGH problem-solving, not FOR problem-solving.jpg" alt="CMP Platform">
+          <div class="gallery-caption">
+            <h4>CMP Digital Platform</h4>
+            <p>Teaching mathematics THROUGH problem-solving</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(15)">
+          <img src="images/activity/We need content experts to create meaningful tools. Many AI tools forget the most important thing domain-specific expertise..jpg" alt="AI Tools">
+          <div class="gallery-caption">
+            <h4>"Content experts must create meaningful AI tools"</h4>
+            <p>Domain-specific expertise is essential</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(16)">
+          <img src="images/activity/Generic platform where teachers upload any worksheet and AI automatically tracks learning without requiring technical expertise.jpg" alt="AI Platform">
+          <div class="gallery-caption">
+            <h4>Generic AI Platform for Teachers</h4>
+            <p>No technical expertise required</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(17)">
+          <img src="images/activity/Personalized Learning at Scale All speakers emphasized AI enables 1-to-1 feedback while maintaining quality.jpg" alt="AI Feedback">
+          <div class="gallery-caption">
+            <h4>Personalized Learning at Scale</h4>
+            <p>AI enables 1-to-1 feedback while maintaining quality</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(18)">
+          <img src="images/activity/Some students copy-paste without understanding, losing learning opportunities.jpg" alt="Connected Math">
+          <div class="gallery-caption">
+            <h4>Connected Mathematics 4</h4>
+            <p>Most researched US math curriculum (550+ papers)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Workshop -->
+      <div class="gallery-section-title">
+        <h2>Student Workshop with Jeju Science High School</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(19)">
+          <img src="images/activity/AI can have a good future if we use it as a guide..jpg" alt="Student Workshop">
+          <div class="gallery-caption">
+            <h4>Joint Workshop Session</h4>
+            <p>Students and international experts together</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(20)">
+          <img src="images/activity/Know what you're doing before copying.jpg" alt="Student Discussion">
+          <div class="gallery-caption">
+            <h4>"Know what you're doing before copying"</h4>
+            <p>Student sharing AI usage experience</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(21)">
+          <img src="images/activity/We shouldn't necessarily rely everything on AI..jpg" alt="Student Voice">
+          <div class="gallery-caption">
+            <h4>"We shouldn't rely everything on AI"</h4>
+            <p>Critical perspectives from students</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(22)">
+          <img src="images/activity/We shouldn't necessarily rely everything on AI. We should be skeptical as well. AI can have a good future if we use it as a guide..jpg" alt="Student Insights">
+          <div class="gallery-caption">
+            <h4>"AI can have a good future if we use it as a guide"</h4>
+            <p>Student insights on AI in education</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(23)">
+          <img src="images/activity/Must solve Problems of Practice - not technology for technology's sake.jpg" alt="Expert Panel">
+          <div class="gallery-caption">
+            <h4>Expert Panel Response</h4>
+            <p>AJ Edson, Ethol</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group Photos & Networking -->
+      <div class="gallery-section-title">
+        <h2>Group Photos & Networking</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(24)">
+          <img src="images/activity/Teacher Support, Not Replacement AI handles routine tasks, freeing teachers for critical moments.jpg" alt="Forum Participants">
+          <div class="gallery-caption">
+            <h4>Forum Participants</h4>
+            <p>International researchers and educators</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(25)">
+          <img src="images/activity/Cultural Context Matters Privacy concerns, educational priorities, and adoption rates vary by country.jpg" alt="Hotel Group">
+          <div class="gallery-caption">
+            <h4>International Team</h4>
+            <p>Grand Hyatt Jeju</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(26)">
+          <img src="images/activity/vidence-Based Approach Rigorous evaluation (RCTs) validates effectiveness; document actual impact.jpg" alt="Group Photo">
+          <div class="gallery-caption">
+            <h4>United for Future STEM Education</h4>
+            <p>Asia, Europe, Africa, Americas - Will AI save or ruin education?</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(27)">
+          <img src="images/activity/7.jpg" alt="Dinner">
+          <div class="gallery-caption">
+            <h4>Networking Dinner</h4>
+            <p>Korean cuisine experience</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(28)">
+          <img src="images/activity/TalkMedia_i_acb43ba4a17b.jpg.jpg" alt="Lunch">
+          <div class="gallery-caption">
+            <h4>Lunch Break</h4>
+            <p>Informal discussions continue</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(29)">
+          <img src="images/activity/TalkMedia_i_9914f42812d1.jpg.jpg" alt="Student Lunch">
+          <div class="gallery-caption">
+            <h4>Student Workshop Lunch</h4>
+            <p>Jeju Science High School students</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <span class="lightbox-nav lightbox-prev" onclick="prevImage()"><i class="fas fa-chevron-left"></i></span>
+    <span class="lightbox-nav lightbox-next" onclick="nextImage()"><i class="fas fa-chevron-right"></i></span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption">
+        <h4 id="lightbox-title"></h4>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM 2025</h4>
+          <p>Global Initiative on AI and Emerging Technologies in STEM Education</p>
+          <p style="margin-top: 1rem;">December 16-20, 2025<br>Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="speakers.html">Speakers</a></li>
+            <li><a href="program.html">Program</a></li>
+            <li><a href="travel.html">Travel & Accommodation</a></li>
+            <li><a href="updates.html">Daily Updates</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Organizers</h4>
+          <p><strong>Jeju National University</strong><br>South Korea</p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute</strong><br>Michigan State University, USA</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>For inquiries about the forum:</p>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Supported by Jeju National University RISE Initiative</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const galleryImages = [
+      // Opening & Keynotes
+      { src: 'images/activity/kickoff.jpg', title: '2024 JNU RISEFLOW Global Forum Kickoff', desc: 'ChulUng Kang, Director, JNU RISE - Opening Ceremony' },
+      { src: 'images/17일/안.jpg', title: 'Opening Remarks', desc: 'Prof. Namsoo Shin & Moonhwan Ahn, Forum Organizers' },
+      { src: 'images/17일/임2.jpg', title: 'AI as an Innovative Solution', desc: 'Prof. ChungJae Lim, Forum Introduction' },
+
+      // Speaker Sessions
+      { src: 'images/17일/chris.jpeg', title: 'AI as "Design Partner"', desc: 'Prof. Chris Dede, Harvard University - LLMs as intellectual partners and scaffolding agents' },
+      { src: 'images/17일/knut.jpeg', title: 'AI-Powered Learning Analytics', desc: 'Prof. Knut Neumann, IPN Leibniz Institute for Science and Mathematics Education' },
+      { src: 'images/17일/Mei.jpeg', title: 'Facial Expression Recognition in Learning', desc: 'Prof. Mei-Hung Chiu, National Taiwan Normal University - Film for Rolling Balls experiment' },
+      { src: 'images/17일/aj.jpeg', title: 'Artificial Intelligence in K-12 Math', desc: 'AJ Edson, Michigan State University - Connected Mathematics Project' },
+      { src: 'images/17일/yessemin.jpeg', title: 'Successful Integration of AI into Education', desc: 'Prof. Yasemin Copur-Gencturk, USC - Evidence-based AI professional development' },
+      { src: 'images/17일/umesh.jpg', title: 'Learning Analytics for Virtual Reality (LAViR)', desc: 'Prof. Umesh Ramnarain, University of Johannesburg - VR classroom analytics' },
+      { src: 'images/17일/janice2.jpg', title: 'AI in Science Education', desc: 'Prof. Janice Gobert, Rutgers University - Inq-ITS intelligent tutoring system' },
+      { src: 'images/17일/namsoo (2).jpeg', title: 'GenAI-Enhanced Assessment Framework', desc: 'Prof. Namsoo Shin, Michigan State University - Student feedback and teacher reports' },
+      { src: 'images/17일/tag2.jpg', title: 'A Brief Story of Modern AI', desc: 'Prof. Jiliang Tang, Michigan State University - Evolution of AI in Education' },
+      { src: 'images/17일/임.jpg', title: 'Bridging Technical Models and Real-World Complexity', desc: 'Researcher Lim - AI Simulation' },
+
+      // Presentation Highlights
+      { src: 'images/activity/AI is co-pilot, not pilot. The quality of the question determines the quality of the answer..jpg', title: '"AI is co-pilot, not pilot"', desc: 'Prof. Mei-Hung Chiu - The quality of the question determines the quality of the answer' },
+      { src: 'images/activity/Teaching mathematics THROUGH problem-solving, not FOR problem-solving.jpg', title: 'CMP Digital Platform', desc: 'AJ Edson - Teaching mathematics THROUGH problem-solving, not FOR problem-solving' },
+      { src: 'images/activity/We need content experts to create meaningful tools. Many AI tools forget the most important thing domain-specific expertise..jpg', title: '"Content experts must create meaningful AI tools"', desc: 'Prof. Yasemin Copur-Gencturk - Domain-specific expertise is essential' },
+      { src: 'images/activity/Generic platform where teachers upload any worksheet and AI automatically tracks learning without requiring technical expertise.jpg', title: 'Generic AI Platform for Teachers', desc: 'Vision: Teachers upload any worksheet and AI automatically tracks learning' },
+      { src: 'images/activity/Personalized Learning at Scale All speakers emphasized AI enables 1-to-1 feedback while maintaining quality.jpg', title: 'Personalized Learning at Scale', desc: 'AI Tag/Feedback System - Enabling 1-to-1 feedback while maintaining quality' },
+      { src: 'images/activity/Some students copy-paste without understanding, losing learning opportunities.jpg', title: 'Connected Mathematics 4', desc: 'Most researched US math curriculum with 550+ papers' },
+
+      // Student Workshop
+      { src: 'images/activity/AI can have a good future if we use it as a guide..jpg', title: 'Joint Workshop with Jeju Science High School', desc: 'Students discussing AI usage and concerns with international experts' },
+      { src: 'images/activity/Know what you\'re doing before copying.jpg', title: '"Know what you\'re doing before copying"', desc: 'Student sharing experience - Understanding before using AI-generated content' },
+      { src: 'images/activity/We shouldn\'t necessarily rely everything on AI..jpg', title: '"We shouldn\'t rely everything on AI"', desc: 'Student expressing critical perspective on AI dependence' },
+      { src: 'images/activity/We shouldn\'t necessarily rely everything on AI. We should be skeptical as well. AI can have a good future if we use it as a guide..jpg', title: '"AI can have a good future if we use it as a guide"', desc: 'Student insights - Being skeptical while embracing AI as a learning tool' },
+      { src: 'images/activity/Must solve Problems of Practice - not technology for technology\'s sake.jpg', title: 'Expert Panel Response', desc: 'AJ Edson and Ethol responding to student questions' },
+
+      // Group Photos
+      { src: 'images/activity/Teacher Support, Not Replacement AI handles routine tasks, freeing teachers for critical moments.jpg', title: 'Forum Participants Group Photo', desc: 'International researchers and educators' },
+      { src: 'images/activity/Cultural Context Matters Privacy concerns, educational priorities, and adoption rates vary by country.jpg', title: 'International Team at Grand Hyatt Jeju', desc: 'Cultural context matters - diverse perspectives on AI in education' },
+      { src: 'images/activity/vidence-Based Approach Rigorous evaluation (RCTs) validates effectiveness; document actual impact.jpg', title: 'United for Future STEM Education', desc: 'Asia, Europe, Africa, Americas united - Will AI save or ruin education? A fundamental question across continents' },
+      { src: 'images/activity/7.jpg', title: 'Networking Dinner', desc: 'Korean cuisine experience - Building international collaboration' },
+      { src: 'images/activity/TalkMedia_i_acb43ba4a17b.jpg.jpg', title: 'Lunch Break', desc: 'Informal discussions continue over local food' },
+      { src: 'images/activity/TalkMedia_i_9914f42812d1.jpg.jpg', title: 'Student Workshop Lunch', desc: 'Jeju Science High School students networking' }
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightbox() {
+      const img = galleryImages[currentIndex];
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-title').textContent = img.title;
+      document.getElementById('lightbox-desc').textContent = img.desc;
+      document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      updateLightbox();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateLightbox();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (!document.getElementById('lightbox').classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+  </script>
+</body>
+</html>
