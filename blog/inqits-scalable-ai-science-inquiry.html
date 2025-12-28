@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InqITS: A Scalable AI Infrastructure for Science Inquiry Assessment and Intelligent Tutoring - Real-time assessment, Rex AI tutor, and teacher dashboards">
+  <title>InqITS: Scalable AI for Science Inquiry | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles - Teal Theme */
+    .post-hero {
+      background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .post-content h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    /* 3-Tier Expandable Sections */
+    .tier-section {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+
+    .tier-1-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tier-1-title i {
+      color: #0D9488;
+    }
+
+    .tier-1-summary {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .details-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #0D9488;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .details-link:hover {
+      opacity: 0.8;
+    }
+
+    .details-link i {
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-section.expanded .details-link span {
+      display: none;
+    }
+
+    .tier-section.expanded .details-link::after {
+      content: 'Hide Details';
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    .tier-2-content p {
+      margin-bottom: 1rem;
+    }
+
+    .tier-2-content ul, .tier-2-content ol {
+      margin: 1rem 0 1rem 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-3-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #0D9488;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .tier-3-toggle:hover {
+      opacity: 0.8;
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: #F0FDFA;
+      border-radius: 8px;
+      border-left: 4px solid #0D9488;
+    }
+
+    .tier-3.visible {
+      display: block;
+    }
+
+    .tier-3-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #0D9488;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .actual-quote {
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: #0D9488;
+      font-style: normal;
+    }
+
+    /* Key Insight Box */
+    .key-insight {
+      background: linear-gradient(135deg, #CCFBF1 0%, #F0FDFA 100%);
+      border-left: 4px solid #0D9488;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .key-insight-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #0F766E;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .key-insight p {
+      margin: 0;
+      color: #134E4A;
+      font-weight: 500;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-card .number {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #0D9488;
+    }
+
+    .stat-card .label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 0.25rem;
+    }
+
+    /* Problem Cards */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .problem-card {
+      background: white;
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .problem-card i {
+      font-size: 2rem;
+      color: #0D9488;
+      margin-bottom: 0.75rem;
+    }
+
+    .problem-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .problem-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    /* Navigation */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .post-nav a {
+      color: #0D9488;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <section class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Presentation</span>
+        <span class="post-date">December 2025 · AIET Forum Session</span>
+      </div>
+      <h1>InqITS: Scalable AI Infrastructure for Science Inquiry Assessment</h1>
+      <p class="subtitle">How real-time AI assessment and intelligent tutoring can solve the "Billy vs Johnny" problem in STEM education—and why 30-60% of students are being misassessed.</p>
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert">
+        </div>
+        <div class="post-author-info">
+          <h4>Janice Gobert</h4>
+          <p>Cognitive Scientist, Rutgers · Founding CEO of InqITS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <p>At Rutgers University and as the founding CEO of InqITS, Dr. Janice Gobert has built a platform that fundamentally rethinks how we assess students during science inquiry. With over 20 million investigations completed and 100 million interaction logs from 94 countries, InqITS represents one of the largest AI-driven formative assessment systems in science education.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="number">20M+</div>
+        <div class="label">Investigations</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">100M+</div>
+        <div class="label">Interaction Logs</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">94</div>
+        <div class="label">Countries</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">170</div>
+        <div class="label">Days of Transfer</div>
+      </div>
+    </div>
+
+    <div class="key-insight">
+      <div class="key-insight-label">The Problem</div>
+      <p>If you rely only on what a student writes, you're misassessing them between 30 to 60% of the time. We have Billy (the science genius who can't express himself) and Johnny (the social loafer who writes great lab reports). ChatGPT is making this even worse.</p>
+    </div>
+
+    <h2>The Billy vs Johnny Problem</h2>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <i class="fas fa-user-graduate"></i>
+        <h4>Billy (False Negative)</h4>
+        <p>Science genius who understands everything but struggles to write it down. Gets underestimated by traditional assessment.</p>
+      </div>
+      <div class="problem-card">
+        <i class="fas fa-user-friends"></i>
+        <h4>Johnny (False Positive)</h4>
+        <p>Social loafer who catches the classroom buzz and writes excellent reports without actually understanding. Gets overestimated.</p>
+      </div>
+    </div>
+
+    <!-- Section 1: The Assessment Crisis -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-exclamation-triangle"></i>
+          The Assessment Crisis in Science Education
+        </div>
+        <p class="tier-1-summary">Traditional assessment methods—multiple choice, lab reports, summative tests—systematically fail to capture what students actually know and can do. ChatGPT is amplifying this problem.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The crisis in science education assessment runs deep. Multiple-choice tests measure surface knowledge, not authentic practices. Lab reports reflect writing ability, not scientific understanding. And with ChatGPT, students can now generate sophisticated explanations without any actual comprehension.</p>
+
+          <h4>Why Traditional Methods Fail:</h4>
+          <ul>
+            <li><strong>Multiple-choice tests:</strong> Don't capture rich knowledge or authentic practices</li>
+            <li><strong>High-stakes summative tests:</strong> Come too late to inform instruction</li>
+            <li><strong>Hands-on labs:</strong> A nightmare for teachers to assess—kids work at different paces, lack equipment</li>
+            <li><strong>Lab reports:</strong> "Not a good reflection of what they know"</li>
+            <li><strong>ChatGPT moment:</strong> What does it even mean to "know" something when AI can generate the explanation?</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "If you rely only on what a student writes, you're misassessing them between 30 to 60% of the time because you have Johnny's and you have Billy's. Now, ChatGPT is making this even worse because if a student is just like, 'oh, explain to me how the boiling point stays the same even though I add more water,' right, and then is writing that, the teacher's like, 'oh, gee, Johnny knows what he's talking about.' This is the ChatGPT moment because what does it mean to know? What does it mean to learn?"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: How InqITS Works -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-cogs"></i>
+          How InqITS Works: Real-Time Process Assessment
+        </div>
+        <p class="tier-1-summary">Every mouse click, every widget change, everything the student does is captured. Patented algorithms score them in real-time on NGSS practices—and drive immediate support.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>InqITS fundamentally shifts assessment from products (what students write) to processes (what students do). As students work in virtual labs, the system captures every interaction and applies AI in real-time.</p>
+
+          <h4>The Technical Architecture:</h4>
+          <ul>
+            <li><strong>Data Capture:</strong> Every mouse click, widget change, everything written—captured as high-fidelity log files</li>
+            <li><strong>Algorithm Suite:</strong> Machine learning, knowledge engineering, and NLP algorithms applied in real-time</li>
+            <li><strong>Evidence-Centered Design:</strong> Sub-competencies defined a priori using learning science literature</li>
+            <li><strong>Real-time Scaffolding:</strong> Rex (the AI tutor) intervenes based on assessment, not on-demand</li>
+            <li><strong>Teacher Dashboard:</strong> Alerts and tips sent to teachers in real-time</li>
+          </ul>
+
+          <h4>What Gets Assessed:</h4>
+          <ul>
+            <li>Forming questions and hypotheses</li>
+            <li>Collecting data with simulations</li>
+            <li>Interpreting data with mathematics</li>
+            <li>Warranting claims with evidence</li>
+            <li>Writing claim-evidence-reasoning statements</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "You have the student on the left. The student is doing a virtual lab aligned to NGSS and as they're working, our infrastructure is garnering every mouse click, every change to the widget, everything they write, absolutely everything. And it's then applying these patented algorithms—machine-learned algorithms, knowledge engineer algorithms, and natural language processing algorithms—in real time to drive support to the virtual tutor who is then in turn supporting the student on an actionable level on the sub-competencies underlying each practice."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Rex the AI Tutor -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-robot"></i>
+          Rex: The AI Tutor That Knows When You're Struggling
+        </div>
+        <p class="tier-1-summary">Not on-demand help—Rex intervenes when the AI detects struggle. Students don't know what they don't know, so we can't wait for them to ask.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Rex (a dinosaur for middle school, a robot for high school) is fundamentally different from typical AI tutors. It doesn't wait for students to ask for help—because they usually don't know what they need help with.</p>
+
+          <h4>Why Not On-Demand Help:</h4>
+          <ul>
+            <li><strong>Students don't know what they don't know:</strong> A student won't say "Miss, I don't understand what an independent variable is"</li>
+            <li><strong>Gaming the system:</strong> Research shows students drill down to get the bottom hint without learning</li>
+            <li><strong>This is what happens with ChatGPT:</strong> Students get answers without understanding</li>
+          </ul>
+
+          <h4>How Rex Intervenes:</h4>
+          <p>Rex provides multiple levels of support based on detected difficulties. For example, if a student confuses independent and dependent variables:</p>
+          <ul>
+            <li><strong>Why it matters:</strong> If you don't understand independent variables, you can't form a question, can't design an experiment, can't interpret data</li>
+            <li><strong>Real-time intervention:</strong> Stop the student before they collect 2 periods of buggy data</li>
+            <li><strong>Productive struggle:</strong> Studies determine how long to let students struggle before intervening</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "It's not on-demand help because kids generally don't know what they don't know. The problem is that they're not gonna say, 'hey, miss, I don't understand what an independent variable is.' They don't typically understand that. And furthermore, we know from people who study gaming the system, like Ryan Baker, that what happens is kids will drill down and get the bottom-up hint just to find the specific thing they should do, like a cookbook, and they're not doing any learning, right? This is also what's happening with ChatGPT, I fear."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Teacher Dashboard -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-tachometer-alt"></i>
+          Teacher Dashboard: Real-Time Alerts and TIPS
+        </div>
+        <p class="tier-1-summary">Teachers receive actionable alerts as students struggle. TIPS (Teacher Inquiry Practice Supports) are evidence-based scripts derived from recording what effective teachers actually say.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Teachers consistently say InqITS "changed their lives" because of the dashboard. It makes NGSS formative assessment actually feasible in real classrooms.</p>
+
+          <h4>Alert System:</h4>
+          <ul>
+            <li><strong>Student-level alerts:</strong> "John Marcones is struggling with hypothesizing"</li>
+            <li><strong>Class-level detection:</strong> "80% of students struggling with variable identification—stop the class"</li>
+            <li><strong>Slow progress alert:</strong> Detects carelessness or frustration (validated log signatures)</li>
+            <li><strong>Adjustable thresholds:</strong> Be more forgiving early in the year, stricter before state tests</li>
+          </ul>
+
+          <h4>TIPS - Teacher Inquiry Practice Supports:</h4>
+          <p>Derived from an innovative study: recorded what teachers said to struggling students, then analyzed which discourse led to improvement on the next lab.</p>
+          <ul>
+            <li><strong>4 types of tips:</strong> Different tips for different students and situations</li>
+            <li><strong>High-flyer:</strong> Give smallest breadcrumb—let them figure it out</li>
+            <li><strong>Struggling student:</strong> Give instrumental support, then ask "How is this different from what you did?"</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "I've spent my whole career building student software and no kids, including my own three, ever told me that I changed their life. But teachers tell us that we change their lives because of our dashboard, which does real-time reports, alerts, and tips. And this I'm really excited about because it really changes boots on the ground, the implementation of NGSS."
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              "What we did was we examined kids who did better on the next lab and then we called the discourse for what teachers said to them. And then we turned them into these tips. These are called TIPS—Teacher Inquiry Practice Supports. And there's four kinds of different tips. And the teacher can walk over and decide what tip to use for what kind of kid."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Evidence of Efficacy -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-chart-line"></i>
+          Evidence of Efficacy: 170-Day Transfer Effects
+        </div>
+        <p class="tier-1-summary">NSF-funded studies show transfer effects persisting 170 days after just one unit with Rex. Spanish-speaking multilingual learners show consistent improvement even on tasks without Rex support.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The efficacy research demonstrates that InqITS doesn't just help in the moment—it produces lasting, transferable learning of scientific practices.</p>
+
+          <h4>Research Findings:</h4>
+          <ul>
+            <li><strong>State test improvement:</strong> Multiple states show improved science test scores</li>
+            <li><strong>Systematic experimentation:</strong> Students become more systematic with hands-on experiments after using InqITS</li>
+            <li><strong>Special education:</strong> Rex supports learners with IEPs</li>
+            <li><strong>Mathematics transfer:</strong> Students transfer math skills associated with science across topics</li>
+          </ul>
+
+          <h4>The 170-Day Study:</h4>
+          <p>A robust NSF-funded study showed effects from one Rex treatment persisting 170 days later. "We taught them something. We definitely taught them something."</p>
+
+          <h4>Multilingual Learner Study:</h4>
+          <p>Spanish Rex support led to better learning AND better transfer—even to claim-evidence-reasoning, which doesn't have Rex support yet. "The students who had Rex for the earlier inquiry tasks wrote significantly better claim evidence reasoning statements because they understood the practices better."</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "We showed after one treatment of Rex, the effects still showed up 170 days later. So we taught them something, right? We definitely taught them something. I just had a doctoral student, Jeremy Lee, finish his dissertation on our Spanish support, and kids who got Spanish Rex versus multilingual learners who did not showed consistent and better learning and better transfer. Furthermore, this is really fascinating—we do not have Rex support for claim evidence reasoning yet but the students who had Rex for the earlier inquiry tasks wrote significantly better claim evidence reasoning statements because they understood the practices better and they understood the content better."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Evidence-Centered Design -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-microscope"></i>
+          Evidence-Centered Design: The Theoretical Foundation
+        </div>
+        <p class="tier-1-summary">InqITS is built on rigorous theoretical foundations—evidence-centered design, learning science, and science education literature. Not just "throw machine learning at it."</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Unlike systems that simply apply machine learning to student data, InqITS was designed theory-first using Evidence-Centered Design (ECD) to define what competencies mean and how to assess them.</p>
+
+          <h4>Why Theory Matters:</h4>
+          <ul>
+            <li><strong>Science inquiry is ill-defined:</strong> Post-hoc knowledge engineering won't work</li>
+            <li><strong>Sub-competencies need definition:</strong> Different stakeholders have different ideas about what "data interpretation" means</li>
+            <li><strong>Pedagogical meaning:</strong> It's not enough to count mouse clicks—data must be actionable</li>
+          </ul>
+
+          <h4>The Development Process:</h4>
+          <ol>
+            <li>Collect data from student interactions</li>
+            <li>Build text replay clips of student behavior</li>
+            <li>Tag clips for skills (human-defined competencies)</li>
+            <li>Define features with domain experts</li>
+            <li>Build and validate detectors using held-out test sets</li>
+          </ol>
+
+          <h4>Domain Specificity:</h4>
+          <p>Computer scientists tend to think knowledge is domain-agnostic—learning geography is like learning science. But there are knowledge ontologies: physics emphasizes different things than biology (structure-function-behavior) or earth science (time scales, spatial information).</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "It's not good enough to say, 'well, Johnny, who was successful, did 4,000 mouse clicks, and hey, Billy, you only did 2,000 mouse clicks, do more mouse clicks,' right? It's what have you done, and how do you turn that into actionable data? So, we did this using a combination of computer science, learning science, science education, literature, coming together in this very rich way. And I think that's really what you need, to design a good, theoretically grounded system that has a deep infrastructure."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 7: Practices-First Philosophy -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-compass"></i>
+          Practices-First: Why NGSS Should Focus on Scientific Skills
+        </div>
+        <p class="tier-1-summary">A student who learns to form testable hypotheses can do so in any content area. Practices are the most transferable, actionable part of NGSS.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>NGSS is three-dimensional (practices, content, crosscutting concepts), but Gobert takes a "practices-first" perspective—arguing that practices are the most actionable and transferable component.</p>
+
+          <h4>Why Practices First:</h4>
+          <ul>
+            <li><strong>Transferability:</strong> A student who can form testable hypotheses in biology can do so in physics</li>
+            <li><strong>Gets them back in the game:</strong> Even in unfamiliar content, solid practices let students proceed</li>
+            <li><strong>Transfer is not a bad word:</strong> "Knowledge and use" = transfer. They're not different things.</li>
+          </ul>
+
+          <h4>The Independent Variable Example:</h4>
+          <p>Understanding what an independent variable is and what it means in inquiry is "a huge component" of learning progressions. If you don't get this:</p>
+          <ul>
+            <li>You can't form a proper question</li>
+            <li>You can't design an unconfounded experiment</li>
+            <li>You can't interpret your data</li>
+            <li>You can't warrant claims</li>
+            <li>You can't write valid CER statements</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "I take a slightly practices-first perspective, because I believe that is the most actionable thing. So, if a student, in fact, is taught how to form a testable hypothesis, when they move to a new content area that they don't know, they're still able to form a testable hypothesis. You know, if they move to a content area that they don't understand, they can collect bona fide data that's not confounded. So, it gets them back in the game. That's why I like this practices-first perspective."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-insight">
+      <div class="key-insight-label">Key Takeaway</div>
+      <p>Real-time assessment of scientific practices—not products—combined with intelligent tutoring that intervenes at the moment of struggle, produces lasting learning that transfers across content and persists for months. The AI assesses the process, not just the product.</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="post-nav">
+      <a href="caltsteam-vr-ar-ai-education.html"><i class="fas fa-arrow-left"></i> Previous: CALTSTEAM</a>
+      <a href="../blog.html">Back to Blog <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="inqits-scalable-ai-science-inquiry"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('visible');
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Original Quote';
+      }
+    }
+  </script>
+</body>
+</html>

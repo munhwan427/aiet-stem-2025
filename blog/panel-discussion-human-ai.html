@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Human-AI Partnership Debate - Forum Panel Discussion on AI Reliability, Domain Specificity, and When Teachers Must Stay in the Loop">
+  <title>The Human-AI Partnership Debate | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    /* Panelists */
+    .panelists {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .panelist {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+    }
+
+    .panelist-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .panelist-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .panelist-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .post-content h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    /* 3-Tier Discussion Sections */
+    .discussion-section {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+
+    .tier-1-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tier-1-title i {
+      color: #7C3AED;
+    }
+
+    .tier-1-summary {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .details-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #7C3AED;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .details-link:hover {
+      opacity: 0.8;
+    }
+
+    .details-link i {
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+    }
+
+    .discussion-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .discussion-section.expanded .details-link span {
+      display: none;
+    }
+
+    .discussion-section.expanded .details-link::after {
+      content: 'Hide Details';
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .discussion-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    .tier-2-content p {
+      margin-bottom: 1rem;
+    }
+
+    /* Debate Format */
+    .debate-point {
+      background: var(--white);
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border-left: 4px solid #7C3AED;
+    }
+
+    .debate-point.counter {
+      border-left-color: #F59E0B;
+    }
+
+    .debate-point.synthesis {
+      border-left-color: #10B981;
+    }
+
+    .debate-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      color: #7C3AED;
+    }
+
+    .debate-point.counter .debate-label {
+      color: #F59E0B;
+    }
+
+    .debate-point.synthesis .debate-label {
+      color: #10B981;
+    }
+
+    .debate-speaker {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .debate-speaker-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .debate-speaker-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .debate-speaker-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .debate-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-light);
+    }
+
+    /* Full Transcript Toggle */
+    .transcript-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #7C3AED;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      background: rgba(124, 58, 237, 0.1);
+      border-radius: 6px;
+    }
+
+    .transcript-toggle:hover {
+      background: rgba(124, 58, 237, 0.15);
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.5rem;
+      background: #FAFAFA;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .tier-3.visible {
+      display: block;
+    }
+
+    .tier-3-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #7C3AED;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .transcript-block {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .transcript-block:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .transcript-speaker {
+      font-weight: 600;
+      color: #7C3AED;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .transcript-text {
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* Key Insight Box */
+    .key-insight {
+      background: linear-gradient(135deg, #F3E8FF 0%, #FAF5FF 100%);
+      border-left: 4px solid #7C3AED;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .key-insight-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #7C3AED;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .key-insight p {
+      margin: 0;
+      color: #581C87;
+      font-weight: 500;
+    }
+
+    /* Navigation */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .post-nav a {
+      color: #7C3AED;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+
+      .panelists {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <section class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Forum Discussion</span>
+        <span class="post-date">December 2025 · AIET Forum Panel</span>
+      </div>
+      <h1>The Human-AI Partnership Debate</h1>
+      <p class="subtitle">When can we trust AI for high-stakes educational decisions? A candid exchange between cognitive scientists, physics educators, math educators, and AI researchers on the limits and possibilities of AI in assessment.</p>
+
+      <div class="panelists">
+        <div class="panelist">
+          <div class="panelist-avatar">
+            <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert" style="object-position: top;">
+          </div>
+          <span class="panelist-name">Janice Gobert</span>
+        </div>
+        <div class="panelist">
+          <div class="panelist-avatar">
+            <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann">
+          </div>
+          <span class="panelist-name">Knut Neumann</span>
+        </div>
+        <div class="panelist">
+          <div class="panelist-avatar">
+            <img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg" alt="Yasemin Copur-Gencturk">
+          </div>
+          <span class="panelist-name">Yasemin Copur-Gencturk</span>
+        </div>
+        <div class="panelist">
+          <div class="panelist-avatar">
+            <img src="https://prime.natsci.msu.edu/_assets/images/directory/Edson_AJ_2025_380Square.jpg" alt="A.J. Edson">
+          </div>
+          <span class="panelist-name">A.J. Edson</span>
+        </div>
+        <div class="panelist">
+          <div class="panelist-avatar">
+            <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang">
+          </div>
+          <span class="panelist-name">Jiliang Tang</span>
+        </div>
+        <div class="panelist">
+          <div class="panelist-avatar">
+            <img src="../images/speakers/Shin_Photo1.jpg" alt="Namsoo Shin">
+          </div>
+          <span class="panelist-name">Namsoo Shin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <p>Following Jiliang Tang's presentation on AI evolution, the forum broke into an extended, candid discussion that touched on some of the most pressing questions facing AI in education. What follows captures the key debates, preserving the voices and perspectives of each participant.</p>
+
+    <div class="key-insight">
+      <div class="key-insight-label">Central Tension</div>
+      <p>Identifying a cat when it's actually a dog is not a high-stakes decision. Deciding who goes to AP Science and who doesn't IS a high-stakes decision. Where do we draw the line?</p>
+    </div>
+
+    <h2>Debate 1: AI Reliability in High-Stakes Decisions</h2>
+
+    <!-- Discussion 1 -->
+    <div class="discussion-section">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-scale-balanced"></i>
+          The Seduction of AI and Its Risks
+        </div>
+        <p class="tier-1-summary">Janice Gobert challenges the field: 80% agreement sounds impressive, but is it good enough for deciding a student's future? Companies are seduced by cost savings, but the error types matter.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.discussion-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <div class="debate-point">
+            <div class="debate-label">Opening Challenge</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert" style="object-position: top;">
+              </div>
+              <span class="debate-speaker-name">Janice Gobert</span>
+            </div>
+            <p class="debate-text">The seduction is real. Companies see LLMs and think "I don't have to hire engineers to hand-tag all this stuff." But the errors AI makes and the errors humans make are different. We need to think carefully about the edge cases in each condition.</p>
+          </div>
+
+          <div class="debate-point counter">
+            <div class="debate-label">Counterpoint</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang">
+              </div>
+              <span class="debate-speaker-name">Jiliang Tang</span>
+            </div>
+            <p class="debate-text">We need uncertainty quantification. We can tell teachers when they need to get involved—when AI is uncertain about its decision. The step is necessary because AI is not perfect.</p>
+          </div>
+
+          <div class="debate-point synthesis">
+            <div class="debate-label">Practical Framing</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg" alt="Yasemin Copur-Gencturk">
+              </div>
+              <span class="debate-speaker-name">Yasemin Copur-Gencturk</span>
+            </div>
+            <p class="debate-text">The key is in the rubrics. What did you code for? The cat example shows capability, but at the end of the day, we don't care if AI recognizes a cat. We care about nuances in teacher and student responses where we make real decisions.</p>
+          </div>
+
+          <div class="transcript-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-scroll"></i> Read Full Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label"><i class="fas fa-microphone-lines"></i> Original Forum Transcript</div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Janice Gobert (Cognitive Scientist, Inq-ITS):</div>
+              <p class="transcript-text">"So I'm a cognitive scientist and I hang out with a lot of learning scientists who are of a slightly different ilk than computer scientists. And you can kind of think of them on a continuum from levels of granularity and the things they care about, right? So learning scientists are very interested in nuance. So they kind of foreground the nuance over the generalizability actually, right? Because they don't really care about generalizability. So AI is sort of evil to a lot of dyed-in-the-wool learning scientists.</p>
+              <p class="transcript-text">So what I want to talk about and what I find really intriguing about your work... is in order for us to kind of move forward with the kind of notion of how useful generative AI models are going to be, what are the domains and contexts where we can feel pretty confident about using generative AI and worry less about problems, edge cases, etc.? And where are the problems?</p>
+              <p class="transcript-text">Because people talk about knowledge and fields like they're all the same. But identifying a cat when really it's a dog is not a high-stakes decision. But deciding who's going to go to AP science and who's not is a high-stakes decision, right? And there's far worse examples actually about high-stakes decisions."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Jiliang Tang:</div>
+              <p class="transcript-text">"Yeah, that's a very good question. So basically, one thing I want to clarify is what's the role of AI in education? I think AI in education is to assist. It's going to replace the decision humans should make, right? So we, there's no, because based on the nature of the way we train the AI model, it's a probability. Always a probability. Correct. Always need a human to verify. So that means probably there's no one field we can totally trust without any human intervention or human involvement. So that's why we emphasize the role of AI is to assist. It's not to replace. It's to enhance."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Janice Gobert:</div>
+              <p class="transcript-text">"Yeah, so it's a really, it's an, you know, and it goes to the, like I have a real, I work at the mouse click level, and I derive meaning from mouse clicks. And I also code what students write. And there's a big discrepancy between what they know and what they can demonstrate in, you know, via mouse clicks, and what they can demonstrate by what they're writing. Right.</p>
+              <p class="transcript-text">But the second point is, I think, with respect to, and there's lots of pressures now because of open, because, you know, it's open, open AI. And, you know, it's very seductive, because companies say, well, I don't have to hire engineers to hand tag all this stuff. I could just, I can just use an LLM. But the kind of errors that LLMs make and the kinds of errors humans are going to make are different. And we need to really think about what are the edge cases in each condition.</p>
+              <p class="transcript-text">But teachers, you know, with respect to transparency, I think the teachers sort of, they're begging for it. But when they're, you know, but at the same time, you know, the default is like, well, the AI said the kid got 80. And if you say like a lot of, you know, I know, again, the LLMs for coding student writing are getting better and better and better. But still, sometimes the agreement is like in the 80%. Well, that's not that great, frankly, if you're going to make a high stakes decision, like, oh, you're going to get and put in AP or you're not, that's not good enough. Right? It's really not good enough. And there's so much seduction. You know, I really worry about it. I really do worry about it."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Yasemin Copur-Gencturk (Math Education, USC):</div>
+              <p class="transcript-text">"Can I jump in? Because this is an excellent point. What JT shared is related to what we've been doing to code teacher responses. And I completely agree with James [Janice]. Sometimes we talk about AI, we overlook the fact that large language models make very bold claims and sometimes they are not correct in terms of identifying the nuances we experts care about.</p>
+              <p class="transcript-text">So one thing that we found as a solution is really identifying these nuances in the rubrics, the training materials we give to AI. Because I keep making the same argument every time people say that, oh, we use large language model, we quote the data. And I say, what did you quote for? Because this is the important part. The cat example is a good example to show you, but at the end of the day, we don't care about whether AI recognizes a cat or a dog. I care about more important nuances in teacher responses, in student responses. And James [Janice] is absolutely right that sometimes we make decisions based on those. So we need to be very confident about what AI is doing.</p>
+              <p class="transcript-text">Because sometimes, right, if you start wrong, meaning that if you have not identified what really matters to you in terms of student learning, in terms of teachers understanding, in terms of the decisions that you're gonna make, if you are not making those ideas explicit, AI will make a mistake."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Debate 2: Do We Really Need Humans in the Loop?</h2>
+
+    <!-- Discussion 2 -->
+    <div class="discussion-section">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-robot"></i>
+          Questioning the Assumption
+        </div>
+        <p class="tier-1-summary">Knut Neumann pushes back: "We always say we need teachers in the loop, but why do we actually?" ChatGPT explains Newton's Third Law better than most teachers he's observed.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.discussion-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <div class="debate-point">
+            <div class="debate-label">Provocative Question</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann">
+              </div>
+              <span class="debate-speaker-name">Knut Neumann</span>
+            </div>
+            <p class="debate-text">I sometimes feel like when people say we need the teacher in the loop, I want to say—why do we actually? Out-of-the-box LLM scoring of complex student answers achieves 80-85%. Our old papers show human agreement of 70-90%. That's not bad. And honestly? ChatGPT explains Newton's Third Law better than most teachers I've seen.</p>
+          </div>
+
+          <div class="debate-point counter">
+            <div class="debate-label">The Counterexample</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang">
+              </div>
+              <span class="debate-speaker-name">Jiliang Tang</span>
+            </div>
+            <p class="debate-text">Humans have higher expectations on AI. It's like self-driving cars—even in areas where the accident rate is lower than humans, one accident creates huge criticism. Our washing machine always helps us, but one mistake and it's "rubbish."</p>
+          </div>
+
+          <div class="debate-point synthesis">
+            <div class="debate-label">The Missing Piece</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann">
+              </div>
+              <span class="debate-speaker-name">Knut Neumann</span>
+            </div>
+            <p class="debate-text">But what AI is missing is a good student model. It can assess, but it doesn't know how to structure a learning pathway. How do we guide kids in developing understanding? That's where we need the human—not for scoring, but for instructional design.</p>
+          </div>
+
+          <div class="transcript-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-scroll"></i> Read Full Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label"><i class="fas fa-microphone-lines"></i> Original Forum Transcript</div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann (Physics Education, IPN Leibniz):</div>
+              <p class="transcript-text">"I have two random thoughts, and I think there was a lot of input that I'm still trying to process. But one thing you said, Jelang, was that, you know, we still want the teacher in the loop. And, you know, like, I sometimes feel like when people say these things, I wanna say like, why do we actually? Because, and I mean, I heard Jenna [Janice] say the same thing.</p>
+              <p class="transcript-text">But one thing I'm wondering about, you know, like, for research, for example, right? I mean, the work we've been doing, right? We're achieving out-of-the-box with an LLM scoring complex student answers to three-dimensional learning tasks, 80-85%. So I go back to the old papers we have about the middle school project I had with Joe, it's like, anything between .70 and .90. So I'm like, well, out-of-the-box, that's not bad, like, and nobody actually ever goes back and questions their human coders, right?</p>
+              <p class="transcript-text">And then I just recently talked to Jonathan Osborne, and he's like, did you ever try, ask ChatGPT to explain Luke's [Newton's] third law? And I said, like, no, I didn't. He said, like, it's doing way better than any teacher I've ever seen. And I'm like, yes, you know, given the lesson plans I'm reading from my students and from teachers and the instruction, the actual instruction I'm seeing, you know, we are so worried about ChatGPT making mistakes. Like, I see teachers teaching some stuff where I'm like, this is complete bullshit. I can't say it that way, you know?</p>
+              <p class="transcript-text">So sometimes, I mean, it's not, I mean, obviously, one, two, if we bring it to the classroom, it should do better than, but I sometimes feel like it already does."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Jiliang Tang:</div>
+              <p class="transcript-text">"So two questions. So one is, one way, a human needs a perfect AI, right? Always expect. I think there are a lot of studies, humans are more friendly to humans, but not as friendly to AI. They have a higher expectation on AI. So that's why for the self-driving car, actually, to come to self-driving car in some areas, like in San Francisco, in Phoenix, U.S., so their accident rate is much lower than human. But if there's one accident, there are a lot of criticisms, kind of, because we have much higher expectations. But probably, yeah, this is because all human, it's easy to forgive human, but for machine, never forgive, right? So for example, our washing machine always help us, but if we made one mistake, it's rubbish, right? So that's the understanding."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann:</div>
+              <p class="transcript-text">"And if I can respond to that, I think one thing that we need to do in education maybe is shift away from making the AI better, and instead of like teaching kids to understand the AI is not perfect. You know, like, if the AI gives you feedback and essentially says, like, the work is shitty, then question that as much as you would question any teacher's response, right?"</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann (continued):</div>
+              <p class="transcript-text">"So I try to think a lot, and that's kind of like the second part, like, where's the limitations? Because I think it really does well already in terms of assessment. Something that I feel like it is missing is, like, a good, like, student model. Something where they, like, you know, because, and I think that's what you said, the cat versus dog thing is, like, let's be honest, I mean, it's something that kids figure out. Physics, it's not something that kids can figure out ever, you know, from just observing. You've got to teach them.</p>
+              <p class="transcript-text">So as a physics educator, my question is, like, what is an optimal way to guide kids in developing a good understanding of physics? And I think that's a lot of, like, the questions that we have as educators, right? It's like, how do we structure this process? And I feel like this is something that these LLMs still are missing, and I'm wondering, is there a way to kind of, like, teach them better student models so that they, you know, when they work with students, they can actually, like, they're like, oh, you're there? So the next step for you is this, because that's where I feel at the moment we really need the human and the loon [in the loop] teacher person."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Debate 3: Domain Specificity — Math vs. Science vs. Everything Else</h2>
+
+    <!-- Discussion 3 -->
+    <div class="discussion-section">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-flask"></i>
+          Not All Knowledge Is Created Equal
+        </div>
+        <p class="tier-1-summary">A.J. Edson reminds the group: "Carnegie Mellon does not represent math education." Learning progressions, ontologies, and phenomenological primitives make domains fundamentally different—physics is hard because our perceptions contradict reality.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.discussion-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <div class="debate-point">
+            <div class="debate-label">Math Education Perspective</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://prime.natsci.msu.edu/_assets/images/directory/Edson_AJ_2025_380Square.jpg" alt="A.J. Edson">
+              </div>
+              <span class="debate-speaker-name">A.J. Edson</span>
+            </div>
+            <p class="debate-text">As a math educator, I just want to say that Carnegie Mellon does not represent math education. It's one perspective. Math is inquiry-oriented, math is problem-solving. And problem-solving doesn't always have a correct answer—not necessarily.</p>
+          </div>
+
+          <div class="debate-point counter">
+            <div class="debate-label">Science's Unique Challenge</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert" style="object-position: top;">
+              </div>
+              <span class="debate-speaker-name">Janice Gobert</span>
+            </div>
+            <p class="debate-text">Physics is so hard because of phenomenological primitives—we don't experience the world as round, but it is. Students bring ontologies that don't match reality. Computer scientists think learning math is like learning geography is like learning French. Tell that to a teacher and get laughed out of the room.</p>
+          </div>
+
+          <div class="debate-point synthesis">
+            <div class="debate-label">The Implication</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann">
+              </div>
+              <span class="debate-speaker-name">Knut Neumann</span>
+            </div>
+            <p class="debate-text">AI can probably do content structure—domain analysis. But what we need is transforming that into something that accounts for how students actually learn. That's domain-specific, and AI is struggling with it.</p>
+          </div>
+
+          <div class="transcript-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-scroll"></i> Read Full Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label"><i class="fas fa-microphone-lines"></i> Original Forum Transcript</div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Janice Gobert:</div>
+              <p class="transcript-text">"So, for example, in math, people talk about the KCs, Carnegie Mellon type KCs, where if a student doesn't know how to do double-digit addition, they don't know how to carry the one, you know immediately if that's the error. It's very well-defined. Oh, they don't know that thing. That's why a lot of ITSs started in math. It was relatively easy. In fact, you don't really need AI to do math, simple math, because you know where the buggy behavior is.</p>
+              <p class="transcript-text">In science inquiry, there's a lot of ways in which you can do it productively and unproductively, which is why you need machine learning, which is why you need really good trained data sets, right? But we still have the NGSS to guide us top-down what those practices are."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">A.J. Edson (Math Education, MSU):</div>
+              <p class="transcript-text">"As a math educator, I just want to say that Carnegie Mellon does not represent math education. Yeah, I'm glad. It's not what math education is about. Oh, good. Yeah, good. It's one perspective. Right. Yeah."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann:</div>
+              <p class="transcript-text">"Even the, I think it's the same thing, is that we are not the kind of, math is more logical ways to serve, but science is the kind of, even our algorithm, one item is very focused on the content measure, but it's one of the two items we are problem-solving, and then it's the very well-defined, well-structured one, it's very difficult to..."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">A.J. Edson:</div>
+              <p class="transcript-text">"Math is inquiry-oriented, math is problem-solving."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Another voice:</div>
+              <p class="transcript-text">"But problem-solving, you have a correct answer, though."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">A.J. Edson:</div>
+              <p class="transcript-text">"Possibly. What? You have a correct answer. Possibly. Yeah. Oh. Not necessarily. And there are some core Cs, core KCs in math that are really, can be kind of well-defined and usable. Right. And there are some Cs upon which they're necessary, but not sufficient for these higher-level things. Science does not have an analog to that level. Right? Yeah."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Janice Gobert:</div>
+              <p class="transcript-text">"And so I think when we start to unpack domains and talk about where we can use AI and how we need to develop our algorithms, we need to think about knowledge specificity, which is the learning scientist in me. Yay, I just earned some points with the learning science, right?</p>
+              <p class="transcript-text">Because computer scientists generally think domain, generally, like they think learning math is like learning geography is like learning French. Tell that to a teacher and get laughed out of the room, right? Obviously learning French is not like learning science or math, right? There are these knowledge ontologies, authentic experiences, authentic practices, you know, epistemologies, I mean the list goes on. And this is where, you know, open AI is kind of like, well that's all Huey, you know, that's whatever, you know. I mean it's just like, you know, so naive compared to how we think about the world."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Janice Gobert (continued):</div>
+              <p class="transcript-text">"Take geological time, right? Geological time. There's data that even graduate students in geoscience don't understand geological time. Or scale. I've heard of nanoscale. We were trying to teach nano stuff to kids and they were like, I can't see that. Exactly, exactly. And these are the domains where AI is just going to be a nightmare. And it just becomes a nightmare because it's just so superficial and then they're getting, there's a lot of false positives. There's going to be a lot of false positives. It's also just not recognizing, you know, it's not recognizing this complex heuristics that humans have in this world."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Debate 4: Learning Progressions and What AI Doesn't Know</h2>
+
+    <!-- Discussion 4 -->
+    <div class="discussion-section">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-stairs"></i>
+          The Missing Student Model
+        </div>
+        <p class="tier-1-summary">AI can assess a single response, but can it understand how students progress through understanding over time? The "messy middle" of learning progressions remains a challenge.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.discussion-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <div class="debate-point">
+            <div class="debate-label">The Gap</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann">
+              </div>
+              <span class="debate-speaker-name">Knut Neumann</span>
+            </div>
+            <p class="debate-text">I've done a lot of work on learning progressions—how students develop understanding of concepts like energy over time. I don't think AI has a model of how students progress in making sense of a domain. It wouldn't know how to structure a domain based on how students actually learn.</p>
+          </div>
+
+          <div class="debate-point counter">
+            <div class="debate-label">A Research Opportunity</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert" style="object-position: top;">
+              </div>
+              <span class="debate-speaker-name">Janice Gobert</span>
+            </div>
+            <p class="debate-text">We have access to those ontologies in students' writing. This is really a benefit for research. When we combine curriculum development with learning analytics, we can take design-based research to a completely new level—it's no longer just five students from classical studies.</p>
+          </div>
+
+          <div class="debate-point synthesis">
+            <div class="debate-label">The Risk</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann">
+              </div>
+              <span class="debate-speaker-name">Knut Neumann</span>
+            </div>
+            <p class="debate-text">Teachers have intuitions that AI doesn't. A student talks to his girlfriend, comes back distracted—the teacher knows to say "take your time, come back tomorrow." AI doesn't have that heuristic. And the risk is teachers stop paying attention to their own intuitions because AI tells them something else.</p>
+          </div>
+
+          <div class="transcript-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-scroll"></i> Read Full Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label"><i class="fas fa-microphone-lines"></i> Original Forum Transcript</div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann:</div>
+              <p class="transcript-text">"I would say in I think it's even more so true in math especially in elementary math I think it's my understanding that you have a good idea of how to develop skills like in students you know I mean my thinking is and I'll try I'm trying to connect to your final knowledge here you know like you're starting with numbers one to ten and then you know you're kind of teaching them those and then you're continuing to the hundreds and the thousands I mean this is pretty natural and I think we just had the discussion this is not existing for science in this like almost like logical type of sense where you can say like oh this is how you build it done</p>
+              <p class="transcript-text">But there is research on learning progressions I mean I know we know how students you know like develop an understanding of modeling how they develop skills over time and and I myself have been doing a lot of work on learning progressions on core concepts like energy and I don't think an AI has a model of how to how students progress in making sense of the domain well my understanding is there is no thinking it's more like that probably true it's just like it doesn't have a good understanding it wouldn't know how to structure a domain based on like a domain analysis"</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann (continued):</div>
+              <p class="transcript-text">"I just recently read a paper on curriculum coherence where people were arguing that you know curriculum coherence in the past is mostly driven by content coherence in the sense that people are looking at the content structure and try to implement that I think that's something an AI can do but what we really want is teachers to take that content structure or curriculum developers and transform it into something that kind of accounts for how students learn yeah and in that domain not generally you know like in that domain like what is concepts they can understand more easily how are they building on it what are like intermediate understandings that they'll develop that you need to mitigate and stuff I think that's something an AI is struggling with"</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann:</div>
+              <p class="transcript-text">"Another thought I'm having is like, you know, given the idea that AI cannot plan like a learning pathway, I mean what you could do is you could leave it to the student, right? Like give it an AI and tell it like, okay, tell him or her, learn with it. And then the student will, you know, provide the direction, but that is almost like having them figure out the physics all on their own, right?</p>
+              <p class="transcript-text">I think like pre-structured instruction has a benefit because it's like, hey, I already know how this path is working, right? And yes, some students will trail behind and others will get lost on the way and you kind of like need to bring them back in... But I still think it makes sense to not just give them a compass and an AI and be like, make it to the top, right?"</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Knut Neumann:</div>
+              <p class="transcript-text">"I think that's true for a lot of ways that's true for those technologies. More complex levels of understanding. That might change as the AI gets more data. Yeah, exactly. But I feel like right now it doesn't have that, and teachers have these intuitions. Maybe because they've been learning it the same way. Yeah, but are they kind of not paying attention to their own intuitions? Because the AI is telling them something else. That I think is a risk. That's a huge risk. That's a huge risk, and I agree."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Janice Gobert:</div>
+              <p class="transcript-text">"It's also just not recognizing, you know, it's not recognizing this complex heuristics that humans have in this world. I think that's the, Ken Holst, who works with, you know, Ken, he's crazed by it. But Ken always felt like in their system, you know, what the student was actually doing was gaming the system. Oh, gaming the system. Gaming the system. Sorry, yeah, gaming the system. So the teacher walks there, and he learns that the student had just spoken with their girlfriend, his girlfriend, and now he asks his girlfriend, take your time, come back tomorrow, and then you're focused. And this is a heuristic that AI doesn't have. I mean, it's a bit of an extreme example, but I think in a lot of ways that's true for those technologies."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Debate 5: The Multi-Agent Approach</h2>
+
+    <!-- Discussion 5 -->
+    <div class="discussion-section">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-users-between-lines"></i>
+          Multiple AI Agents for Uncertainty Detection
+        </div>
+        <p class="tier-1-summary">Namsoo Shin's team uses five different AI agents to score each response. When they disagree, that's the signal to bring in humans. Surprisingly, AI uncertainty mirrors human uncertainty.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.discussion-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <div class="debate-point">
+            <div class="debate-label">The Approach</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="../images/speakers/Shin_Photo1.jpg" alt="Namsoo Shin">
+              </div>
+              <span class="debate-speaker-name">Namsoo Shin</span>
+            </div>
+            <p class="debate-text">We use five different agent models scoring the same student responses. If Agent 1 scores B, Agent 2 A, Agent 3 A, Agent 4 A—we aggregate and report A, but flag the uncertainty and rationale. Then teachers review these flagged cases.</p>
+          </div>
+
+          <div class="debate-point counter">
+            <div class="debate-label">Surprising Finding</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="../images/speakers/Shin_Photo1.jpg" alt="Namsoo Shin">
+              </div>
+              <span class="debate-speaker-name">Namsoo Shin</span>
+            </div>
+            <p class="debate-text">Where AI is uncertain and where humans are uncertain—it's the same points. Elementary students write "stream" or "scream," mountains vs. wanting—we don't know what they mean. AI doesn't know either. The uncertainty areas overlap.</p>
+          </div>
+
+          <div class="debate-point synthesis">
+            <div class="debate-label">Human-AI Agreement</div>
+            <div class="debate-speaker">
+              <div class="debate-speaker-avatar">
+                <img src="../images/speakers/Shin_Photo1.jpg" alt="Namsoo Shin">
+              </div>
+              <span class="debate-speaker-name">Namsoo Shin</span>
+            </div>
+            <p class="debate-text">Human inter-rater reliability: 80%. Human-AI agreement: 87%. AI doesn't do better than humans—it exactly mimics human behavior. That's what we found in our research.</p>
+          </div>
+
+          <div class="transcript-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-scroll"></i> Read Full Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label"><i class="fas fa-microphone-lines"></i> Original Forum Transcript</div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Namsoo Shin (Science Education, MSU):</div>
+              <p class="transcript-text">"Again, the human in the room is based on our research. I totally agree with your ideas. Based on our research, what we found is, if when we're scoring, the Joe and I, the experts, we scored together, our reliability, 80%, then the AI and us, 87%, 80%. If we agree that 90% is human, AI agreed with us, it's 90%. So that is, AI is not a creator or better job. Exactly mimicked human need. So it's what we found in our research, human iterative [inter-rater] reliability, human and AI iterative reliability is very similar."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Namsoo Shin (continued):</div>
+              <p class="transcript-text">"What we did is kind of the, from the one, we're using the theory, based on the, what is the usual knowledge and how to improve the student's usual knowledge. And then we measure the student's usual knowledge using the 3D dimensional formational assessment... Then we asked the student, we gave them this assessment item, and then to write their responses.</p>
+              <p class="transcript-text">What we did is instead of using the one agent model, we're using the five different agent models scoring the same student responses. And what we did to kind of give the agent one score, the B, agent 2A, agent 3A, and agent 4AA, and we aggregated all of the student response, the agent output. And the major fault is A. However, because there was 2B, and we provided the rationale why we analyzed this data, and also the uncertainty level, and we provided why this is uncertain."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Namsoo Shin (continued):</div>
+              <p class="transcript-text">"And then we provided this information and the human, our research team and the teacher, reviewed this result. And then most of our problem is rubric development, not data, or AI, or prompting. It's more our rubric is a kind of human, intuitively understand the rubric content, but AI need very specific direction to how to analyze the student response step by step, logical chain. So we revised the rubric iteratively until we got at least 80% agreement. And so far, most of our attempt is 87% agreement."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Janice Gobert:</div>
+              <p class="transcript-text">"Sue, can I ask a quick question? But where you're uncertain, between you and your coder, and where AI is uncertain, between you and the AI, are those the same kinds of errors?"</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Namsoo Shin:</div>
+              <p class="transcript-text">"Yes. Yeah? Yeah. That's important. That is very amazingly, kind of because we're putting our data, human data, and so AI analyzed the student's written responses. It's very similar to the uncertainty. The point is very similar.</p>
+              <p class="transcript-text">For example, kind of elementary students writing it, stream, scream, and then some mountain and wanting. So it's the kind of we don't know is that that kind of wording is whether you mean this one or that one. We are certain [uncertain], and the AI also uncertain. So it's very same points. The same area is uncertain."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Another voice:</div>
+              <p class="transcript-text">"How do the AI get higher scores than the human being? Because the AI only looking for some specific... The AI only looks at the keywords without taking the context into consideration."</p>
+            </div>
+
+            <div class="transcript-block">
+              <div class="transcript-speaker">Namsoo Shin:</div>
+              <p class="transcript-text">"What is your target? The middle school students. So that might be a little bit different from your elementary school students. Right. Elementary school students, and the teacher is more kind of give the kind of more general and increasing the score. And so when we ask the teacher to score their students' responses, and then, oh, I understand the mountain is mountain. Oh, they got this vague idea. I think it's because the reason is the elementary teacher understand their students' background. So they understand it, and they give more forgiveness about their writing. So the teacher who understand more better the students' background, they provide better score than in our case."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-insight">
+      <div class="key-insight-label">Key Takeaways</div>
+      <p>The forum revealed deep tensions between AI's promise and its limitations. The consensus: AI should enhance human judgment, not replace it. Domain specificity matters profoundly. And surprisingly, AI's uncertainties often mirror our own.</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="post-nav">
+      <a href="ai-evolution-assessment.html"><i class="fas fa-arrow-left"></i> Previous: AI Evolution</a>
+      <a href="../blog.html">Back to Blog <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="panel-discussion-human-ai"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('visible');
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-scroll"></i> Hide Transcript';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-scroll"></i> Read Full Exchange';
+      }
+    }
+  </script>
+</body>
+</html>

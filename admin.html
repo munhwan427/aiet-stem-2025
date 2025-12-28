@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin Dashboard - AIET IN STEM Submissions Management">
+  <title>Admin Dashboard | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css?v=30">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="speakers.html" class="nav-link">Network</a></li>
+        <li><a href="program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Hero -->
+  <section class="page-hero admin-hero">
+    <div class="container">
+      <h1><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
+      <p>Manage submissions and content for AIET IN STEM</p>
+    </div>
+  </section>
+
+  <!-- Access Denied Section -->
+  <section class="section" id="access-denied" style="display: none;">
+    <div class="container">
+      <div class="access-denied-card">
+        <i class="fas fa-ban"></i>
+        <h2>Access Denied</h2>
+        <p>This page is restricted to administrators only.</p>
+        <a href="index.html" class="btn btn-primary">Go to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Content -->
+  <section class="section" id="admin-content" style="display: none;">
+    <div class="container">
+      <!-- Admin Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('submissions')">
+          <i class="fas fa-file-alt"></i> Submissions
+        </button>
+        <button class="admin-tab" onclick="switchAdminTab('members')">
+          <i class="fas fa-users"></i> Members
+        </button>
+      </div>
+
+      <!-- Submissions Tab -->
+      <div id="tab-submissions" class="admin-tab-content">
+        <!-- Stats Overview -->
+        <div class="admin-stats">
+        <div class="admin-stat-card">
+          <div class="stat-icon"><i class="fas fa-clock"></i></div>
+          <div class="stat-info">
+            <span class="stat-number" id="stat-pending">0</span>
+            <span class="stat-label">Pending</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon approved"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-info">
+            <span class="stat-number" id="stat-approved">0</span>
+            <span class="stat-label">Approved</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon rejected"><i class="fas fa-times-circle"></i></div>
+          <div class="stat-info">
+            <span class="stat-number" id="stat-rejected">0</span>
+            <span class="stat-label">Rejected</span>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon total"><i class="fas fa-file-alt"></i></div>
+          <div class="stat-info">
+            <span class="stat-number" id="stat-total">0</span>
+            <span class="stat-label">Total</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="admin-filters">
+        <button class="filter-btn active" onclick="filterSubmissions(null)">All</button>
+        <button class="filter-btn" onclick="filterSubmissions('pending')">Pending</button>
+        <button class="filter-btn" onclick="filterSubmissions('approved')">Approved</button>
+        <button class="filter-btn" onclick="filterSubmissions('rejected')">Rejected</button>
+      </div>
+
+        <!-- Submissions List -->
+        <div id="submissions-list" class="submissions-list">
+          <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i> Loading submissions...
+          </div>
+        </div>
+      </div>
+
+      <!-- Members Tab -->
+      <div id="tab-members" class="admin-tab-content" style="display: none;">
+        <div class="members-header">
+          <h3><i class="fas fa-users"></i> Registered Members (<span id="member-count">0</span>)</h3>
+        </div>
+        <div class="members-table-container">
+          <table class="members-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Affiliation</th>
+              </tr>
+            </thead>
+            <tbody id="members-tbody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Submission Detail Modal -->
+  <div id="submission-modal" class="submission-modal">
+    <div class="submission-modal-content">
+      <button class="modal-close" onclick="closeSubmissionModal()">&times;</button>
+      <div id="submission-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="speakers.html">Network</a></li>
+            <li><a href="program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/submissions.js"></script>
+  <script>
+    let allSubmissions = [];
+    let currentFilter = null;
+
+    // Check admin access on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      checkAdminAccess();
+    });
+
+    function checkAdminAccess() {
+      const user = getCurrentUser();
+      const accessDenied = document.getElementById('access-denied');
+      const adminContent = document.getElementById('admin-content');
+
+      if (!user) {
+        accessDenied.style.display = 'block';
+        adminContent.style.display = 'none';
+        return;
+      }
+
+      if (!isAdmin()) {
+        accessDenied.style.display = 'block';
+        adminContent.style.display = 'none';
+        return;
+      }
+
+      accessDenied.style.display = 'none';
+      adminContent.style.display = 'block';
+      loadSubmissions();
+      renderMembers();
+    }
+
+    // Tab switching
+    function switchAdminTab(tab) {
+      // Update tab buttons
+      document.querySelectorAll('.admin-tab').forEach(btn => btn.classList.remove('active'));
+      event.target.closest('.admin-tab').classList.add('active');
+
+      // Show/hide content
+      document.getElementById('tab-submissions').style.display = tab === 'submissions' ? 'block' : 'none';
+      document.getElementById('tab-members').style.display = tab === 'members' ? 'block' : 'none';
+    }
+
+    // Render members list
+    function renderMembers() {
+      const tbody = document.getElementById('members-tbody');
+      const countEl = document.getElementById('member-count');
+
+      countEl.textContent = MEMBERS.length;
+
+      // Sort by role priority
+      const rolePriority = { 'Co-Organizer': 1, 'Steering Board': 2, 'Speaker': 3, 'Member': 4 };
+      const sortedMembers = [...MEMBERS].sort((a, b) => {
+        return (rolePriority[a.role] || 5) - (rolePriority[b.role] || 5);
+      });
+
+      tbody.innerHTML = sortedMembers.map(member => `
+        <tr>
+          <td>
+            <div class="member-name-cell">
+              <span class="member-avatar">${getInitials(member.name)}</span>
+              <span>${member.name}</span>
+            </div>
+          </td>
+          <td><a href="mailto:${member.email}">${member.email}</a></td>
+          <td><span class="role-badge ${getRoleBadgeClass(member.role)}">${member.role}</span></td>
+          <td>${member.affiliation}</td>
+        </tr>
+      `).join('');
+    }
+
+    function getRoleBadgeClass(role) {
+      switch(role) {
+        case 'Co-Organizer': return 'role-organizer';
+        case 'Steering Board': return 'role-steering';
+        case 'Speaker': return 'role-speaker';
+        default: return 'role-member';
+      }
+    }
+
+    function getInitials(name) {
+      return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+    }
+
+    async function loadSubmissions() {
+      allSubmissions = await getAllSubmissions();
+      updateStats();
+      renderSubmissions();
+    }
+
+    function updateStats() {
+      const pending = allSubmissions.filter(s => s.status === 'pending').length;
+      const approved = allSubmissions.filter(s => s.status === 'approved').length;
+      const rejected = allSubmissions.filter(s => s.status === 'rejected').length;
+
+      document.getElementById('stat-pending').textContent = pending;
+      document.getElementById('stat-approved').textContent = approved;
+      document.getElementById('stat-rejected').textContent = rejected;
+      document.getElementById('stat-total').textContent = allSubmissions.length;
+    }
+
+    function filterSubmissions(status) {
+      currentFilter = status;
+
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      renderSubmissions();
+    }
+
+    function renderSubmissions() {
+      const list = document.getElementById('submissions-list');
+      let filtered = allSubmissions;
+
+      if (currentFilter) {
+        filtered = allSubmissions.filter(s => s.status === currentFilter);
+      }
+
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <p>No submissions found.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = filtered.map(submission => `
+        <div class="submission-card" onclick="viewSubmission('${submission.id}')">
+          <div class="submission-card-header">
+            <span class="submission-type ${getTypeBadgeClass(submission.type)}">${formatSubmissionType(submission.type)}</span>
+            <span class="submission-status ${getStatusBadgeClass(submission.status)}">${submission.status}</span>
+            ${submission.attachment_url ? '<span class="has-attachment" title="Has attachment"><i class="fas fa-paperclip"></i></span>' : ''}
+          </div>
+          <h3 class="submission-title">${escapeHtml(submission.title)}</h3>
+          <p class="submission-preview">${escapeHtml(submission.content.substring(0, 150))}${submission.content.length > 150 ? '...' : ''}</p>
+          <div class="submission-meta">
+            <span><i class="fas fa-user"></i> ${submission.author_name}</span>
+            <span><i class="fas fa-calendar"></i> ${formatSubmissionDate(submission.created_at)}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function viewSubmission(id) {
+      const submission = allSubmissions.find(s => s.id === id);
+      if (!submission) return;
+
+      const modal = document.getElementById('submission-modal');
+      const body = document.getElementById('submission-modal-body');
+
+      body.innerHTML = `
+        <div class="submission-detail">
+          <div class="submission-detail-header">
+            <span class="submission-type ${getTypeBadgeClass(submission.type)}">${formatSubmissionType(submission.type)}</span>
+            <span class="submission-status ${getStatusBadgeClass(submission.status)}">${submission.status}</span>
+          </div>
+          <h2>${escapeHtml(submission.title)}</h2>
+          <div class="submission-author-info">
+            <p><strong>Author:</strong> ${submission.author_name}</p>
+            <p><strong>Email:</strong> ${submission.author_email}</p>
+            <p><strong>Affiliation:</strong> ${submission.author_affiliation || 'N/A'}</p>
+            <p><strong>Submitted:</strong> ${formatSubmissionDate(submission.created_at)}</p>
+            ${submission.tags ? `<p><strong>Tags:</strong> ${submission.tags}</p>` : ''}
+            ${submission.attachment_url ? `
+              <div class="submission-attachment">
+                <strong>Attachment:</strong>
+                <a href="${submission.attachment_url}" target="_blank" class="attachment-link">
+                  <i class="fas fa-paperclip"></i> ${submission.attachment_name || 'Download File'}
+                </a>
+              </div>
+            ` : ''}
+          </div>
+          <div class="submission-content-full">
+            ${escapeHtml(submission.content).replace(/\n/g, '<br>')}
+          </div>
+          <div class="submission-actions">
+            ${submission.status === 'pending' ? `
+              <button class="btn btn-success" onclick="approveSubmission('${submission.id}')">
+                <i class="fas fa-check"></i> Approve
+              </button>
+              <button class="btn btn-danger" onclick="rejectSubmission('${submission.id}')">
+                <i class="fas fa-times"></i> Reject
+              </button>
+            ` : ''}
+            ${submission.status === 'approved' ? `
+              <button class="btn btn-warning" onclick="rejectSubmission('${submission.id}')">
+                <i class="fas fa-undo"></i> Revoke Approval
+              </button>
+            ` : ''}
+            ${submission.status === 'rejected' ? `
+              <button class="btn btn-success" onclick="approveSubmission('${submission.id}')">
+                <i class="fas fa-check"></i> Approve
+              </button>
+            ` : ''}
+            <button class="btn btn-outline" onclick="deleteSubmissionConfirm('${submission.id}')">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSubmissionModal() {
+      const modal = document.getElementById('submission-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    async function approveSubmission(id) {
+      if (await updateSubmissionStatus(id, 'approved')) {
+        showToast('Submission approved!');
+        closeSubmissionModal();
+        loadSubmissions();
+      } else {
+        showToast('Failed to approve submission.');
+      }
+    }
+
+    async function rejectSubmission(id) {
+      if (await updateSubmissionStatus(id, 'rejected')) {
+        showToast('Submission rejected.');
+        closeSubmissionModal();
+        loadSubmissions();
+      } else {
+        showToast('Failed to reject submission.');
+      }
+    }
+
+    async function deleteSubmissionConfirm(id) {
+      if (confirm('Are you sure you want to permanently delete this submission?')) {
+        if (await deleteSubmission(id)) {
+          showToast('Submission deleted.');
+          closeSubmissionModal();
+          loadSubmissions();
+        } else {
+          showToast('Failed to delete submission.');
+        }
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Close modal on outside click
+    document.getElementById('submission-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeSubmissionModal();
+    });
+
+    // Re-check access after login state changes
+    const originalUpdateAuthUI = updateAuthUI;
+    updateAuthUI = function() {
+      originalUpdateAuthUI();
+      checkAdminAccess();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI for Individualized Learning Support in Science Education - Tracking student learning through digital worksheets and providing real-time teacher dashboards for intervention.">
+  <title>AI for Individualized Learning Support in Science Education | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .post-content h2 {
+      color: var(--primary);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+    }
+
+    .post-content p {
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .post-content ul, .post-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li {
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .post-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      background: var(--background-alt);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .post-content blockquote p {
+      margin-bottom: 0;
+      font-style: italic;
+      color: var(--text-light);
+    }
+
+    /* 3-Tier Section Styles */
+    .tier-section {
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+    }
+
+    .tier-1-title {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tier-1-title i {
+      color: #3B82F6;
+    }
+
+    .tier-1-summary {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .details-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #3B82F6;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: gap 0.2s ease;
+    }
+
+    .details-link:hover {
+      gap: 0.75rem;
+    }
+
+    .details-link i {
+      transition: transform 0.3s ease;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    /* Tier 2: Details */
+    .tier-2 {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #F8FAFC;
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      max-height: 2000px;
+    }
+
+    .tier-2-content {
+      padding: 1.5rem;
+    }
+
+    .tier-2-content p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Tier 3: Original Quote */
+    .tier-3 {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #EFF6FF;
+      border-top: 1px dashed #93C5FD;
+    }
+
+    .tier-3.visible {
+      max-height: 1500px;
+    }
+
+    .tier-3-content {
+      padding: 1.5rem;
+    }
+
+    .quote-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #1E40AF;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #DBEAFE;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .quote-toggle:hover {
+      background: #BFDBFE;
+    }
+
+    .original-quote {
+      font-style: italic;
+      color: #1E40AF;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      font-style: normal;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #1E3A8A;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-box h4 {
+      color: #1E40AF;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .highlight-box p, .highlight-box li {
+      color: #1E3A8A;
+    }
+
+    /* Warning/Challenge Box */
+    .challenge-box {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .challenge-box h4 {
+      color: #B45309;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .challenge-box p, .challenge-box li {
+      color: #92400E;
+    }
+
+    /* Vision Box */
+    .vision-box {
+      background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .vision-box h4 {
+      color: #047857;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .vision-box p, .vision-box li {
+      color: #065F46;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero {
+        padding: 8rem 0 3rem;
+      }
+
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <header class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Forum 2025</span>
+        <span class="post-tag">Learning Analytics</span>
+        <span class="post-date">December 2025</span>
+      </div>
+      <h1>AI for Individualized Learning Support in Science Education</h1>
+      <p class="subtitle">A vision for making AI accessible to every teacher: tracking student learning through digital worksheets and empowering teachers to intervene at critical moments.</p>
+
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann" style="object-position: top;">
+        </div>
+        <div class="post-author-info">
+          <h4>Prof. Dr. Knut Neumann</h4>
+          <p>IPN - Leibniz Institute for Science and Mathematics Education, Germany</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p>How can we support every student individually when there's only one teacher for 25 or more students? This presentation explores the potential of AI and digital technologies to track student learning in real-time and empower teachers to intervene at critical moments.</p>
+
+    <!-- Section 1: The Global Challenge -->
+    <h2>The Global Challenges in Science Education</h2>
+
+    <div class="challenge-box">
+      <h4><i class="fas fa-exclamation-triangle"></i> Growing Problems</h4>
+      <p>A substantial and <em>growing</em> number of students worldwide don't reach a decent level of competence in science. In a world increasingly driven by scientific and technological progress, this is a critical problem.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-unlink"></i>
+          Lack of Coherence in Science Curricula
+        </div>
+        <p class="tier-1-summary">Despite reform efforts, instruction essentially starts new with every single lesson. There are no connections, no building toward a broader vision, and no cumulative learning.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The core problems:</p>
+          <ul>
+            <li><strong>No cumulative learning:</strong> Students memorize formulas and go home - especially problematic in physics</li>
+            <li><strong>Traditional teacher-directed approach:</strong> Lack of support for individual students</li>
+            <li><strong>One-size-fits-all:</strong> No support for all students to reach minimum competence levels</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "What we are seeing is that instruction is essentially starting new, like with every single lesson, there's no connections, there's definitely no building towards, like, a broader vision of where science education is supposed to lead us, so that there's no cumulative learning. I mean, students are just memorizing the formula and then they go home. It's essentially one of the biggest problems in physics, for example."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Past Efforts -->
+    <h2>Efforts to Solve These Challenges</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-tools"></i>
+          What We've Tried So Far
+        </div>
+        <p class="tier-1-summary">Better standards (K-12 Framework), learning progressions research, storyline curricula that build on prior understanding. But one problem remains unsolved: individual student support.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>Past solutions:</strong></p>
+          <ul>
+            <li><strong>Better standards:</strong> The K-12 Framework for Science Education in the US is an outstanding example</li>
+            <li><strong>Learning progressions:</strong> Models describing how students develop increasingly sophisticated reasoning in a domain</li>
+            <li><strong>Better curriculum:</strong> Storyline curricula that build on students' prior understanding toward broader educational vision</li>
+          </ul>
+          <p><strong>The unsolved problem:</strong> How to support students individually. It would be great if each student could get instruction, support, and feedback in the very moment they need it. But there's only one teacher for 25+ students.</p>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "One problem that I think we have not solved in science education so far is the question of how to support students individually in their learning, which is a huge thing. If you think about it, like, A, it would be great to have it, like, if each student could get, you know, like, instruction in the very moment that they need it, or support, feedback, whatever they need, in the moment that they need it. But the problem is, there's only one teacher in the classroom, but typically, like, 25 or more students, depending on the classroom."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: The Digital Approach -->
+    <h2>Digital Worksheets: Capturing Student Thinking</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-laptop"></i>
+          Moving Worksheets to Digital
+        </div>
+        <p class="tier-1-summary">Instead of paper worksheets, students input everything digitally - drawings, text responses, experimental data. All of this carries information about their learning and is available for analysis.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>Example task:</strong> Students explain how solar cells should be arranged on a roof to maximize electricity production.</p>
+          <p><strong>A student's answer:</strong> "So that maximum energy is produced" and "for a lot of light, energy must be converted, and the angle matters."</p>
+          <p><strong>What we can learn from this:</strong></p>
+          <ul>
+            <li>First sentence: Potential misconception - "energy being produced" (non-normative idea)</li>
+            <li>Second idea: Normative concept about energy transformation</li>
+          </ul>
+          <p>Everything students write or draw is reflective of how they think about physics. This data becomes the foundation for intervention.</p>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "So all of this is reflective of students' thinking. You know, what students are saying in writing, even when they're drawing something, it's reflective of how they think about physics, in my case."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Identifying Student Groups -->
+    <h2>Three Groups of Students</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-users"></i>
+          Tracking Learning Over Time
+        </div>
+        <p class="tier-1-summary">When you track solution probability across all tasks, three distinct groups emerge: self-learners, late bloomers, and students who never recover without intervention.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>Group 1: Self-learners</strong></p>
+          <p>High solution probability across all tasks. They learn on their own - you don't have to take care of them.</p>
+
+          <p><strong>Group 2: Late bloomers</strong></p>
+          <p>Start poorly, but at some point something clicks - "oh, now I get it." They switch into learning mode.</p>
+
+          <p><strong>Group 3: Lost students</strong></p>
+          <p>Start poorly and never recover. By the end of the unit, they get nothing right. No learning at all.</p>
+
+          <p>The critical question: What causes the difference between Groups 2 and 3?</p>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "Overall, they're having a high solution probability across all tasks. That's the students that are essentially learning on their own. You don't have to take care of them. They just do their stuff, and that's fine. But then there's two groups of other students. One—like, they're starting not so well, but then kind of one group gets it, and the other does not. The other one ends up at the very bottom, like, towards the end of the unit. They just don't get anything right anymore, so there's no learning at all."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Critical Intervention Points -->
+    <h2>The Critical Moment for Intervention</h2>
+
+    <div class="highlight-box">
+      <h4><i class="fas fa-lightbulb"></i> Key Insight</h4>
+      <p>If you don't understand energy transformation in the first place, there's no way to integrate all the later information about what affects transformation, how it changes, etc. Missing a foundational concept creates a cascading failure.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-crosshairs"></i>
+          When Teachers Need to Intervene
+        </div>
+        <p class="tier-1-summary">The solar cell unit teaches energy forms, then transformations, then details. Students who miss the transformation concept can't integrate anything that follows. This is where the teacher must change course.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>The intervention strategy:</strong></p>
+          <ul>
+            <li>Teacher realizes a larger number of students are lost at a specific point</li>
+            <li>Students who understand continue with extra tasks</li>
+            <li>Teacher takes the struggling group aside: "What's your problem? Let's talk about it."</li>
+            <li>Brings that group back on track before moving forward</li>
+          </ul>
+          <p>The key is <em>modifying the course of instruction</em> at the critical moment, not discovering the problem at the end of the unit.</p>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "This unit is about solar cells... they're learning about how a solar cell works. They're learning about the different forms of energy, and they're learning about transformations of the different forms into each other. And then we're going into the weeds of it... And that's the point. If you don't get the transformation in the first place, there's just no way for you to kind of integrate all that other information that's coming later. So that's why we think this is a crucial moment. And this is something where we think the teacher would need to intervene."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Future Vision -->
+    <h2>Vision: AI for Every Teacher</h2>
+
+    <div class="vision-box">
+      <h4><i class="fas fa-rocket"></i> The Next 5-10 Years</h4>
+      <p>How can we make AI-powered learning support accessible to teachers without requiring researchers to develop custom units and machine learning algorithms?</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-cloud-upload-alt"></i>
+          A Generic Platform for Teachers
+        </div>
+        <p class="tier-1-summary">Teachers upload their worksheets, specify expected learning performances and prerequisites, and AI tracks cumulative learning across worksheets - providing individual student feedback and teacher dashboards.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>How it works:</strong></p>
+          <ol>
+            <li><strong>Upload worksheets:</strong> Teachers upload their existing worksheets to a platform that automatically generates response boxes</li>
+            <li><strong>Specify learning performances:</strong> What do you expect students to know and be able to do?</li>
+            <li><strong>Mark connections:</strong> Specify prerequisites - e.g., "You can't teach transformation if they don't know about the forms of energy"</li>
+            <li><strong>AI tracks learning:</strong> Across multiple worksheets, AI monitors cumulative learning performances</li>
+            <li><strong>Dual output:</strong> Individual feedback to students + aggregated data to teachers</li>
+          </ol>
+          <p><strong>What teachers need to learn:</strong></p>
+          <ul>
+            <li>Specify learning performances for each worksheet</li>
+            <li>Specify how learning performances build upon each other</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "My idea is that what teachers should do is whenever they create a worksheet and they upload it, they should provide the learning performances they're expecting from students... And then the next thing would be that teachers can specify connections between these learning performances, because oftentimes the way it works is, you know, there's a certain learning performance, something you want kids to know and be able to do as a function of one of your lessons, it comes up in a later lesson. And you want to build on it... You can't teach them transformation if they don't know about the forms of energy. So essentially learning about the forms is a prerequisite."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-sync-alt"></i>
+          The Feedback Loop
+        </div>
+        <p class="tier-1-summary">AI provides cumulative tracking across lessons - not just single-worksheet feedback. The teacher sees patterns over time and can intervene when students fall off track.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>Key innovation:</strong> Ask AI to give feedback not just on one worksheet's learning performances, but on learning performances that are <em>recurrent</em> across worksheets.</p>
+          <p><strong>Two outputs:</strong></p>
+          <ul>
+            <li><strong>For students:</strong> Individual feedback as they work on the worksheet</li>
+            <li><strong>For teachers:</strong> Information to track learning over time (across lessons/worksheets) to modify instruction as needed</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "The point is, you can actually ask the AI not just to give feedback on a set of learning performances related to one worksheet, but also to give it, ask it to give feedback on the learning performances in later worksheets and think about it as in, you know, this is a cumulative set of learning performances. And that way, we can do two things. We can use this information to track, to give students individual feedback as they work on the worksheet. But what we can also do is we can use the information that students put in there to track their learning over time, like over lessons or worksheets in this case."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusion -->
+    <blockquote>
+      <p>"The only thing we need for this is to teach the teachers to specify the learning performances that are expected for each of those worksheets and to specify how these learning performances build upon each other. That would be my vision for how we can use AI, make AI accessible for every teacher to use in their classroom in a meaningful way."</p>
+    </blockquote>
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="ai-individualized-learning-support"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM Unjournal</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual AIET IN STEM Forum - Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+            <li><a href="../event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier2 = toggle.closest('.tier-2-content');
+      const tier3 = tier2.nextElementSibling;
+      tier3.classList.toggle('visible');
+
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Original Quote';
+      }
+    }
+  </script>
+</body>
+</html>

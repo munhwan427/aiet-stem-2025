@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Connected Mathematics Project - Teaching mathematics THROUGH problem-solving with AI-powered collaborative platforms for middle school students.">
+  <title>Connected Mathematics: Teaching Math Through Problem-Solving with AI | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #059669 0%, #34D399 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.2);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .post-content h2 {
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    /* Highlight Boxes */
+    .principle-box, .insight-box, .vision-box {
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .principle-box {
+      background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+      border-left: 4px solid #059669;
+    }
+
+    .insight-box {
+      background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+      border-left: 4px solid #22C55E;
+    }
+
+    .vision-box {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-left: 4px solid #F59E0B;
+    }
+
+    .principle-box h4, .insight-box h4, .vision-box h4 {
+      margin-bottom: 0.75rem;
+      color: #065F46;
+    }
+
+    .vision-box h4 {
+      color: #92400E;
+    }
+
+    .principle-box p, .insight-box p, .vision-box p {
+      margin-bottom: 0;
+      color: #064E3B;
+    }
+
+    .vision-box p {
+      color: #78350F;
+    }
+
+    /* Project Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-card {
+      background: var(--background-alt);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-card .number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #059669;
+    }
+
+    .stat-card .label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 0.25rem;
+    }
+
+    /* 3-Tier Format */
+    .tier-section {
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+
+    .tier-1-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tier-1-title i {
+      color: #059669;
+    }
+
+    .tier-1-summary {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .details-link {
+      color: #059669;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .details-link:hover {
+      color: #047857;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2 ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .tier-2 li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .tier-3 {
+      display: none;
+      padding: 1.5rem;
+      background: #F0FDF4;
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-3.visible {
+      display: block;
+    }
+
+    .tier-3 p {
+      font-style: italic;
+      color: #065F46;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    .quote-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #059669;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    .quote-toggle:hover {
+      color: #047857;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: #047857;
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-hero .subtitle {
+        font-size: 1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <header class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Mathematics Education</span>
+        <span class="post-date">December 2025</span>
+      </div>
+      <h1>Connected Mathematics: Teaching Math Through Problem-Solving with AI</h1>
+      <p class="subtitle">40 years of curriculum development meets modern AI. How the Connected Mathematics Project is integrating artificial intelligence to support proportional reasoning across middle school.</p>
+
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="https://prime.natsci.msu.edu/_assets/images/directory/Edson_AJ_2025_380Square.jpg" alt="A.J. Edson" style="object-position: top;">
+        </div>
+        <div class="post-author-info">
+          <h4>Prof. A.J. Edson</h4>
+          <p>Michigan State University, USA</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p>At the 2025 AIET IN STEM Forum, A.J. Edson presented the Connected Mathematics Project (CMP) - a 40-year curriculum development effort that has become the most researched math curriculum in the United States. Now, the team is exploring how AI can address persistent "teacher enactment tensions" in problem-based math classrooms.</p>
+
+    <!-- Project Overview -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="number">40+</div>
+        <div class="label">Years of Development</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">550+</div>
+        <div class="label">Research Papers</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">$10M</div>
+        <div class="label">NSF Funding</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">26</div>
+        <div class="label">States Field-Tested</div>
+      </div>
+    </div>
+
+    <!-- Core Philosophy -->
+    <h2>The Core Philosophy: Teaching THROUGH Problem-Solving</h2>
+
+    <div class="principle-box">
+      <h4><i class="fas fa-lightbulb"></i> The Key Distinction</h4>
+      <p>Teaching mathematics is not FOR problem-solving. It's not ABOUT problem-solving. Teaching mathematics is THROUGH problem-solving. The discipline of mathematics itself has evolved from the activity of solving problems.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-baby"></i>
+          Humans Are Born Problem-Solvers
+        </div>
+        <p class="tier-1-summary">Babies and toddlers are constantly problem-solving - figuring out how to get food, how to walk. Mathematics has evolved from this same human activity of solving problems across civilizations.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Problem-solving is both the goal of learning mathematics AND the way we learn it</li>
+            <li>Different civilizations and cultures have invented new mathematics based on solving problems</li>
+            <li>In CMP classrooms, mathematics develops from contextual problem situations, not abstract procedures first</li>
+            <li>The sequence: Big Ideas → Real-World Context → Problem Situations → Mathematics Develops</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">A.J. Edson:</span>
+              "We come into the world as problem-solvers. If you think about babies or toddlers, they're always problem-solving, figuring out how to get food, how to walk. Everything is a problem-solving process. Not only are humans problem-solvers, but the discipline of mathematics has evolved from the activity of solving problems. Over the history of the world, different civilizations and cultures have invented new mathematics based on solving problems."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Launch-Explore-Summarize -->
+    <h2>The Classroom Model: Launch, Explore, Summarize</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-chalkboard-teacher"></i>
+          How CMP Classrooms Operate
+        </div>
+        <p class="tier-1-summary">Every lesson follows a three-part structure: teacher launches the problem in whole-class discussion, students explore in small groups, then the class summarizes together what they learned.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li><strong>Launch:</strong> Teacher introduces the problem in whole-class discussion</li>
+            <li><strong>Explore:</strong> Students work in small groups, sharing ideas and problem-solving together</li>
+            <li><strong>Summarize:</strong> Whole-group conversation about strategies and connections to prior learning</li>
+            <li>Teacher's three goals during summarize: attend to all strategies, reveal embedded mathematics, connect to previous learning</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">A.J. Edson:</span>
+              "This is how classrooms actually operate. They start out, they've got a problem for the day, they launch it, the teacher launches it in a whole class discussion. Students take up those problems in small groups, they work together, and then they come back together in a whole group conversation and talk about what happens and the strategies that they use."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Pizza Problem -->
+    <h2>A Real Problem: The Pizza Fairness Question</h2>
+
+    <div class="insight-box">
+      <h4><i class="fas fa-pizza-slice"></i> The Setup</h4>
+      <p>Large table: 10 people, 4 pizzas. Small table: 8 people, 3 pizzas. Does a person at the small table get the same amount of pizza as a person at the large table? Who gets more?</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-users"></i>
+          Multiple Strategies Emerge
+        </div>
+        <p class="tier-1-summary">Students approach this problem in dramatically different ways - slices per person, people per pizza, scaling to common denominators, ratio tables. The teacher must make sense of ALL these strategies while walking around the room.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li><strong>Slices approach:</strong> Each pizza has 8 slices, total slices divided by people</li>
+            <li><strong>Fractions approach:</strong> People per pizza as fractions (2/12, 30/12), then common denominators</li>
+            <li><strong>Ratio approach:</strong> Pizza to people ratio, scaled up to find comparison</li>
+            <li><strong>Unit rate:</strong> One pizza for X people, finding the per-person remainder</li>
+            <li>The challenge: Teacher and students must synthesize all these different representations in real-time</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">A.J. Edson:</span>
+              "Think about it. You're in a class, and you've got all these different kinds of strategies going on. The teacher has to make sense of all these different strategies as they're walking around the room, and you as a student have to make sense of your own thinking, and the thinking in your group, and the thinking in your class. So it's a lot of information, a lot of student work, a lot of happening all at once."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Digital Platform -->
+    <h2>The Digital Collaborative Platform</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-laptop"></i>
+          10 Years of Development
+        </div>
+        <p class="tier-1-summary">Since 2016, CMP has been building a digital platform where students can collaborate in real-time, teachers can see all student work on a dashboard, and learning can be played back to understand how ideas developed.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Text, drawing, graphing, table, and annotation tools for mathematical thinking</li>
+            <li>Real-time collaboration - students can see each other's work as they work</li>
+            <li>Teacher dashboard with whole-class view, group view, and individual playback</li>
+            <li>Digital format allows work to be analyzed, compared, and tracked over time</li>
+            <li>Students take more risks because digital work is less "permanent" than paper</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Student (from video):</span>
+              "I can make a mistake and get rid of it, I can try again. But if I'm just on paper and pencil, there's something more permanent about the paper and pencil environment. It doesn't allow me to take risks and try different examples."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Integration -->
+    <h2>Integrating AI: Addressing Teacher Enactment Tensions</h2>
+
+    <div class="vision-box">
+      <h4><i class="fas fa-brain"></i> The Design Principle</h4>
+      <p>AI needs to help with problems of practice. Problems of practice are persistent, rooted in everyday interactions, and not easily solved by any tool. It's not technology for technology's sake - it's gotta help us move forward.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-bullseye"></i>
+          Targeting Specific Tensions
+        </div>
+        <p class="tier-1-summary">Rather than generic AI, CMP is targeting specific challenges teachers face: recognizing multiple solution strategies, tracking student growth over time, and helping students know what they know.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li><strong>Teacher enactment tension:</strong> How to teach with deep, connected, flexible math knowledge?</li>
+            <li><strong>Student progression:</strong> How to help students develop learning over a sequence of problems?</li>
+            <li><strong>Multiple approaches:</strong> How to recognize various ways students might solve a problem?</li>
+            <li><strong>Self-awareness:</strong> How to help students know what they know? (not just teachers knowing)</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">A.J. Edson:</span>
+              "We really believe that if we're gonna incorporate or integrate AI into the classroom, it really needs to help students and teachers do the things that they're doing all the time and that they're having issues with... We spend a lot of time helping teachers think about what students know, but I don't think that we spend a lot of time helping students know what they know."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proportional Reasoning Focus -->
+    <h2>AI for Proportional Reasoning</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-percentage"></i>
+          Training AI to Recognize Student Strategies
+        </div>
+        <p class="tier-1-summary">In 7th grade, proportional reasoning spans most topics. CMP is training AI to recognize: part-to-part vs. part-to-whole reasoning, different representations (tables, graphs, drawings), and additive vs. multiplicative thinking.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li><strong>Relationship type:</strong> Part-to-part or part-to-whole?</li>
+            <li><strong>Representations:</strong> Table, graph, drawing, number line?</li>
+            <li><strong>Strategy type:</strong> Additive thinking, scaling up/down, or unit rate?</li>
+            <li>AI allows teachers to sort and filter student work by strategy type in real-time</li>
+            <li>Students can track how their strategies evolve across units (numbers, statistics, probability)</li>
+            <li>AI provides feedback explaining WHY it categorized student work a certain way</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">A.J. Edson:</span>
+              "For teachers, they have the dashboard. But now, teachers can sort through all of the work in their class in real time and say, okay, what's this group doing? How many of them are using tables? How many of them are using graphs? Are any of them building up or down? Any of them scaling up with unit rates?... Students can click and say, okay, AI told me that I was using this strategy, but why did AI tell me I was using this strategy?"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Math-AI Challenge -->
+    <h2>The Unique Challenge of Math + AI</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-calculator"></i>
+          Math Requires Accuracy
+        </div>
+        <p class="tier-1-summary">Unlike other domains where LLMs can be approximate, math needs to be right. Tools like PhotoMath bridge LLMs and symbolic AI - taking a picture, translating to symbolic math for accuracy, then back to natural language.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Large language models are probabilistic - math requires deterministic accuracy</li>
+            <li>PhotoMath approach: Camera → LLM translation → Symbolic AI for calculation → LLM for explanation</li>
+            <li>Current trend: bringing together LLM world and symbolic AI world</li>
+            <li>Student work is "messy" - not formal assessments, just ongoing collaborative work</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">A.J. Edson:</span>
+              "Math is kind of tricky, because we want math to be accurate. We don't want math to be wrong, so we don't want AI to be wrong... PhotoMath, you take a picture with your phone of any problem in your textbook, and then it uses large language models, and then it translates it, switches it over to symbolic AI, gives the accurate answer, and then brings it back over here to large language model to give you your answer."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Vision -->
+    <h2>Beyond AI as Collaborator</h2>
+
+    <div class="insight-box">
+      <h4><i class="fas fa-rocket"></i> The Push Forward</h4>
+      <p>We don't want AI to replace teachers or students. We view AI as a collaborator. But the goal is to push beyond just "partner" - AI needs to address problems of practice that are persistent and not easily solved by any tool.</p>
+    </div>
+
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="connected-math-ai-problem-solving"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('visible');
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Original Quote';
+      }
+    }
+  </script>
+</body>
+</html>

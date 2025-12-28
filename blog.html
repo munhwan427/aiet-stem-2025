@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AIET IN STEM Blog - Ideas, research notes, and discussions on AI and emerging technologies in STEM education.">
+  <meta name="keywords" content="AI, STEM, Education, Blog, Research, Essays">
+  <title>Blog | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css?v=30">
+  <style>
+    /* Blog-specific styles */
+    .blog-hero {
+      background: linear-gradient(135deg, #1f4952 0%, #3d7d8a 100%);
+      color: var(--white);
+      padding: 8rem 0 4rem;
+      margin-top: 90px;
+      text-align: center;
+    }
+
+    .blog-hero h1 {
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-hero p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Search Section */
+    .search-section {
+      background: var(--white);
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 90px;
+      z-index: 100;
+    }
+
+    .search-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      font-size: 1rem;
+      background: var(--background-alt);
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-light);
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .blog-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .blog-card-header {
+      padding: 1.5rem 1.5rem 0;
+    }
+
+    .blog-card-meta {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .blog-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .blog-tag.essay { background: #E0F2FE; color: #0369A1; }
+    .blog-tag.research { background: #F3E8FF; color: #7C3AED; }
+    .blog-tag.forum { background: #FEF3C7; color: #B45309; }
+    .blog-tag.update { background: #ECFDF5; color: #059669; }
+    .blog-tag.discussion { background: #FEE2E2; color: #DC2626; }
+
+    .blog-year-tag {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      background: var(--background-alt);
+      color: var(--text-light);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .blog-card-body {
+      padding: 0 1.5rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .blog-card-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .blog-card-title a:hover {
+      color: var(--primary);
+    }
+
+    .blog-card-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .blog-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .blog-author {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .blog-author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      overflow: hidden;
+    }
+
+    .blog-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .blog-author-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .blog-date {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .blog-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .blog-read-more:hover {
+      color: var(--primary-light);
+    }
+
+    /* Topic Pills */
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .topic-pill {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--background-alt);
+      color: var(--text-light);
+      border-radius: 4px;
+    }
+
+    /* Featured Post */
+    .featured-post {
+      background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+      border-radius: 20px;
+      padding: 3rem;
+      color: var(--white);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-post::before {
+      content: 'Featured';
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .featured-post h2 {
+      color: var(--white);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .featured-post p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+    }
+
+    .featured-post .btn {
+      background: var(--white);
+      color: #2d3748;
+    }
+
+    .featured-post .btn:hover {
+      background: rgba(255,255,255,0.9);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-light);
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 3rem;
+    }
+
+    .pagination-btn {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--text);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .pagination-btn:hover,
+    .pagination-btn.active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-post {
+        padding: 2rem;
+      }
+
+      .featured-post h2 {
+        font-size: 1.5rem;
+      }
+
+      .filter-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="speakers.html" class="nav-link">Network</a></li>
+        <li><a href="program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Hero -->
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Blog & Essays</h1>
+      <p>Ideas, research notes, and discussions on AI and emerging technologies in STEM education.</p>
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" id="blogSearch" placeholder="Search posts by title, author, or topic...">
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <section class="section">
+    <div class="container">
+      <!-- Featured Post -->
+      <article class="featured-post">
+        <h2>The Unjournal Vision: Making AI Research Truly Accessible</h2>
+        <p>GitHub is for developers. Why not make research tools like ChatGPT? Informal discussions across Jeju crystallized key insights: natural language interfaces, AI-powered transcription, and building capacity - not just completing tasks.</p>
+        <a href="blog/unjournal-vision-accessibility.html" class="btn">Read the Full Post</a>
+      </article>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid">
+        <!-- Blog Post: AI Proficiency Keynote - Jiliang Tang -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="ai-proficiency">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Keynote</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/ai-proficiency-framework-tang.html">AI Proficiency in Education: Opportunities, Risks, and a Framework</a></h3>
+            <p class="blog-card-excerpt">There is no free lunch. Every AI opportunity comes with risks. A framework for building AI proficiency - not coding, but using AI responsibly and critically.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">AI Proficiency</span>
+              <span class="topic-pill">Framework</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang">
+                </div>
+                <span class="blog-author-name">Jiliang Tang</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: CALTSTEAM -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="emerging-tech">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/caltsteam-vr-ar-ai-education.html">CALTSTEAM: Culturally-Anchored VR, AR, and AI for STEM</a></h3>
+            <p class="blog-card-excerpt">Bridging African indigenous knowledge with emerging technologies. VR for cultural-science connections, Socratic AI tutors, and microteaching analytics.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">VR/AR</span>
+              <span class="topic-pill">Cultural Knowledge</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://www.uj.ac.za/wp-content/uploads/2021/11/ramnarain-1080.jpg" alt="Umesh Ramnarain" style="object-position: center 15%;">
+                </div>
+                <span class="blog-author-name">Umesh Ramnarain</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: InqITS - Janice Gobert -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="ai-assessment">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/inqits-scalable-ai-science-inquiry.html">InqITS: Scalable AI for Science Inquiry Assessment</a></h3>
+            <p class="blog-card-excerpt">Real-time AI assessment solving the "Billy vs Johnny" problem. 20M+ investigations, Rex AI tutor, and teacher dashboards with 170-day transfer effects.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">AI & Assessment</span>
+              <span class="topic-pill">Intelligent Tutoring</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert" style="object-position: top;">
+                </div>
+                <span class="blog-author-name">Janice Gobert</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: AI Proficiency and Literacy - Chris Quintana -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="ai-literacy">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/ai-proficiency-literacy-education.html">AI Proficiency and Literacy: The Next Frontier in Education</a></h3>
+            <p class="blog-card-excerpt">From information literacy to AI literacy. Faculty workshops, LLM as intellectual partner, and defining what educators need to know about generative AI.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">AI Literacy</span>
+              <span class="topic-pill">LLM as Partner</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://online.umich.edu/media/instructors/Chris_Quintana_001_FINAL.jpg" alt="Christopher Quintana" style="object-position: top;">
+                </div>
+                <span class="blog-author-name">Chris Quintana</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Social Simulation - Hyungson Lim -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="social-simulation">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/social-simulation-ai-agents-education.html">Social Simulation: Building Virtual Societies with AI Agents</a></h3>
+            <p class="blog-card-excerpt">The Truman Show meets AI: Creating virtual societies to test policies, train teachers, and understand human behavior through agent-based simulation.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Social Simulation</span>
+              <span class="topic-pill">AI Agents</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0F766E, #14B8A6); font-size: 0.8rem; font-weight: 600; color: white;">HL</div>
+                <span class="blog-author-name">Hyungson Lim</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: AI Individualized Learning - Knut Neumann -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="ai-assessment">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/ai-individualized-learning-support.html">AI for Individualized Learning Support in Science Education</a></h3>
+            <p class="blog-card-excerpt">Tracking student learning in real-time to identify critical intervention moments. Digital worksheets, machine learning, and teacher dashboards.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Individualized Learning</span>
+              <span class="topic-pill">Learning Analytics</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann" style="object-position: top;">
+                </div>
+                <span class="blog-author-name">Knut Neumann</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Facial Expression AI - Mei-Hung Chiu -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="ai-assessment">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/facial-expression-ai-science-education.html">Facial Expression AI in Science Education</a></h3>
+            <p class="blog-card-excerpt">Reading students' minds through facial expressions. Inspired by "Lie to Me," applying emotion recognition to detect confusion during science learning.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Facial Expression</span>
+              <span class="topic-pill">Emotion Recognition</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://scholar.lib.ntnu.edu.tw/files-asset/105108388/meihungchiu.png" alt="Mei-Hung Chiu" style="object-position: top;">
+                </div>
+                <span class="blog-author-name">Mei-Hung Chiu</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Connected Mathematics - A.J. Edson -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="math-education">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/connected-math-ai-problem-solving.html">Connected Mathematics: Teaching Math Through Problem-Solving with AI</a></h3>
+            <p class="blog-card-excerpt">40 years of curriculum development meets AI. Digital collaboration platform for middle school math with real-time strategy tracking.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Problem-Based Learning</span>
+              <span class="topic-pill">Proportional Reasoning</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://prime.natsci.msu.edu/_assets/images/directory/Edson_AJ_2025_380Square.jpg" alt="A.J. Edson" style="object-position: top;">
+                </div>
+                <span class="blog-author-name">A.J. Edson</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: AI Teacher PD - Yasemin Copur-Gencturk -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="teacher-pd">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/ai-teacher-professional-development.html">AI-Based Teacher Professional Development: Evidence That It Works</a></h3>
+            <p class="blog-card-excerpt">Multi-agent AI that asks questions instead of giving answers. Randomized controlled trial proves impact on teachers AND students.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Teacher PD</span>
+              <span class="topic-pill">Multi-Agent AI</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg" alt="Yasemin Copur-Gencturk" style="object-position: top;">
+                </div>
+                <span class="blog-author-name">Yasemin Copur-Gencturk</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Student Voices on AI -->
+        <article class="blog-card" data-type="discussion" data-year="2025" data-topic="student-voices">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag discussion">Student Panel</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/student-voices-ai-education.html">Student Voices: How Korean Students Really Use AI</a></h3>
+            <p class="blog-card-excerpt">Jeju students share honest perspectives: AI for research, coding, and learning - plus concerns about accuracy, over-reliance, and the copy-paste problem.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Student Perspectives</span>
+              <span class="topic-pill">AI Use Cases</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatars" style="display: flex; margin-right: -8px;">
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 3; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #8B5CF6, #C4B5FD); font-size: 0.7rem; font-weight: 600; color: white;">JW</div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 2; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #8B5CF6, #C4B5FD); font-size: 0.7rem; font-weight: 600; color: white;">DH</div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; z-index: 1; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #8B5CF6, #C4B5FD); font-size: 0.7rem; font-weight: 600; color: white;">+5</div>
+                </div>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Working Group Discussion -->
+        <article class="blog-card" data-type="discussion" data-year="2025" data-topic="working-group">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag discussion">Working Group</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/working-group-future-aiet-stem.html">Building the Future of AIET IN STEM: A Working Group Discussion</a></h3>
+            <p class="blog-card-excerpt">Framework development, conference models, and global collaboration. How do we create something truly different - theory-driven, data-driven, and globally inclusive?</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Framework</span>
+              <span class="topic-pill">Global Equity</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatars" style="display: flex; margin-right: -8px;">
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 5;"><img src="https://online.umich.edu/media/instructors/Chris_Quintana_001_FINAL.jpg" alt="Chris Quintana" style="object-position: top;"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 4;"><img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 3;"><img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg" alt="Yasemin"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 2;"><img src="https://www.uj.ac.za/wp-content/uploads/2021/11/ramnarain-1080.jpg" alt="Umesh Ramnarain" style="object-position: center 15%;"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; z-index: 1; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #22C55E, #16A34A); font-size: 0.7rem; font-weight: 600; color: white;">+5</div>
+                </div>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Unjournal Vision & Accessibility -->
+        <article class="blog-card" data-type="discussion" data-year="2025" data-topic="unjournal">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag discussion">Informal Discussion</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/unjournal-vision-accessibility.html">The Unjournal Vision: Making AI Research Truly Accessible</a></h3>
+            <p class="blog-card-excerpt">GitHub is for developers. Why not make research tools like ChatGPT? Plus: AI-powered transcription, building capacity vs completing tasks, and more.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Accessibility</span>
+              <span class="topic-pill">Unjournal</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatars" style="display: flex; margin-right: -8px;">
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 4;"><img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 3;"><img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 2;"><img src="https://online.umich.edu/media/instructors/Chris_Quintana_001_FINAL.jpg" alt="Chris Quintana" style="object-position: top;"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; z-index: 1; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3B82F6, #1D4ED8); font-size: 0.7rem; font-weight: 600; color: white;">+3</div>
+                </div>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post 1 -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="ai-assessment">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/ai-evolution-assessment.html">AI Evolution and Its Impact on Educational Assessment</a></h3>
+            <p class="blog-card-excerpt">From expert systems to generative AI: How the evolution of AI fundamentally changes assessment. Featuring Jiliang Tang's forum presentation.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">AI & Assessment</span>
+              <span class="topic-pill">Generative AI</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang">
+                </div>
+                <span class="blog-author-name">Jiliang Tang</span>
+              </div>
+              <span class="blog-date">Dec 16</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Namsoo Shin Presentation -->
+        <article class="blog-card" data-type="forum" data-year="2025" data-topic="ai-assessment">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Presentation</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/multi-agent-ai-assessment.html">Multi-Agent AI for Elementary Science Assessment</a></h3>
+            <p class="blog-card-excerpt">Using five AI agents to detect uncertainty and support teacher decision-making. When AI is uncertain, humans are too—the same points of confusion.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">AI & Assessment</span>
+              <span class="topic-pill">Elementary Science</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="images/speakers/Shin_Photo1.jpg" alt="Namsoo Shin">
+                </div>
+                <span class="blog-author-name">Namsoo Shin</span>
+              </div>
+              <span class="blog-date">Dec 16</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Panel Discussion -->
+        <article class="blog-card" data-type="discussion" data-year="2025" data-topic="ai-ethics">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag discussion">Discussion</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/panel-discussion-human-ai.html">The Human-AI Partnership Debate</a></h3>
+            <p class="blog-card-excerpt">When can we trust AI for high-stakes decisions? Candid debate between cognitive scientists, physics & math educators on AI reliability and domain specificity.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">AI Ethics</span>
+              <span class="topic-pill">Panel Discussion</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatars" style="display: flex; margin-right: -8px;">
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 6;"><img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert" style="object-position: top;"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 5;"><img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 4;"><img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg?itok=X5NbW6aE" alt="Yasemin"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 3;"><img src="https://prime.natsci.msu.edu/_assets/images/directory/Edson_AJ_2025_380Square.jpg" alt="A.J. Edson"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; margin-right: -8px; z-index: 2;"><img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang"></div>
+                  <div class="blog-author-avatar" style="border: 2px solid white; z-index: 1;"><img src="images/speakers/Shin_Photo1.jpg" alt="Namsoo Shin"></div>
+                </div>
+                </div>
+              <span class="blog-date">Dec 16</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post: Unjournal Vision -->
+        <article class="blog-card" data-type="discussion" data-year="2025" data-topic="research-methods">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag discussion">Working Session</span>
+              <span class="blog-year-tag">2025</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="blog/unjournal-ai-research-commons.html">The Unjournal: AI-Powered Research Commons</a></h3>
+            <p class="blog-card-excerpt">Why traditional journals are too slow for AI research. A new model embracing AI for transcription, summarization, and exploration of academic discussions.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Unjournal</span>
+              <span class="topic-pill">AI Integration</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">
+                  <img src="https://online.umich.edu/media/instructors/Chris_Quintana_001_FINAL.jpg" alt="Christopher Quintana" style="object-position: top;">
+                </div>
+                <span class="blog-author-name">Chris Quintana</span>
+              </div>
+              <span class="blog-date">Dec 17</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Blog Post 7 (2023) -->
+        <article class="blog-card" data-type="forum" data-year="2023" data-topic="global-perspectives">
+          <div class="blog-card-header">
+            <div class="blog-card-meta">
+              <span class="blog-tag forum">Forum Notes</span>
+              <span class="blog-year-tag">2023</span>
+            </div>
+          </div>
+          <div class="blog-card-body">
+            <h3 class="blog-card-title"><a href="event2023.html">2023 International EdTech Innovation Week Highlights</a></h3>
+            <p class="blog-card-excerpt">Recap from our inaugural gathering at Jeju National University. Key themes included AI readiness, teacher professional development, and cross-cultural collaboration.</p>
+            <div class="topic-pills">
+              <span class="topic-pill">Global Perspectives</span>
+              <span class="topic-pill">EdTech</span>
+            </div>
+            <div class="blog-card-footer">
+              <div class="blog-author">
+                <div class="blog-author-avatar">JN</div>
+                <span class="blog-author-name">JNU RISE</span>
+              </div>
+              <span class="blog-date">Dec 2023</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="pagination-btn active">1</button>
+        <button class="pagination-btn">2</button>
+        <button class="pagination-btn">3</button>
+        <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Contribute to the Blog</h2>
+        <p>Share your ideas, research notes, or discussion starters with our global network.</p>
+      </div>
+      <div class="cta-grid">
+        <div class="cta-card">
+          <h3>Submit an Essay</h3>
+          <p>Share thought pieces, reflections, or opinion articles on AI in STEM education.</p>
+          <a href="submit.html?type=essay" class="btn btn-secondary">Submit Essay</a>
+        </div>
+        <div class="cta-card">
+          <h3>Share Research Notes</h3>
+          <p>Publish early findings, working papers, or research-in-progress updates.</p>
+          <a href="submit.html?type=research" class="btn btn-secondary">Share Research</a>
+        </div>
+        <div class="cta-card">
+          <h3>Start a Discussion</h3>
+          <p>Pose questions or dilemmas to gather diverse global perspectives.</p>
+          <a href="submit.html?type=discussion" class="btn btn-secondary">Start Discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual Forum · Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="speakers.html">Network</a></li>
+            <li><a href="program.html">Forum 2025</a></li>
+            <li><a href="event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:ahn@anarchy.io">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Blog Search Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('blogSearch');
+      const blogCards = document.querySelectorAll('.blog-card');
+
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+
+        blogCards.forEach(card => {
+          const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
+          const excerpt = card.querySelector('.blog-card-excerpt').textContent.toLowerCase();
+          const author = card.querySelector('.blog-author-name').textContent.toLowerCase();
+          const tags = Array.from(card.querySelectorAll('.topic-pill')).map(t => t.textContent.toLowerCase()).join(' ');
+          const type = card.querySelector('.blog-tag').textContent.toLowerCase();
+
+          const matchesSearch = title.includes(searchTerm) ||
+                               excerpt.includes(searchTerm) ||
+                               author.includes(searchTerm) ||
+                               tags.includes(searchTerm) ||
+                               type.includes(searchTerm);
+
+          if (searchTerm === '' || matchesSearch) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

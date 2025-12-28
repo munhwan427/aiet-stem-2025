@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Working group discussion on the future of AI in STEM education - framework development, conference models, and global collaboration.">
+  <title>Building the Future of AIET IN STEM: A Working Group Discussion | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Styles */
+    .blog-post-hero {
+      background: linear-gradient(135deg, #1f4952 0%, #3d7d8a 100%);
+      color: var(--white);
+      padding: 8rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .blog-post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      max-width: 800px;
+      margin-bottom: 1rem;
+    }
+
+    .blog-post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .blog-post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .blog-post-date {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .blog-post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .blog-post-content h2 {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .blog-post-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    /* Speaker Info */
+    .speakers-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .speaker-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .speaker-avatar-placeholder {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .speaker-count {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.9rem;
+    }
+
+    /* Working Group Box */
+    .working-group-box {
+      background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+      border-left: 4px solid #22C55E;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .working-group-box h4 {
+      color: #166534;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .working-group-box p {
+      margin: 0;
+      color: #15803D;
+    }
+
+    /* Key Theme Box */
+    .theme-box {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border-left: 4px solid #3B82F6;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .theme-box h4 {
+      color: #1E40AF;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-box p {
+      margin: 0;
+      color: #1E3A8A;
+    }
+
+    /* Challenge Box */
+    .challenge-box {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-left: 4px solid #F59E0B;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .challenge-box h4 {
+      color: #B45309;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .challenge-box p {
+      margin: 0;
+      color: #92400E;
+    }
+
+    /* Equity Box */
+    .equity-box {
+      background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+      border-left: 4px solid #8B5CF6;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .equity-box h4 {
+      color: #6D28D9;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .equity-box p {
+      margin: 0;
+      color: #5B21B6;
+    }
+
+    /* 3-Tier System */
+    .tier-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+    }
+
+    .tier-1-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tier-1-summary {
+      color: var(--text);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .details-link {
+      color: var(--primary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.75rem;
+      font-weight: 500;
+    }
+
+    .details-link:hover {
+      text-decoration: underline;
+    }
+
+    .details-link i {
+      transition: transform 0.2s;
+      font-size: 0.75rem;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-toggle {
+      color: var(--text-light);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(0,0,0,0.05);
+      border-radius: 6px;
+    }
+
+    .quote-toggle:hover {
+      background: rgba(0,0,0,0.08);
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--white);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .tier-3.expanded {
+      display: block;
+    }
+
+    .tier-3-quote {
+      font-style: italic;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: var(--primary);
+      font-style: normal;
+    }
+
+    /* Key Points Grid */
+    .key-points-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .key-point-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .key-point-card h4 {
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .key-point-card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Stakeholder Model */
+    .stakeholder-model {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+      border-radius: 16px;
+    }
+
+    .stakeholder-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      min-width: 120px;
+    }
+
+    .stakeholder-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .stakeholder-icon.researchers { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+    .stakeholder-icon.practitioners { background: linear-gradient(135deg, #22C55E, #16A34A); }
+    .stakeholder-icon.designers { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    .stakeholder-icon.companies { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+
+    .stakeholder-label {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .blog-post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .blog-post-content {
+        padding: 2rem 1rem;
+      }
+
+      .speakers-info {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Post Hero -->
+  <section class="blog-post-hero">
+    <div class="container">
+      <h1>Building the Future of AIET IN STEM: A Working Group Discussion</h1>
+      <div class="blog-post-meta">
+        <span class="blog-post-tag">Working Group</span>
+        <span class="blog-post-date">December 2025</span>
+      </div>
+      <div class="speakers-info">
+        <img src="https://online.umich.edu/media/instructors/Chris_Quintana_001_FINAL.jpg" alt="Chris Quintana" class="speaker-avatar" style="object-position: top;">
+        <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann" class="speaker-avatar" style="object-position: top;">
+        <img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg" alt="Yasemin Copur-Gencturk" class="speaker-avatar" style="object-position: top;">
+        <img src="https://www.uj.ac.za/wp-content/uploads/2021/11/ramnarain-1080.jpg" alt="Umesh Ramnarain" class="speaker-avatar" style="object-position: center 15%;">
+        <img src="https://scholar.lib.ntnu.edu.tw/files-asset/105108388/meihungchiu.png" alt="Mei-Hung Chiu" class="speaker-avatar" style="object-position: top;">
+        <span class="speaker-count">+ more participants</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Post Content -->
+  <article class="blog-post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p class="lead" style="font-size: 1.15rem; color: var(--text); line-height: 1.8;">
+      What happens when researchers from six continents gather to discuss the future of AI in STEM education? A rich debate about frameworks, conferences, journals, equity, and how to create something truly different from the academic status quo.
+    </p>
+
+    <div class="working-group-box">
+      <h4><i class="fas fa-users"></i> Not Just Another Conference</h4>
+      <p>This working group session moved beyond typical conference planning to ask fundamental questions: What unique value can this community create? How do we bridge theory and practice? And how do we ensure the Global South has a real seat at the table?</p>
+    </div>
+
+    <!-- The Framework Idea -->
+    <h2>A Global Framework for AI in STEM Education</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-globe"></i>
+          The Big Opportunity
+        </div>
+        <p class="tier-1-summary">This group has the potential to develop a global framework for AI in STEM education - guidelines, principles, and evaluation criteria that don't exist yet but are urgently needed.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Unlike siloed academic conferences, this group brings together diverse perspectives - science education, math education, AI researchers, practitioners, and international viewpoints. This diversity is exactly what's needed to create something comprehensive.</p>
+          <ul>
+            <li>Guidelines for thinking about and using AI in education</li>
+            <li>Watch-outs and risk considerations</li>
+            <li>Evaluation frameworks for AI tools</li>
+            <li>Ethical guidelines that companies currently lack</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Participant:</span>
+              "It seems to me that this group has the potential to do something bigger. If it's not developed yet, why couldn't this be a working group to put out that product for a global basis? Here's a framework, here's some rules, here's some guidelines about how we should be thinking about and using AI in education."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Journal Debate -->
+    <h2>Rethinking Academic Publishing</h2>
+
+    <div class="challenge-box">
+      <h4><i class="fas fa-clock"></i> The Speed Problem</h4>
+      <p>AI changes every day. If we wait six months to a year for reviewer comments, the research is already outdated. Traditional journal publishing is too slow for this field.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-book-open"></i>
+          Why Not Another Journal?
+        </div>
+        <p class="tier-1-summary">The group debated creating a new journal but raised important concerns: it takes years to establish credibility, there are already many journals, and the traditional model doesn't fit AI's pace of change.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Experienced editors in the group shared hard-won wisdom about journal publishing challenges:</p>
+          <ul>
+            <li>Getting into citation indexes takes "forever"</li>
+            <li>Impact factor matters for career evaluation in many countries</li>
+            <li>Reviewer recruitment is already difficult across existing journals</li>
+            <li>Running a journal is massive work for people with full-time jobs</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "Don't we already have enough journals? There's AI&Ed, Journal of Learning Analytics, JRST, and all these journals. The other thing that typically is underestimated is how long it takes to establish a journal, partly because it takes you forever to get into the social scientific citation index."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-lightbulb"></i>
+          The Alternative: Proceedings + Dissemination
+        </div>
+        <p class="tier-1-summary">Instead of a traditional journal, the group converged on conference proceedings (like ICLS) combined with new forms of dissemination - use cases from teachers, practical examples, video demonstrations.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The vision is something different from "yet another journal":</p>
+          <ul>
+            <li>Proceedings that are treated as real publications</li>
+            <li>Use cases and practical examples from teachers</li>
+            <li>Point/counterpoint discussions</li>
+            <li>Video demonstrations alongside written papers</li>
+            <li>Digital publications that truly convey educational contexts</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Chris Quintana:</span>
+              "I wouldn't mind thinking about some sort of dissemination vehicle for things - use cases from teachers, practical things that show here's what people are trying to do with AI. Point counterpoint discussions. Something different than yet another journal."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conference Vision -->
+    <h2>Reimagining the Conference Model</h2>
+
+    <div class="theme-box">
+      <h4><i class="fas fa-star"></i> The Core Question</h4>
+      <p>If I'm going to add another conference to my limited travel budget, there has to be a reason to select this over others. What makes this different?</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-unlink"></i>
+          Why STEM Matters (Not Just Science or Math)
+        </div>
+        <p class="tier-1-summary">NARST is science-focused. NCTM is math-focused. There's no conference that brings STEM disciplines together around AI - and that cross-pollination is where the real learning happens.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Participants shared their experiences at discipline-specific conferences and the value of cross-disciplinary exchange:</p>
+          <ul>
+            <li>"In the last two days I learned way more than I learned in all the math conferences I attended"</li>
+            <li>Math educators and science educators face similar AI challenges but rarely talk</li>
+            <li>Bringing disciplines together doesn't mean ignoring discipline-specific aspects</li>
+            <li>Some challenges (like students bypassing learning with ChatGPT) matter across all disciplines</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "I really like the idea of we call it in NCTM 'linking research to practice.' It's a three-day conference, the third day always there is a connection to the practice. Teachers, practitioners join, and there are learning opportunities for teachers. I don't think there is a conference for STEM education."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Stakeholder Model -->
+    <h2>Bringing Different Worlds Together</h2>
+
+    <p>A conference that only attracts researchers talking to researchers is "yet another conference." The vision that emerged brings together four key stakeholder groups:</p>
+
+    <div class="stakeholder-model">
+      <div class="stakeholder-item">
+        <div class="stakeholder-icon researchers">
+          <i class="fas fa-microscope"></i>
+        </div>
+        <span class="stakeholder-label">Researchers</span>
+      </div>
+      <div class="stakeholder-item">
+        <div class="stakeholder-icon practitioners">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <span class="stakeholder-label">Practitioners</span>
+      </div>
+      <div class="stakeholder-item">
+        <div class="stakeholder-icon designers">
+          <i class="fas fa-pencil-ruler"></i>
+        </div>
+        <span class="stakeholder-label">Designers</span>
+      </div>
+      <div class="stakeholder-item">
+        <div class="stakeholder-icon companies">
+          <i class="fas fa-building"></i>
+        </div>
+        <span class="stakeholder-label">AI Companies</span>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-exclamation-triangle"></i>
+          The AI Company Challenge
+        </div>
+        <p class="tier-1-summary">AI companies have no IRB, no ethics boards. Their AI is often unsupervised. They need to hear about the risks - and researchers need to understand the technical possibilities.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The group discussed both the risks and opportunities of engaging AI companies:</p>
+          <ul>
+            <li>Companies may use proxy data (like zip codes) that encode socioeconomic bias</li>
+            <li>Many edtech companies "have no idea about research" and sell based on teacher quotes alone</li>
+            <li>But bringing companies in exposes them to important ethical considerations</li>
+            <li>If we're selective, being invited becomes a privilege that signals quality</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Janice Gobert:</span>
+              "Companies are not thinking about that. They have no ethics, they have no IRB. Their AI is unsupervised - it could take in zip code to determine edge cases, which in the United States is a proxy for socioeconomic status."
+              <br><br>
+              <span class="quote-speaker">Participant:</span>
+              "Maybe that's exactly why it would be good to bring the companies in - to hear those struggles and see what the risks are."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-filter"></i>
+          Being Selective: Theory + Data Required
+        </div>
+        <p class="tier-1-summary">If companies want to present, they need to answer: What's the pedagogy underlying your system? What's your data? You can't just say "teachers love it."</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The consensus was that selectivity creates value - but the criteria should be clear:</p>
+          <ul>
+            <li>Theory-driven: What pedagogical framework underlies your approach?</li>
+            <li>Data-driven: What evidence supports your claims?</li>
+            <li>Development phase: Where are you in validation?</li>
+            <li>Not just "everyone is welcome" - meaningful vetting creates prestige</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "If we are selective, then it could be privileged for them to be part of this. It signals something. If we create a very good vetting system - who can come, who can present - it creates value. The standing out part: we are data-driven, we are theory-driven."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Gap in Current Conferences -->
+    <h2>What's Missing in Current Conferences</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-search"></i>
+          The AI&Ed Problem
+        </div>
+        <p class="tier-1-summary">AI in Education (AI&Ed) conferences are dominated by Carnegie Mellon, have a "coarse-grained idea about learning," and treat all domains as equivalent - they think "learning science is like learning math is like learning French."</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Experienced participants shared observations about existing conferences:</p>
+          <ul>
+            <li>AI&Ed is heavily CMU-influenced with "unified theories of cognition" assumptions</li>
+            <li>Context and domain-specific learning isn't prioritized</li>
+            <li>Learning sciences conferences have rich theory but aggregate to holistic scores</li>
+            <li>There's no single conference combining rich theory, deep technology, and practical application</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Janice Gobert:</span>
+              "I go to AI&Ed pretty regularly. It's extremely dominated by Carnegie Mellon. I wouldn't say it's theoretically impoverished, but it's not theoretically rich. They have a very coarse-grained idea about learning. They think learning science is like learning math is like learning geography is like learning French. Context isn't that important to them. That's where there could be room for bringing together rich theoretical, practical, and computational work."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global South Perspective -->
+    <h2>The Global South Perspective</h2>
+
+    <div class="equity-box">
+      <h4><i class="fas fa-globe-africa"></i> A Critical Voice</h4>
+      <p>Umesh Ramnarain from South Africa raised a fundamental question: "Africans have always been sidelined in these conversations. What is my role in this? What benefit do we get back?"</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-balance-scale"></i>
+          Not Passive Listeners, Active Stakeholders
+        </div>
+        <p class="tier-1-summary">The Global South has unique perspectives to share - working within severe resource constraints has bred innovation. But participation must be meaningful: research collaboration, capacity building, not just attendance.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The discussion revealed both challenges and opportunities:</p>
+          <ul>
+            <li>AI tools often come with prices inaccessible to Global South institutions</li>
+            <li>African researchers want to be developers, not just consumers</li>
+            <li>Low-cost implementation strategies are valuable to everyone</li>
+            <li>Research collaboration and capacity building for emerging scholars is critical</li>
+            <li>70% of online images are white males - training data bias is a real problem</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Umesh Ramnarain:</span>
+              "We are not looking for handouts. We want to be part of the process. We want to contribute. The unfortunate reputation is that Africans are excellent consumers but not developers. We're trying to change that narrative. We work with a very young team of researchers - if there are opportunities to be pulled into development teams and mentored by senior developers, that would make an incredible contribution."
+              <br><br>
+              <span class="quote-speaker">Knut Neumann:</span>
+              "The Global South has something to share that the Global North can learn from. Germany could learn from South Africa about establishing equity with AI. And regarding representation - it's utterly important. If we're thinking about this conference being global, it can't just be a Northern Hemisphere conference."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-robot"></i>
+          The Bias Problem in AI
+        </div>
+        <p class="tier-1-summary">Before 2015, facial recognition performance differed by 33% between white males and black females. The biases are now more subtle but still embedded in LLMs trained on imbalanced data.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The discussion surfaced important AI bias considerations:</p>
+          <ul>
+            <li>Early examples were obvious: "doctor + man - woman = nurse"</li>
+            <li>Modern LLMs have more subtle biases worked into their responses</li>
+            <li>Algorithms can distinguish boy vs girl answers with high accuracy</li>
+            <li>Mitigation approaches help but don't eliminate bias</li>
+            <li>Global South participation helps identify problems others miss</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "Before 2015, the facial recognition performance difference for white men and black females was 33%. It's because black females joined the efforts to change the situation. This problem is partly from training data imbalance, but at the algorithm level, we can solve this. That's why it's very important to join the global efforts - if you're left behind, nobody would even find this problem."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaways -->
+    <h2>Emerging Consensus</h2>
+
+    <div class="key-points-grid">
+      <div class="key-point-card">
+        <h4><i class="fas fa-book"></i> Not a Journal</h4>
+        <p>Conference proceedings with new dissemination formats - video, demos, practical use cases</p>
+      </div>
+      <div class="key-point-card">
+        <h4><i class="fas fa-dna"></i> STEM, Not Silos</h4>
+        <p>Cross-disciplinary exchange between science, math, engineering, and tech educators</p>
+      </div>
+      <div class="key-point-card">
+        <h4><i class="fas fa-handshake"></i> Multiple Stakeholders</h4>
+        <p>Researchers + practitioners + designers + companies (with clear vetting)</p>
+      </div>
+      <div class="key-point-card">
+        <h4><i class="fas fa-globe"></i> Truly Global</h4>
+        <p>Global South as active partners, not passive recipients</p>
+      </div>
+      <div class="key-point-card">
+        <h4><i class="fas fa-check-double"></i> Quality Standards</h4>
+        <p>Theory-driven and data-driven requirements for all presentations</p>
+      </div>
+      <div class="key-point-card">
+        <h4><i class="fas fa-map"></i> Framework Development</h4>
+        <p>Creating global guidelines for AI in STEM education</p>
+      </div>
+    </div>
+
+    <div class="theme-box">
+      <h4><i class="fas fa-quote-left"></i> The Vision</h4>
+      <p>"If we're going to go through the trouble of going to another thing, it's going to be different. We've got enough standard conferences." — Chris Quintana</p>
+    </div>
+
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="working-group-future-aiet-stem"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+      const expandText = section.querySelector('.expand-text');
+      if (expandText) {
+        expandText.textContent = section.classList.contains('expanded') ? 'Hide Details' : 'View Details';
+      }
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('expanded');
+      toggle.innerHTML = tier3.classList.contains('expanded')
+        ? '<i class="fas fa-quote-left"></i> Hide original quote'
+        : '<i class="fas fa-quote-left"></i> View original discussion';
+    }
+  </script>
+</body>
+</html>

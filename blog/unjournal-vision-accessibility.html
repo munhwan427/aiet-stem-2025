@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Informal discussions about the Unjournal vision - making AI research accessible, AI-powered features, and building capacity in the Global South.">
+  <title>The Unjournal Vision: Making AI Research Accessible to Everyone | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Styles */
+    .blog-post-hero {
+      background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+      color: var(--white);
+      padding: 8rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .blog-post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      max-width: 800px;
+      margin-bottom: 1rem;
+    }
+
+    .blog-post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .blog-post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .blog-post-date {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .blog-post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .blog-post-content h2 {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .blog-post-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    /* Location Tag */
+    .location-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    /* Speaker Info */
+    .speakers-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .speaker-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .speaker-count {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.9rem;
+    }
+
+    /* Context Box */
+    .context-box {
+      background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+      border-left: 4px solid #0EA5E9;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .context-box h4 {
+      color: #0369A1;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .context-box p {
+      margin: 0;
+      color: #075985;
+    }
+
+    /* Insight Box */
+    .insight-box {
+      background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+      border-left: 4px solid #22C55E;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .insight-box h4 {
+      color: #166534;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .insight-box p {
+      margin: 0;
+      color: #15803D;
+    }
+
+    /* Problem Box */
+    .problem-box {
+      background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+      border-left: 4px solid #EF4444;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .problem-box h4 {
+      color: #B91C1C;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .problem-box p {
+      margin: 0;
+      color: #991B1B;
+    }
+
+    /* Idea Box */
+    .idea-box {
+      background: linear-gradient(135deg, #FDF4FF 0%, #FAE8FF 100%);
+      border-left: 4px solid #A855F7;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .idea-box h4 {
+      color: #7E22CE;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .idea-box p {
+      margin: 0;
+      color: #6B21A8;
+    }
+
+    /* 3-Tier System */
+    .tier-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+    }
+
+    .tier-1-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tier-1-summary {
+      color: var(--text);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .details-link {
+      color: var(--primary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.75rem;
+      font-weight: 500;
+    }
+
+    .details-link:hover {
+      text-decoration: underline;
+    }
+
+    .details-link i {
+      transition: transform 0.2s;
+      font-size: 0.75rem;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-toggle {
+      color: var(--text-light);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(0,0,0,0.05);
+      border-radius: 6px;
+    }
+
+    .quote-toggle:hover {
+      background: rgba(0,0,0,0.08);
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--white);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .tier-3.expanded {
+      display: block;
+    }
+
+    .tier-3-quote {
+      font-style: italic;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: var(--primary);
+      font-style: normal;
+    }
+
+    /* Comparison Box */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .comparison-card {
+      padding: 1.25rem;
+      border-radius: 12px;
+    }
+
+    .comparison-card.before {
+      background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+      border: 1px solid #FECACA;
+    }
+
+    .comparison-card.after {
+      background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+      border: 1px solid #BBF7D0;
+    }
+
+    .comparison-card h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .comparison-card.before h4 { color: #B91C1C; }
+    .comparison-card.after h4 { color: #166534; }
+
+    .comparison-card p {
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .comparison-card.before p { color: #991B1B; }
+    .comparison-card.after p { color: #15803D; }
+
+    /* Feature Cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .feature-card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card h4 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .blog-post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .blog-post-content {
+        padding: 2rem 1rem;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Post Hero -->
+  <section class="blog-post-hero">
+    <div class="container">
+      <h1>The Unjournal Vision: Making AI Research Truly Accessible</h1>
+      <div class="blog-post-meta">
+        <span class="blog-post-tag">Informal Discussion</span>
+        <span class="blog-post-date">December 2025</span>
+      </div>
+      <div class="location-tag">
+        <i class="fas fa-map-marker-alt"></i>
+        Captured across Jeju locations
+      </div>
+      <div class="speakers-info">
+        <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang" class="speaker-avatar">
+        <img src="https://www.leibniz-ipn.de/en/the-ipn/about-us/staff/knut-neumann/@@images/image-200-be2c0103d2d7b41e3a46648956e89979.jpeg" alt="Knut Neumann" class="speaker-avatar" style="object-position: top;">
+        <img src="https://online.umich.edu/media/instructors/Chris_Quintana_001_FINAL.jpg" alt="Chris Quintana" class="speaker-avatar" style="object-position: top;">
+        <img src="https://cdn.shortpixel.ai/spai/w_747+h_1092+q_glossy+ret_img+to_webp/gse.rutgers.edu/wp-content/uploads/2021/06/IMG_1143-Edit-scaled.jpg" alt="Janice Gobert" class="speaker-avatar" style="object-position: top;">
+        <span class="speaker-count">+ more</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Post Content -->
+  <article class="blog-post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p class="lead" style="font-size: 1.15rem; color: var(--text); line-height: 1.8;">
+      Between formal sessions, some of the most valuable ideas emerge. These informal conversations across Jeju - at cafes, during walks, over meals - crystallized key insights about making AI research accessible and how the Unjournal should actually work.
+    </p>
+
+    <div class="context-box">
+      <h4><i class="fas fa-coffee"></i> Beyond the Conference Room</h4>
+      <p>These discussions were captured informally as participants explored Jeju together, thinking out loud about practical implementation challenges that formal sessions don't always address.</p>
+    </div>
+
+    <!-- The Accessibility Problem -->
+    <h2>The GitHub Problem: Why Researchers Can't Use Our Tools</h2>
+
+    <div class="problem-box">
+      <h4><i class="fas fa-exclamation-circle"></i> The Hard Truth</h4>
+      <p>In AI research, every paper requires open-sourcing code and data. But putting code on GitHub doesn't mean education researchers can actually use it. "Even if you put your code on GitHub, many people from the educational domain don't know how to get it."</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-code"></i>
+          The Technical Barrier
+        </div>
+        <p class="tier-1-summary">In the AI field, papers without open-source code aren't trusted. But education researchers often can't use command lines, set up environments, or run analysis scripts - even with detailed instructions.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The conversation revealed a significant gap between AI research norms and education research capabilities:</p>
+          <ul>
+            <li>AI field requires open-source code for credibility</li>
+            <li>Education researchers lack technical skills to run code</li>
+            <li>"GitHub is for developers" - the interface itself is a barrier</li>
+            <li>Even clear instructions require command line knowledge</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "In our field, every paper - you need to open source. Your system, your implementation, your sheets. Because of AI, it works too fast, there are so many algorithms. If your paper is not open source, people will not trust you."
+              <br><br>
+              <span class="quote-speaker">Participant:</span>
+              "The problem is, even if you put your code in GitHub, many people from the educational domain - even if you put it there - they don't know how to get it."
+              <br><br>
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "GitHub is for developers. It's a great thing, but yeah... you still need to run a few command lines, set up the environment, and so on. Many people cannot."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The ChatGPT Solution -->
+    <h2>The Solution: "Just Make It Like ChatGPT"</h2>
+
+    <div class="idea-box">
+      <h4><i class="fas fa-lightbulb"></i> The Breakthrough Idea</h4>
+      <p>Instead of GitHub repositories with command-line instructions, create natural language interfaces. "The interface is just natural language. Just say 'hey, I want to get it' and you get it."</p>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="comparison-card before">
+        <h4><i class="fas fa-times-circle"></i> Current Approach</h4>
+        <p>Clone repo → Install dependencies → Set up environment → Run command lines → Debug errors</p>
+      </div>
+      <div class="comparison-card after">
+        <h4><i class="fas fa-check-circle"></i> ChatGPT-Style</h4>
+        <p>"I want to analyze student responses using your rubric" → Get results</p>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-comments"></i>
+          Natural Language as the Universal Interface
+        </div>
+        <p class="tier-1-summary">English is "the most popular programming language" now. With natural language interfaces, there's no technical barrier - anyone can access and use research tools.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The concept of "WIFO coding" - Without Code - emerged from this discussion:</p>
+          <ul>
+            <li>Users describe what they want in plain language</li>
+            <li>AI handles all technical implementation</li>
+            <li>No environment setup, no command lines, no debugging</li>
+            <li>Researchers can copy their rubrics and data directly</li>
+            <li>Analysis runs automatically and returns results</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "The best way is still just like ChatGPT. You provide the language interface. You just speak. You speak, and you get what you need. In English - because English is the most popular programming language. We call it WIFO coding - you don't even write code, you get it."
+              <br><br>
+              <span class="quote-speaker">Participant:</span>
+              "In this way, there's no technical barrier. So all in English. It doesn't even speak, you get it."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Unjournal with AI -->
+    <h2>AI-Powered Unjournal: Using What We're Studying</h2>
+
+    <div class="context-box">
+      <h4><i class="fas fa-robot"></i> The Irony</h4>
+      <p>Current journals prohibit AI use. But we're creating an Unjournal about AI in education. If we ban AI from our own publication, "that's a little weird, right?"</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-microphone"></i>
+          AI-Powered Recording and Summary
+        </div>
+        <p class="tier-1-summary">Record discussions, AI transcribes, prompts generate summaries. Participants review for accuracy. No one needs to watch hours of video - they get verified summaries instantly.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>A participant proposed a workflow that got immediate enthusiasm:</p>
+          <ul>
+            <li>Create prompts for what to extract from discussions</li>
+            <li>Record working sessions and conversations</li>
+            <li>AI transcribes and generates summaries based on prompts</li>
+            <li>Discussants review and verify accuracy</li>
+            <li>Publish verified summaries with original recordings</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Participant:</span>
+              "Maybe creating a set of prompts - we record it, AI will transcribe, and based on the prompts, come up with a good summary of what they discussed, what they agreed."
+              <br><br>
+              <span class="quote-speaker">Another participant:</span>
+              "That's brilliant! Then we don't need to worry about it. You don't need to watch - if you record it, you can watch everything but it's really hard to summarize. And then the discussing person can go through and make sure the AI summary is accurate."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-search"></i>
+          AI "Lenses" for Exploration
+        </div>
+        <p class="tier-1-summary">As the repository grows, create AI-powered exploration tools. Users can search across all content, find connections between papers, and explore through different conceptual "lenses."</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The vision connects to Knowledge Forum from University of Toronto - but enhanced with modern AI:</p>
+          <ul>
+            <li>Unified repository: instruments, articles, and related research in one place</li>
+            <li>AI can synthesize across the whole collection</li>
+            <li>Create epistemic networks between elements</li>
+            <li>Search features that understand conceptual connections</li>
+            <li>"AI lenses" for different ways to explore the content</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Chris Quintana:</span>
+              "Over time, if we have this repository that's growing with more stuff, you could almost create AI lenses for the community to use to explore the repository."
+              <br><br>
+              <span class="quote-speaker">Participant:</span>
+              "Usually you have the instrument here, the article you want to read here, and a body of research that uses those things - all in separate places. If this is all in this unified way, then your summary could be about that whole collection."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Unjournal Features -->
+    <h2>What the Unjournal Could Be</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <i class="fas fa-video"></i>
+        <h4>Video Clips</h4>
+        <p>Not just text - actual demonstrations and discussions</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-database"></i>
+        <h4>Data Repository</h4>
+        <p>Annotated datasets ready for others to use</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-comments"></i>
+        <h4>Commentary</h4>
+        <p>Like Reddit - ongoing discussion and feedback</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-bolt"></i>
+        <h4>Speed</h4>
+        <p>Not waiting a year - "the field changed since we showed up"</p>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-book-reader"></i>
+          A New Type of Dissemination
+        </div>
+        <p class="tier-1-summary">"It's a site. The Unjournal - we're going to have video clips, repositories, commentary. It's a new type of dissemination that's quick. Because things are happening too fast."</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The vision differentiates from traditional journals in several ways:</p>
+          <ul>
+            <li>Multiple content types: video, code, data, text, discussions</li>
+            <li>Continuous rather than issue-based publishing</li>
+            <li>Community commentary built in</li>
+            <li>AI-powered exploration and synthesis</li>
+            <li>Accessible to non-technical audiences</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Chris Quintana:</span>
+              "It's a site - the Unjournal. We're going to have video clips, we're going to have repositories, we're going to have commentary. You know how Reddit has commentary? It's a new type of dissemination that's quick. It's not waiting a year to get something out. Because things are happening too fast. The field changed since we showed up here a couple days ago."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Capacity Building Insight -->
+    <h2>The Deeper Challenge: Building Capacity, Not Just Completing Tasks</h2>
+
+    <div class="insight-box">
+      <h4><i class="fas fa-graduation-cap"></i> Knut's Closing Insight</h4>
+      <p>"If you take the AI away, the capacity is lost at the same time. That gives whoever owns the AI a huge lever over those who are using it."</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-globe-africa"></i>
+          The Global South Challenge
+        </div>
+        <p class="tier-1-summary">Papers from Africa now have excellent English - likely due to LLM access. But if the AI disappears, so does the capability. AI in education must build human capacity, not replace it.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Knut Neumann's reflection connected the discussions to a fundamental principle:</p>
+          <ul>
+            <li>Sending money and resources hasn't always built capacity</li>
+            <li>AI tools are similar - they can complete tasks without building skills</li>
+            <li>The dependency created gives AI owners enormous power</li>
+            <li>Education's role is to ensure AI builds capacity, not replaces it</li>
+            <li>Future generations need the ability to do tasks, not just access to tools</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original discussion
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Knut Neumann:</span>
+              "We're talking specifically about the Global South and the challenges that come with using AI to increase equity. What we've been doing in the past is similar - we've been sending money out and doing all kinds of things because we thought it would help. But what we failed to do is to build capacity in a lot of ways."
+              <br><br>
+              "I see a lot of papers submitted to JRST or IJSE now from Africa that have really good English. I think it's because they have access to large language models. Still, the problem is that if you take the AI away, the capacity is lost at the same time. That kind of gives whoever owns the AI a huge lever over those who are using it."
+              <br><br>
+              "In education, AI must be used not just to do a task, but to build the capacity in future generations to do that task."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="insight-box">
+      <h4><i class="fas fa-quote-left"></i> Final Words</h4>
+      <p>"It was rich. It was honestly rich. And I feel really energetic and full of ideas. I sincerely hope we can continue this in this group and push things forward." — Knut Neumann</p>
+    </div>
+
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="unjournal-vision-accessibility"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+      const expandText = section.querySelector('.expand-text');
+      if (expandText) {
+        expandText.textContent = section.classList.contains('expanded') ? 'Hide Details' : 'View Details';
+      }
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('expanded');
+      toggle.innerHTML = tier3.classList.contains('expanded')
+        ? '<i class="fas fa-quote-left"></i> Hide original quote'
+        : '<i class="fas fa-quote-left"></i> View original discussion';
+    }
+  </script>
+</body>
+</html>

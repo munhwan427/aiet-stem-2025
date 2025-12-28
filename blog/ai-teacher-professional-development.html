@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-Based Teacher Professional Development - Using multi-agent AI systems to help math teachers develop content knowledge and improve teaching practices with proven student outcomes.">
+  <title>AI-Based Teacher Professional Development: Evidence That It Works | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #DC2626 0%, #F87171 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .post-content h2 {
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    /* Highlight Boxes */
+    .warning-box, .insight-box, .result-box {
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+      border-left: 4px solid #DC2626;
+    }
+
+    .insight-box {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-left: 4px solid #F59E0B;
+    }
+
+    .result-box {
+      background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%);
+      border-left: 4px solid #22C55E;
+    }
+
+    .warning-box h4 {
+      margin-bottom: 0.75rem;
+      color: #991B1B;
+    }
+
+    .insight-box h4 {
+      margin-bottom: 0.75rem;
+      color: #92400E;
+    }
+
+    .result-box h4 {
+      margin-bottom: 0.75rem;
+      color: #166534;
+    }
+
+    .warning-box p {
+      margin-bottom: 0;
+      color: #7F1D1D;
+    }
+
+    .insight-box p {
+      margin-bottom: 0;
+      color: #78350F;
+    }
+
+    .result-box p {
+      margin-bottom: 0;
+      color: #14532D;
+    }
+
+    /* Agent Flow Diagram */
+    .agent-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .agent-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      flex: 1;
+      min-width: 140px;
+      max-width: 180px;
+    }
+
+    .agent-card i {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .agent-card.filter i { color: #6366F1; }
+    .agent-card.judge i { color: #F59E0B; }
+    .agent-card.responder i { color: #22C55E; }
+    .agent-card.explainer i { color: #8B5CF6; }
+
+    .agent-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .agent-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      color: var(--text-light);
+    }
+
+    /* 3-Tier Format */
+    .tier-section {
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+
+    .tier-1-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tier-1-title i {
+      color: #DC2626;
+    }
+
+    .tier-1-summary {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .details-link {
+      color: #DC2626;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .details-link:hover {
+      color: #B91C1C;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2 ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .tier-2 li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .tier-3 {
+      display: none;
+      padding: 1.5rem;
+      background: #FEF2F2;
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-3.visible {
+      display: block;
+    }
+
+    .tier-3 p {
+      font-style: italic;
+      color: #991B1B;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    .quote-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #DC2626;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    .quote-toggle:hover {
+      color: #B91C1C;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: #B91C1C;
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-hero .subtitle {
+        font-size: 1rem;
+      }
+
+      .agent-flow {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <header class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Teacher Professional Development</span>
+        <span class="post-date">December 2025</span>
+      </div>
+      <h1>AI-Based Teacher Professional Development: Evidence That It Works</h1>
+      <p class="subtitle">A multi-agent AI system that doesn't give answers - it asks questions. Randomized controlled trial shows impact on teacher knowledge, teaching practices, AND student learning.</p>
+
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="https://rossier.usc.edu/sites/default/files/styles/280x280/public/profile_import/25b7bfe91748f1g14d30347b586449-Yasemin-Copur-Gencturk.jpg" alt="Yasemin Copur-Gencturk" style="object-position: top;">
+        </div>
+        <div class="post-author-info">
+          <h4>Prof. Yasemin Copur-Gencturk</h4>
+          <p>University of Southern California, USA</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p>At the 2025 AIET IN STEM Forum, Yasemin Copur-Gencturk presented a striking contrast to the AI hype cycle: a carefully designed, evidence-based AI system for teacher professional development that actually works - with randomized controlled trial data to prove it.</p>
+
+    <!-- The Problem with AI Claims -->
+    <h2>The Problem: AI Tools That Forget Their Purpose</h2>
+
+    <div class="warning-box">
+      <h4><i class="fas fa-exclamation-triangle"></i> A Critical Observation</h4>
+      <p>There is no AI in my title. Do you know why? Because we are all talking about AI, but I want to make sure that we are paying attention to domain-specific expertise. Sometimes they forget the most important thing: they need content experts to create meaningful tools.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-bullseye"></i>
+          Design Goals vs. Actual Products
+        </div>
+        <p class="tier-1-summary">Many AI tools claim to solve problems that were their original design goal, but technical difficulties cause the actual product to diverge from the original intent. The product doesn't match the promise.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Companies state design goals but get "lost" during development</li>
+            <li>The developed product doesn't have the same goals as the intended product</li>
+            <li>Everyone says their product is great - but nobody talks about evidence</li>
+            <li>We need to know: Is it working? Under which conditions?</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "When we are trying to achieve this goal, when we are trying to design a product, sometimes you forget what our intention is. Because there are so many technical difficulties you may face when you are trying to create a product. That means that sometimes the product you develop is not aligned with the thing that you are trying to solve."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Learning Problem -->
+    <h2>Why Giving Answers Doesn't Work</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-search"></i>
+          The Google Problem
+        </div>
+        <p class="tier-1-summary">How many times do you search the same thing in Google? Sometimes a hundred times and it still doesn't stay. Many AI tools claiming to help you learn are just giving you answers - and you're not learning them.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Research shows: people don't learn if you just give them the answer</li>
+            <li>Most tutoring systems: You ask a question, they provide an answer</li>
+            <li>The shift: AI should be the one asking questions, not answering them</li>
+            <li>AI should identify areas where learners need improvement and guide them there</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "We know from research that people don't learn if you give them the answer. How many times do you search the same thing in Google? Sometimes I search the same thing maybe a hundred times and still it doesn't stay... So many tools claiming to help you learn are giving you the answer and then you are not learning them."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three Challenges -->
+    <h2>Three Challenges in Teacher Professional Development</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-expand-arrows-alt"></i>
+          Challenge 1: Scale
+        </div>
+        <p class="tier-1-summary">In-person professional development requires teachers to physically be somewhere - after school, driving to a location. Some teachers may not have access to high-quality PD when they need it.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Traditional PD requires physical presence at specific times and places</li>
+            <li>Geographic and scheduling barriers limit access</li>
+            <li>Not all teachers can access high-quality opportunities when needed</li>
+            <li>Question: How can we scale while maintaining accessibility?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-balance-scale"></i>
+          Challenge 2: Quality Consistency
+        </div>
+        <p class="tier-1-summary">In-person teaching effectiveness depends on the instructor. If you have a great instructor, you learn well. What if you don't? How can we maintain consistent quality across all teachers?</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Instructor quality varies dramatically</li>
+            <li>Same program can yield different results with different facilitators</li>
+            <li>Question: How can everyone experience high-quality education?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-user-check"></i>
+          Challenge 3: Individualized Feedback
+        </div>
+        <p class="tier-1-summary">Most personalized feedback discussion focuses on students. But what about helping teachers identify the areas THEY need to improve? Teachers need individualized support too.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Personalized feedback for teachers is rarely discussed</li>
+            <li>Teachers need to identify their own growth areas</li>
+            <li>Question: How can we help teachers learn and improve systematically?</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "Most of the discussion around personalized feedback focuses on giving feedback to students. But we don't talk about how we can help teachers to learn and how we can help teachers with, you know, identifying the areas they need to improve."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Multi-Agent System -->
+    <h2>The Solution: A Multi-Agent AI System</h2>
+
+    <div class="insight-box">
+      <h4><i class="fas fa-lightbulb"></i> The Key Design Principle</h4>
+      <p>AI is not giving the answers. AI is the one who is asking questions. It finds the areas teachers need improvement and provides scaffolding activities rather than explanations.</p>
+    </div>
+
+    <div class="agent-flow">
+      <div class="agent-card filter">
+        <i class="fas fa-filter"></i>
+        <h4>Filter</h4>
+        <p>Are you on task?</p>
+      </div>
+      <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="agent-card judge">
+        <i class="fas fa-gavel"></i>
+        <h4>Judge</h4>
+        <p>Which goals are met?</p>
+      </div>
+      <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="agent-card responder">
+        <i class="fas fa-comment-dots"></i>
+        <h4>Responder</h4>
+        <p>Feedback + new questions</p>
+      </div>
+      <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="agent-card explainer">
+        <i class="fas fa-book-open"></i>
+        <h4>Explainer</h4>
+        <p>After 3 attempts</p>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-filter"></i>
+          Agent 1: Filter
+        </div>
+        <p class="tier-1-summary">When users try to game the system by typing "none" or irrelevant responses, Filter catches this and says "Stay on task." It's the gatekeeper ensuring meaningful engagement.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Analyzes whether response is relevant to the assigned task</li>
+            <li>If irrelevant: blocks and redirects</li>
+            <li>If relevant: green light, passes to Judge</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "You know that when you are using a system, sometimes when you try to teach the system, you just put 'none.' I'm sure I'm not the only one who is doing that. If you put random responses, the system says, 'You are not on track. You are not doing what you are supposed to do. Stay on track.'"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-gavel"></i>
+          Agent 2: Judge
+        </div>
+        <p class="tier-1-summary">Judge analyzes which learning expectations have been met and which still need work. It maps responses to predefined learning goals set by content experts.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Expectations are set by content experts (like labels for ML)</li>
+            <li>Example: "Solve the problem correctly" + "Reasoning should be correct"</li>
+            <li>Judge determines which expectations are met, which need more work</li>
+            <li>If all met: move to next activity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-comment-dots"></i>
+          Agent 3: Responder
+        </div>
+        <p class="tier-1-summary">Responder tells you what you did right, then gives additional hints or scaffolding activities for areas where you still need help. It doesn't give answers - it guides.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Provides positive feedback on what was done correctly</li>
+            <li>Offers hints and scaffolding activities (not answers) for remaining goals</li>
+            <li>May ask teachers to watch a video, create a graph, or use ratio tables</li>
+            <li>Learning by doing, not by being told</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-book-open"></i>
+          Agent 4: Explainer (After 3 Attempts)
+        </div>
+        <p class="tier-1-summary">After three attempts, if teachers are still struggling, Explainer steps in and explains the concept. This prevents frustration while maximizing learning opportunity.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Only activates after 3 unsuccessful attempts</li>
+            <li>Explains the concept the teacher is struggling with</li>
+            <li>Prevents endless loops of frustration</li>
+            <li>Balances productive struggle with support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Evidence -->
+    <h2>The Evidence: Randomized Controlled Trial</h2>
+
+    <div class="result-box">
+      <h4><i class="fas fa-chart-line"></i> The Funding Story</h4>
+      <p>In 2015, NSF said "Who needs human-less PD? Nobody completes a program without in-person presentation." They didn't fund it. IES funded it instead. The results proved the skeptics wrong.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-flask"></i>
+          The Study Design
+        </div>
+        <p class="tier-1-summary">Half the teachers were randomly assigned to the AI program, half did nothing. This rules out alternative explanations - any changes can confidently be attributed to the program.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Randomized controlled trial (gold standard for evidence)</li>
+            <li>Treatment group: Complete AI-based PD program</li>
+            <li>Control group: No intervention ("Thank you, you don't need to do anything")</li>
+            <li>Measured: Teacher knowledge, teaching practices, student learning</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "I randomly assigned teachers, half of the teachers to my program, and half of the teachers, I said, thank you, but you don't need to do anything. So that I can confidently say that after the randomization, if I see any changes in teachers' knowledge, in their teaching practices, in their student learning, I can confidently say that there is something within the PDF that I did to help teachers improve their knowledge and skills."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <h2>The Results: Impact at Three Levels</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-brain"></i>
+          Result 1: Teacher Content Knowledge
+        </div>
+        <p class="tier-1-summary">Teachers who completed the program improved their content knowledge. This is exciting but not unique - many programs can claim this.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Statistically significant improvement in math content knowledge</li>
+            <li>Many US programs can make this claim</li>
+            <li>Important baseline, but not the key finding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-chalkboard-teacher"></i>
+          Result 2: Teaching Practices Changed
+        </div>
+        <p class="tier-1-summary">This is the tricky part. Control group teachers used low-level activities with little opportunity for deep understanding. Treatment group teachers created rigorous tasks that identify student thinking.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>The program gave NO materials or activities to use in class</li>
+            <li>Control teachers: Low-level math, not hitting expected standards</li>
+            <li>Treatment teachers: Found and created rigorous tasks on their own</li>
+            <li>Treatment teachers could identify additive vs. multiplicative reasoning in student work</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "This is the tricky part. We don't see many programs that are showing an impact on teachers... In our program, we didn't give teachers any activities they can use in their classroom... They went out, identified, they used the knowledge and the skills they learned from the system to create more meaningful learning opportunities for their students."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-graduation-cap"></i>
+          Result 3: Student Learning Improved
+        </div>
+        <p class="tier-1-summary">Almost one-fourth of a grade level improvement. This is huge. Creating an intervention at teacher level and showing impact at student level is extremely rare.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          View Details
+        </div>
+        <div class="tier-2">
+          <ul>
+            <li>Approximately 0.25 grade level improvement in student outcomes</li>
+            <li>"Huge impact" - rare to show student-level effects from teacher-level intervention</li>
+            <li>Published in Computers and Education (AI impact) and AERJ (instructional practices)</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <p>
+              <span class="quote-speaker">Yasemin Copur-Gencturk:</span>
+              "In the United States, there are not many programs that can create an intervention at teacher level and show the impact at the student level... Almost one-fourth of the grade level. This is huge. This is a huge impact and I was so happy because I was so scared that the people would be right and I wouldn't be able to show that the system is working."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaways -->
+    <h2>The Three Design Principles</h2>
+
+    <div class="insight-box">
+      <h4><i class="fas fa-star"></i> Design with Purpose</h4>
+      <p>1. Design with purpose: Keep your original goal aligned with the final product. 2. AI as facilitator: Guide, don't tell. 3. Evidence matters: If you can't prove it works, you don't know if it works.</p>
+    </div>
+
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="ai-teacher-professional-development"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('visible');
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Original Quote';
+      }
+    }
+  </script>
+</body>
+</html>

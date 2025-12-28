@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Member Board - AIET IN STEM Community Discussions and Submissions">
+  <title>Member Board | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css?v=30">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="speakers.html" class="nav-link">Network</a></li>
+        <li><a href="program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Board Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-users"></i> Member Board</h1>
+      <p>Community discussions, essays, and research notes from our network</p>
+    </div>
+  </section>
+
+  <!-- Login Required Section -->
+  <section class="section" id="login-required" style="display: none;">
+    <div class="container">
+      <div class="access-denied-card">
+        <i class="fas fa-lock"></i>
+        <h2>Member Access Required</h2>
+        <p>Please sign in to view the member board.</p>
+        <button onclick="openLoginModal()" class="btn btn-primary">Sign In</button>
+        <p class="login-note">Contact <a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a> to request access</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Board Content -->
+  <section class="section" id="board-content" style="display: none;">
+    <div class="container">
+      <!-- Quick Actions -->
+      <div class="board-actions">
+        <a href="submit.html" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Submit New Content
+        </a>
+      </div>
+
+      <!-- My Submissions -->
+      <div class="board-section" id="my-submissions-section">
+        <h3><i class="fas fa-file-alt"></i> My Submissions</h3>
+        <div id="my-submissions-list" class="board-list">
+          <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i> Loading...
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="board-filters">
+        <h3><i class="fas fa-globe"></i> Community Board</h3>
+        <div class="filter-tabs">
+          <button class="filter-btn active" onclick="filterBoard(null)">All</button>
+          <button class="filter-btn" onclick="filterBoard('essay')">Essays</button>
+          <button class="filter-btn" onclick="filterBoard('research')">Research</button>
+          <button class="filter-btn" onclick="filterBoard('discussion')">Discussions</button>
+        </div>
+      </div>
+
+      <!-- Community Submissions -->
+      <div id="community-board" class="board-grid">
+        <div class="loading-spinner">
+          <i class="fas fa-spinner fa-spin"></i> Loading community content...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Submission View Modal -->
+  <div id="view-modal" class="submission-modal">
+    <div class="submission-modal-content">
+      <button class="modal-close" onclick="closeViewModal()">&times;</button>
+      <div id="view-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual Forum - Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="speakers.html">Network</a></li>
+            <li><a href="program.html">Forum 2025</a></li>
+            <li><a href="event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/submissions.js"></script>
+  <script>
+    let communitySubmissions = [];
+    let mySubmissions = [];
+    let currentBoardFilter = null;
+
+    // Check access on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      checkBoardAccess();
+    });
+
+    function checkBoardAccess() {
+      const user = getCurrentUser();
+      const loginRequired = document.getElementById('login-required');
+      const boardContent = document.getElementById('board-content');
+
+      if (!user) {
+        loginRequired.style.display = 'block';
+        boardContent.style.display = 'none';
+        return;
+      }
+
+      loginRequired.style.display = 'none';
+      boardContent.style.display = 'block';
+      loadBoardContent();
+    }
+
+    async function loadBoardContent() {
+      // Load my submissions
+      mySubmissions = await getMySubmissions();
+      renderMySubmissions();
+
+      // Load community (approved) submissions
+      communitySubmissions = await getApprovedSubmissions();
+      renderCommunityBoard();
+    }
+
+    function renderMySubmissions() {
+      const list = document.getElementById('my-submissions-list');
+
+      if (mySubmissions.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state small">
+            <p>You haven't submitted any content yet.</p>
+            <a href="submit.html" class="btn btn-secondary btn-sm">Submit your first post</a>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = mySubmissions.map(sub => `
+        <div class="my-submission-item">
+          <div class="my-submission-info">
+            <span class="submission-type ${getTypeBadgeClass(sub.type)}">${formatSubmissionType(sub.type)}</span>
+            <span class="submission-status ${getStatusBadgeClass(sub.status)}">${sub.status}</span>
+            <span class="submission-title-inline">${escapeHtml(sub.title)}</span>
+          </div>
+          <span class="submission-date">${formatSubmissionDate(sub.created_at)}</span>
+        </div>
+      `).join('');
+    }
+
+    function filterBoard(type) {
+      currentBoardFilter = type;
+
+      // Update active button
+      document.querySelectorAll('.board-filters .filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      renderCommunityBoard();
+    }
+
+    function renderCommunityBoard() {
+      const board = document.getElementById('community-board');
+      let filtered = communitySubmissions;
+
+      if (currentBoardFilter) {
+        filtered = communitySubmissions.filter(s => s.type === currentBoardFilter);
+      }
+
+      if (filtered.length === 0) {
+        board.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <p>No approved content yet. Be the first to contribute!</p>
+            <a href="submit.html" class="btn btn-primary">Submit Content</a>
+          </div>
+        `;
+        return;
+      }
+
+      board.innerHTML = filtered.map(sub => `
+        <article class="board-card" onclick="viewContent('${sub.id}')">
+          <div class="board-card-header">
+            <span class="submission-type ${getTypeBadgeClass(sub.type)}">${formatSubmissionType(sub.type)}</span>
+          </div>
+          <h3 class="board-card-title">${escapeHtml(sub.title)}</h3>
+          <p class="board-card-preview">${escapeHtml(sub.content.substring(0, 200))}${sub.content.length > 200 ? '...' : ''}</p>
+          <div class="board-card-meta">
+            <span class="board-card-author">
+              <span class="author-avatar">${getInitials(sub.author_name)}</span>
+              ${sub.author_name}
+            </span>
+            <span class="board-card-date">${formatSubmissionDate(sub.created_at)}</span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function viewContent(id) {
+      const submission = communitySubmissions.find(s => s.id === id);
+      if (!submission) return;
+
+      const modal = document.getElementById('view-modal');
+      const body = document.getElementById('view-modal-body');
+
+      body.innerHTML = `
+        <div class="content-view">
+          <span class="submission-type ${getTypeBadgeClass(submission.type)}">${formatSubmissionType(submission.type)}</span>
+          <h2>${escapeHtml(submission.title)}</h2>
+          <div class="content-meta">
+            <span class="author-avatar">${getInitials(submission.author_name)}</span>
+            <div class="author-info">
+              <strong>${submission.author_name}</strong>
+              <span>${submission.author_affiliation || ''}</span>
+            </div>
+            <span class="content-date">${formatSubmissionDate(submission.created_at)}</span>
+          </div>
+          ${submission.tags ? `<div class="content-tags">${submission.tags.split(',').map(t => `<span class="tag">${t.trim()}</span>`).join('')}</div>` : ''}
+          <div class="content-body">
+            ${escapeHtml(submission.content).replace(/\n/g, '<br>')}
+          </div>
+        </div>
+      `;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeViewModal() {
+      const modal = document.getElementById('view-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function getInitials(name) {
+      return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+    }
+
+    // Close modal on outside click
+    document.getElementById('view-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeViewModal();
+    });
+
+    // Re-check access after login state changes
+    const originalUpdateAuthUI = updateAuthUI;
+    updateAuthUI = function() {
+      originalUpdateAuthUI();
+      checkBoardAccess();
+    };
+  </script>
+</body>
+</html>

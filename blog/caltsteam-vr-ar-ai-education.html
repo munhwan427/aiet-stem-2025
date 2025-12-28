@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CALTSTEAM: Culturally-Anchored VR, AR, and AI for STEM Education in South Africa - Bridging Indigenous Knowledge with Emerging Technologies">
+  <title>CALTSTEAM: VR, AR, and AI for STEM Education | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #9333EA 0%, #A855F7 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .post-content h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    /* 3-Tier Expandable Sections */
+    .tier-section {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+
+    .tier-1-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tier-1-title i {
+      color: #9333EA;
+    }
+
+    .tier-1-summary {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .details-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #9333EA;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .details-link:hover {
+      opacity: 0.8;
+    }
+
+    .details-link i {
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-section.expanded .details-link span {
+      display: none;
+    }
+
+    .tier-section.expanded .details-link::after {
+      content: 'Hide Details';
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    .tier-2-content p {
+      margin-bottom: 1rem;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0 1rem 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-3-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #9333EA;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .tier-3-toggle:hover {
+      opacity: 0.8;
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: #faf5ff;
+      border-radius: 8px;
+      border-left: 4px solid #9333EA;
+    }
+
+    .tier-3.visible {
+      display: block;
+    }
+
+    .tier-3-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #9333EA;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .actual-quote {
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: #9333EA;
+      font-style: normal;
+    }
+
+    /* Key Insight Box */
+    .key-insight {
+      background: linear-gradient(135deg, #F3E8FF 0%, #FAF5FF 100%);
+      border-left: 4px solid #9333EA;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .key-insight-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #7E22CE;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .key-insight p {
+      margin: 0;
+      color: #581C87;
+      font-weight: 500;
+    }
+
+    /* Project Cards */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .project-card {
+      background: white;
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .project-card i {
+      font-size: 2rem;
+      color: #9333EA;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .project-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    /* Navigation */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .post-nav a {
+      color: #9333EA;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <section class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Presentation</span>
+        <span class="post-date">December 2025 · AIET Forum Session</span>
+      </div>
+      <h1>CALTSTEAM: Culturally-Anchored VR, AR, and AI for STEM Education</h1>
+      <p class="subtitle">How South Africa's CALTSTEAM Center bridges indigenous cultural knowledge with emerging technologies to transform STEM education in historically disadvantaged communities.</p>
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="https://www.uj.ac.za/wp-content/uploads/2021/11/ramnarain-1080.jpg" alt="Umesh Ramnarain" style="object-position: center 15%;">
+        </div>
+        <div class="post-author-info">
+          <h4>Umesh Ramnarain</h4>
+          <p>Distinguished Professor, CALTSTEAM Director · University of Johannesburg</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <p>At the University of Johannesburg, the CALTSTEAM (Centre for Advanced Learning Technologies in STEAM) Research Center is pioneering a unique approach: using VR, AR, and AI not just as teaching tools, but as bridges between African cultural knowledge and modern science education.</p>
+
+    <div class="key-insight">
+      <div class="key-insight-label">Core Vision</div>
+      <p>A lot of scientific knowledge has a grounding in cultural knowledge. Unfortunately, due to colonization, much of that knowledge has been appropriated. We decided to acknowledge the cultural knowledge and use it to support the understanding of STEM concepts.</p>
+    </div>
+
+    <h2>The Three CALTSTEAM Projects</h2>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <i class="fas fa-vr-cardboard"></i>
+        <h4>KAVAS</h4>
+        <p>Culturally Anchored VR/AR Simulations</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-chalkboard-user"></i>
+        <h4>LABIR</h4>
+        <p>VR Microteaching with Learning Analytics</p>
+      </div>
+      <div class="project-card">
+        <i class="fas fa-robot"></i>
+        <h4>AI Tutor</h4>
+        <p>Socratic Inquiry-Based Learning</p>
+      </div>
+    </div>
+
+    <!-- Section 1: KAVAS -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-drum"></i>
+          KAVAS: Culturally Anchored VR/AR Simulations
+        </div>
+        <p class="tier-1-summary">Using African cultural knowledge—traditional beer brewing, drumming, moon phases—to teach abstract science concepts like chemical reactions and sound waves.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>KAVAS (Culturally Anchored Virtual and Augmented Reality Simulations) acknowledges that students' cultural background profoundly influences how they develop science concepts. The project creates VR experiences that connect indigenous knowledge with scientific understanding.</p>
+
+          <h4>Four Cultural-Science Connections:</h4>
+          <ul>
+            <li><strong>Inkomboti (Traditional Beer):</strong> The complex chemical reactions in brewing become tangible—students can pull molecules apart, break chemical bonds, and form new ones in VR</li>
+            <li><strong>Cultural Drumming:</strong> Sound wave transmission at the molecular level, using African music traditions to teach Grade 10 physics</li>
+            <li><strong>Phases of the Moon:</strong> Interviews with the Khomani San (indigenous people) about lunar beliefs, transformed into VR simulations teaching astronomy</li>
+            <li><strong>Bioethanol Distillation:</strong> Village-level energy production teaching the distillation process</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "Within virtual reality, the learners are able to engage with the molecules and they are able to pull them apart, break the chemical bonds and then put the atoms together to form new chemical bonds. So we decided to provide this sort of experience to the kids on the making of the traditional beer in Inkomboti... We actually visited a province which is in the Northern Cape and there we have got the indigenous community which is the Khomani San... We conducted interviews with them and tried to understand their concept of the phases of the moon because this is very important because this actually informs the way in which they live their lives."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: LABIR -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-vr-cardboard"></i>
+          LABIR: VR Microteaching with Learning Analytics
+        </div>
+        <p class="tier-1-summary">Student teachers practice in a VR classroom with 5-6 avatar learners. Every gaze, movement, and interaction is tracked and fed back for reflection.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>LABIR (Learning Analytics in Virtual Reality) puts student teachers into a fully simulated VR classroom where they practice microteaching before facing real students. The system captures rich data that was previously impossible to measure.</p>
+
+          <h4>Data Captured:</h4>
+          <ul>
+            <li><strong>Lesson Timing:</strong> How time is allocated across introduction, middle, and conclusion phases</li>
+            <li><strong>Teacher Gaze:</strong> Where is the teacher looking? One student? The whiteboard? The entire class?</li>
+            <li><strong>Hotspot Tracking:</strong> Movement patterns as participants navigate the VR classroom</li>
+            <li><strong>Dialogic Interaction:</strong> Conversations between learners and with 3D models</li>
+            <li><strong>Spectator Recording:</strong> Full lesson recording for reflective playback</li>
+          </ul>
+
+          <p>All of this feeds into post-lesson reflective sessions. The teacher educator scores on a rubric, and the student teacher receives feedback that was previously "intangible."</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "An important aspect of teaching is how do you focus yourself when you are teaching? For example, if you are doing a PowerPoint presentation, do I only focus on my slides or do I make the interaction, the facial contact with learners? So we looked at that. It's more from a pedagogical perspective. It's about creating awareness for the teachers. Sometimes what we also see is that when a teacher is teaching, a teacher tends to maybe only focus on maybe one or two kids within the classroom."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: AI Tutor -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-comments"></i>
+          AI Tutor: Socratic Inquiry-Based Learning
+        </div>
+        <p class="tier-1-summary">Unlike most AI tutors that give immediate answers, this one is deliberately Socratic—it scaffolds, prompts, and leads you toward understanding. Three tries, then you get the answer.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The AI Tutor is built on customized ChatGPT (GPT-3.0) and specifically designed to <strong>not</strong> give direct answers. Instead, it embodies the spirit of inquiry-based learning itself.</p>
+
+          <h4>How It Works:</h4>
+          <ul>
+            <li><strong>Scaffolded Dialogue:</strong> Ask "What is photosynthesis?" and it responds with "What is your understanding of synthesis? What do you mean by photo?"</li>
+            <li><strong>Thought-Provoking Questions:</strong> Leads students toward synthesizing understanding rather than receiving information</li>
+            <li><strong>Three-Strike Rule:</strong> If you don't get anywhere after three attempts, it provides the answer</li>
+            <li><strong>Dashboard Tracking:</strong> Tracks question types over time—basic vs. advanced, factual vs. conceptual</li>
+          </ul>
+
+          <h4>Key Finding:</h4>
+          <p>Over a year of use, the questions evolved. Initially: "What is guided inquiry?" Later: "How do you scaffold a learner who's stuck without taking control of the learning situation?" The level of questioning increased with engagement.</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "So it is a Socratic tutor, so it's a dialogue that you have with the tutor. We kind of coded it that when you ask a question, it's not going to give you the answer. It's kind of going to lead you towards the answer... If you ask what is photosynthesis, it kind of would scaffold you and say, 'What is your understanding of synthesis? What do you mean by photo? Do you know words with photo?' So it kind of leads you towards synthesizing something using light."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Forum Q&A: Deep Dive into the Research</h2>
+
+    <!-- Q&A Section 1: Data Outputs -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-database"></i>
+          Q: What Are the Data Outputs for AI Assessment?
+        </div>
+        <p class="tier-1-summary">Janice Gobert asks about leveraging data for AI assessment. Umesh explains the shift from quantitative to qualitative measures—and why interviews reveal what tests cannot.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Janice Gobert probed the practical question: with all this VR data being collected, what can actually be extracted and used for AI-based assessment?</p>
+
+          <h4>Key Findings:</h4>
+          <ul>
+            <li><strong>Qualitative Over Quantitative:</strong> One-on-one interviews and focus groups reveal more than standardized tests</li>
+            <li><strong>Misconception Correction:</strong> Student teachers arrive with their own misconceptions—the technologies help address them</li>
+            <li><strong>Conceptual Improvement:</strong> After 2 years, clear improvement in conceptual understanding of phenomena</li>
+            <li><strong>Dual Growth:</strong> Students improve both pedagogically AND conceptually through technology interaction</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "Can you tell me more about the different sources of data? What is it outputting? What are the data outputs so that you could leverage AI for assessment?"
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "We have not relied entirely on quantitative measures. It's been mainly interviews... We have noticed that as they engage more and more with these advanced learning technologies, they are able to address the misconceptions. These student teachers, they come from historically disadvantaged schools. So as much as we talk about inquiry-based learning, they have not experienced it firsthand. Through the interaction with technologies, they improve pedagogically and they also improve conceptually."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q&A Section 2: Dashboard Overload -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-chart-bar"></i>
+          Q: How Do Teachers Process All This Data?
+        </div>
+        <p class="tier-1-summary">Knut Neumann raises the dashboard problem: 200+ students generating hundreds of questions. The solution? Aggregation, AI support, and inductive teaching.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>A key question from forum participants: with hundreds of students asking questions to the AI tutor, how do teacher educators make sense of all that data?</p>
+
+          <h4>The Aggregation Approach:</h4>
+          <ul>
+            <li><strong>Class-Level View:</strong> Data is aggregated across 200+ student teachers to identify global patterns and deficiencies</li>
+            <li><strong>Inductive Teaching:</strong> Real student questions become entry points for teaching theory—connecting practice to theory</li>
+            <li><strong>Individual Tracking:</strong> Students stuck at Level 1/2 questions are flagged for one-on-one lecturer intervention</li>
+            <li><strong>Selective Extraction:</strong> Lecturers pick "interesting scenarios" to illustrate different scaffolding strategies</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Knut Neumann:</span> "If I have 25 students in my class, there'll be hundreds of questions. How do you feed back that information? It takes teachers a lot of time to really process all this information."
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "So it's kind of aggregated with the entire class... We are able to now zoom in on aspects. This information is then available to our teacher educators or the lecturers. And then they are able to use it and address it in their lectures. So that's aggregated data. We are also able to generate data for individual students so we can track their development."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q&A Section 3: VR Students -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-vr-cardboard"></i>
+          Q: Are VR Students Real or Virtual?
+        </div>
+        <p class="tier-1-summary">Yasemin clarifies the VR setup: students are real people using avatars, feedback comes after the lesson via learning analytics, and the system uses a rubric—no real-time AI intervention.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Yasemin Copur-Gencturk sought to understand the technical architecture: are the VR learners simulated or real? When and how does feedback occur?</p>
+
+          <h4>Technical Clarification:</h4>
+          <ul>
+            <li><strong>Real Students, VR Avatars:</strong> 5-6 fellow student teachers use headsets and choose avatars—they're not AI-generated characters</li>
+            <li><strong>No Real-time AI:</strong> The VR classroom has a learning analytics dashboard, not AI intervention during teaching</li>
+            <li><strong>Post-Lesson Feedback:</strong> Micro-lessons are 15 minutes max; all feedback is shared afterward in reflective sessions</li>
+            <li><strong>Rubric-Based Scoring:</strong> Teacher educators score using a built-in rubric, now able to measure previously "intangible" aspects</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Yasemin:</span> "So for this virtual reality environment, students are not virtual. Students are real students?"
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "They use the headset and then they choose the avatar... The virtual reality classroom does not have AI. It's got a learning analytics dashboard. All of that would be shared with them—the report which would be generated would be later. But now, there is so much that can be shared, because you are able to track all of these, and previously these would be intangibles."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q&A Section 4: Socratic AI Tutor -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-robot"></i>
+          Q: How Does the Socratic AI Tutor Actually Work?
+        </div>
+        <p class="tier-1-summary">Yasemin explores the AI tutor's mechanics. Key insight: three tries to guide you, then it gives the answer. The goal is scaffolding, not information delivery.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The AI tutor is explicitly designed NOT to give direct answers—a deliberate pedagogical choice that embodies inquiry-based learning principles.</p>
+
+          <h4>Walkthrough Example:</h4>
+          <ol>
+            <li><strong>Student asks:</strong> "What is photosynthesis?"</li>
+            <li><strong>Tutor responds:</strong> "What is your understanding of synthesis? What do you mean by photo? Do you know words with photo?"</li>
+            <li><strong>Student tries again:</strong> (guided toward "synthesizing something using light")</li>
+            <li><strong>Three strikes rule:</strong> After three unsuccessful attempts, the tutor provides the answer</li>
+          </ol>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Yasemin:</span> "So if you walk me through one of the examples... So I think one of the questions was, let's say, what is photosynthesis? How does it work?"
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "If you ask what is photosynthesis, it kind of would scaffold you... 'What is your understanding of synthesis? What do you mean by photo? Do you know words with photo?' So it kind of leads you towards synthesizing something using light."
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              <span class="quote-speaker">Yasemin:</span> "Three tries. If you don't get anywhere, it's gonna give you the answer?"
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "Okay. All right."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q&A Section 5: ICAP Framework -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-brain"></i>
+          Q: How Are You Orienting Learning Toward Causal Understanding?
+        </div>
+        <p class="tier-1-summary">Janice Gobert connects to Mickey Chi's ICAP framework: question types reflect learning orientation. The data becomes an entry point for teaching theory inductively.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Janice Gobert raised a deeper epistemological question: how are teachers being oriented toward causal mechanisms rather than surface-level summarization?</p>
+
+          <h4>The ICAP Connection:</h4>
+          <ul>
+            <li><strong>Mickey Chi's Framework:</strong> Question types reveal cognitive orientation—summarization vs. causal understanding</li>
+            <li><strong>Orienting Tasks Matter:</strong> When you tell students "you're going to draw after this" or "you're going to explain after this," their information processing changes</li>
+            <li><strong>Inductive Approach:</strong> Real student questions become teaching examples—extracting "interesting scenarios" to illustrate scaffolding strategies</li>
+            <li><strong>Theory-Practice Bridge:</strong> The technology enables connection between the practice (questions asked) and the theory (types of scaffolds)</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Exchange
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Forum Transcript</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Janice Gobert:</span> "Mickey Chi—do you know her? She has this ICAP framework and she looks at the types of questions... Some of them stay very focused on the summarization level. What is the extent to which you are kind of prompting them to seek understanding of the causal mechanisms? Because if you have that kind of epistemological framing as a goal, they will approach this differently."
+            </p>
+            <p class="actual-quote" style="margin-top: 1rem;">
+              <span class="quote-speaker">Umesh Ramnarain:</span> "So it's kind of become now more of an inductive approach, where through the manner in which the students interact, these are great examples that you pull into the classroom when you're teaching the theory. The type of questions need to be cognitively probing questions, prompting questions, clarifying questions. We notice that the types of questions the students are asking are great examples to illustrate different types of scaffolds."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-insight">
+      <div class="key-insight-label">Impact</div>
+      <p>Through interaction with these technologies, student teachers improve both pedagogically and conceptually. Many come from historically disadvantaged schools and have never experienced inquiry-based learning firsthand. Now they can.</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="post-nav">
+      <a href="unjournal-ai-research-commons.html"><i class="fas fa-arrow-left"></i> Previous: Unjournal</a>
+      <a href="../blog.html">Back to Blog <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="caltsteam-vr-ar-ai-education"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('visible');
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Original Quote';
+      }
+    }
+  </script>
+</body>
+</html>

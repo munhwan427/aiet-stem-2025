@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Social Simulation with AI Agents - Exploring virtual societies powered by large language models. From the Truman Show to educational applications in teacher training and policy testing.">
+  <title>Social Simulation: Building Virtual Societies with AI Agents | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .post-content h2 {
+      color: var(--primary);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+    }
+
+    .post-content h3 {
+      color: var(--text);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-size: 1.35rem;
+    }
+
+    .post-content p {
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .post-content ul, .post-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li {
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .post-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      background: var(--background-alt);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .post-content blockquote p {
+      margin-bottom: 0;
+      font-style: italic;
+      color: var(--text-light);
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-box h4 {
+      color: #0F766E;
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-box p, .highlight-box li {
+      color: var(--text);
+    }
+
+    /* Expandable Section Styles */
+    .expandable-section {
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .expandable-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      background: var(--background-alt);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .expandable-header:hover {
+      background: #e8ecf0;
+    }
+
+    .expandable-header h4 {
+      margin: 0;
+      color: var(--text);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .expandable-header h4 i {
+      color: var(--primary);
+    }
+
+    .expand-icon {
+      transition: transform 0.3s ease;
+      color: var(--text-light);
+    }
+
+    .expandable-section.active .expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .expandable-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .expandable-section.active .expandable-content {
+      max-height: 3000px;
+    }
+
+    .expandable-body {
+      padding: 1.5rem;
+    }
+
+    .expandable-body p {
+      margin-bottom: 1rem;
+    }
+
+    .expandable-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tier indicator */
+    .tier-indicator {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      font-weight: 500;
+    }
+
+    .tier-1 { background: #CCFBF1; color: #0F766E; }
+    .tier-2 { background: #99F6E4; color: #0D9488; }
+    .tier-3 { background: #5EEAD4; color: #115E59; }
+
+    /* Movie reference box */
+    .movie-box {
+      background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      color: white;
+    }
+
+    .movie-box h4 {
+      color: #F1F5F9;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .movie-box p {
+      color: #CBD5E1;
+    }
+
+    /* Case study cards */
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .case-study-card {
+      background: var(--background-alt);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+    }
+
+    .case-study-card h5 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .case-study-card .institution {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .case-study-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* Comparison table */
+    .comparison-box {
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .comparison-box h4 {
+      color: #4338CA;
+      margin-bottom: 1rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .comparison-col h5 {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #A5B4FC;
+    }
+
+    .comparison-col ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .comparison-col li {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Warning box */
+    .warning-box {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .warning-box h4 {
+      color: #B45309;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .warning-box p, .warning-box li {
+      color: #92400E;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      gap: 0.75rem;
+    }
+
+    /* Dialogue/Discussion Section */
+    .dialogue-section {
+      background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .dialogue-section h4 {
+      color: #C2410C;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dialogue-item {
+      padding: 1rem;
+      background: rgba(255,255,255,0.7);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+
+    .dialogue-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .dialogue-speaker {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .dialogue-text {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero {
+        padding: 8rem 0 3rem;
+      }
+
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <header class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Forum 2025</span>
+        <span class="post-tag">Social Simulation</span>
+        <span class="post-date">December 2025</span>
+      </div>
+      <h1>Social Simulation: Building Virtual Societies with AI Agents</h1>
+      <p class="subtitle">What if we could turn our entire society into a set like the Truman Show and observe from outside? Exploring the revolutionary potential of AI-powered social simulation.</p>
+
+      <div class="post-author">
+        <div class="post-author-avatar">HL</div>
+        <div class="post-author-info">
+          <h4>Hyungson Lim</h4>
+          <p>Researcher, Nanyang Technological University, Singapore</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p>What if we could create a virtual society where AI agents live, interact, and respond to changes - allowing us to observe social phenomena from the outside? Social simulation powered by large language models is making this possible, with profound implications for education, policy testing, and our understanding of human behavior.</p>
+
+    <!-- Section 1: The Truman Show Analogy -->
+    <h2>The Truman Show Concept</h2>
+
+    <div class="movie-box">
+      <h4><i class="fas fa-film"></i> The Inspiration</h4>
+      <p>In the 1998 film <em>The Truman Show</em>, the main character Truman Burbank lives in a completely artificial, created society for 30 years without even realizing it. Everyone around him is an actor, and the production team broadcasts his everyday life while controlling his worldview through education and fear.</p>
+      <p style="margin-top: 1rem;"><strong>The parallel:</strong> In social simulation, we deploy AI agents instead of actors, watch what they do, how they respond to external stimuli, and what macroscopic social trends emerge.</p>
+    </div>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-microscope"></i> Formal Definition <span class="tier-indicator tier-1">Tier 1</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>Borrowing from Squazzoni's definition:</p>
+          <blockquote>
+            <p>"Social simulation is a study of social outcomes of macro-priority by means of computer simulation where agent behavior, interactions among agents, and the environments are explicitly modeled to explore the micro-based assumption that explains the macro-regularity of interest."</p>
+          </blockquote>
+          <p>In simpler terms: We model and virtualize real society to explore what macroscopic social phenomena emerge from microscopic assumptions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Why LLMs Changed Everything -->
+    <h2>How LLMs Changed the Game</h2>
+
+    <p>Social simulation isn't new - it has roots in Schelling's segregation models and agent-based modeling. But large language models have revolutionized the field.</p>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-brain"></i> The Technical Revolution <span class="tier-indicator tier-1">Tier 1</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p><strong>Before LLMs:</strong> Traditional if-then rule-making systems with symbol-based processing</p>
+          <p><strong>After LLMs:</strong> Self-attention and large-scale pre-training enable continuous semantic understanding</p>
+          <p>This transition allows computers to perform learning processes somewhat similar to human level. Consequently, we can now expect human-level variation within social simulation contexts - which is why the field has received intense attention.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Why Do Social Simulation -->
+    <h2>Why Social Simulation Matters</h2>
+
+    <div class="highlight-box">
+      <h4><i class="fas fa-code-branch"></i> The Multiverse Concept</h4>
+      <p>Like the Marvel Multiverse where every choice splits the cosmos into parallel universes, our choices shape society. While some decisions are easily reversible, high-stakes decisions - pandemic lockdowns, new economic policies - cannot simply be undone. We can't say "let's give it a try, and if it doesn't work, we'll undo it."</p>
+    </div>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-flask"></i> Advantages Over Traditional Qualitative Research <span class="tier-indicator tier-2">Tier 2</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <div class="comparison-box">
+            <h4>Traditional Studies vs. AI Simulation</h4>
+            <div class="comparison-grid">
+              <div class="comparison-col">
+                <h5>Traditional Qualitative Studies</h5>
+                <ul>
+                  <li><strong>High resources:</strong> Extensive time, cost, and effort</li>
+                  <li><strong>Sampling bias:</strong> Hard to reach specific demographics (e.g., wealthy people won't respond even for rewards)</li>
+                  <li><strong>Respondent fatigue:</strong> Answer quality drops in later stages</li>
+                  <li><strong>No warm-up access:</strong> Hard to revisit the same population with new questions</li>
+                </ul>
+              </div>
+              <div class="comparison-col">
+                <h5>AI Agent Simulation</h5>
+                <ul>
+                  <li><strong>Lower cost:</strong> Drastically reduced time, cost, and labor</li>
+                  <li><strong>Always accessible:</strong> Any demographic can be simulated</li>
+                  <li><strong>No fatigue:</strong> 100% sincerity for every single question</li>
+                  <li><strong>Unlimited access:</strong> Can revisit and extend at any time</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Three Key Factors -->
+    <h2>Three Key Factors of Social Simulation</h2>
+
+    <p>World, Agent, and Interaction - these three elements do not exist independently. They constantly influence each other to create macroscopic social phenomena.</p>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-globe"></i> Factor 1: World <span class="tier-indicator tier-2">Tier 2</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>The world defines not just physical space, but context and rules as well.</p>
+          <p><strong>Example:</strong> A "meeting" or "conference" world includes invisible domain rules:</p>
+          <ul>
+            <li>You must obtain permission to speak</li>
+            <li>You must focus on the agenda</li>
+            <li>Speakers of opinion have priority in this world</li>
+          </ul>
+          <p>The world also constrains functional aspects of agents - in a meeting, agents put high weight on saying/listening and low weight on sensing physical environment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-user-circle"></i> Factor 2: Agents <span class="tier-indicator tier-2">Tier 2</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>Agent design directly influences simulation accuracy. There are several types:</p>
+
+          <p><strong>1. Demographic Agents:</strong></p>
+          <ul>
+            <li>Based on demographic information: age, gender, income level</li>
+            <li>Simple to make, uses statistical data directly</li>
+            <li>Limitation: Hard to avoid bias, doesn't use reasoning processes</li>
+          </ul>
+
+          <p><strong>2. Personal Agents:</strong></p>
+          <ul>
+            <li>Most widely used in current research</li>
+            <li>Adds narrative and backstory in semantic form</li>
+            <li>Enables reasoning and contextual behavior</li>
+          </ul>
+
+          <p><strong>3. Interview-Based Agents:</strong></p>
+          <ul>
+            <li>Developed by Stanford University</li>
+            <li>Founded on 2-hour interviews from representative populations</li>
+            <li>Achieves highest accuracy but most resource-intensive</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-exchange-alt"></i> Factor 3: Interactions <span class="tier-indicator tier-2">Tier 2</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>Interaction is not just information exchange - researchers focus on two key challenges:</p>
+          <p><strong>1. Details:</strong> Does the simulation include non-verbal interaction?</p>
+          <p><strong>2. Optimization:</strong> Computational complexity increases exponentially with agent count. How do we optimize agent-to-agent interactions efficiently?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Case Studies -->
+    <h2>Landmark Research Projects</h2>
+
+    <div class="case-study-grid">
+      <div class="case-study-card">
+        <h5>Generative Agent</h5>
+        <p class="institution">Stanford University (Dr. Park)</p>
+        <p>Simulated 25 agents in a small village over 2 virtual days. Agents naturally formed social bonds, evaluated others, and spread information through the town. Proved agents can exhibit believable, natural social behavior.</p>
+      </div>
+
+      <div class="case-study-card">
+        <h5>Agent Society</h5>
+        <p class="institution">Tsinghua University (Dr. Piao)</p>
+        <p>Focuses on hardware to run 10,000+ agents. Tests information spread, polarization, disaster response (hurricanes), and economic policy. Compared results to real US and China cases.</p>
+      </div>
+
+      <div class="case-study-card">
+        <h5>AI Simulation</h5>
+        <p class="institution">Hong Kong University</p>
+        <p>Gamified version of social simulation with human interaction. Users receive an agent resembling themselves, can talk to agents and influence them directly, shape their avatar's career and life.</p>
+      </div>
+
+      <div class="case-study-card">
+        <h5>EduSim Classroom</h5>
+        <p class="institution">Educational Research Project</p>
+        <p>Implements a middle school Chinese class with 1 teacher agent and 6 student agents. Users can modify desk/chair/blackboard positions, changing agent field of view and communication patterns.</p>
+      </div>
+    </div>
+
+    <!-- Section 6: Educational Classroom Simulation -->
+    <h2>Educational Applications: The Virtual Classroom</h2>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-chalkboard-teacher"></i> EduSim Research Findings <span class="tier-indicator tier-3">Tier 3</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>The research team proved the value of virtual classroom simulation in four aspects:</p>
+
+          <p><strong>1. Structural Realism (IRF Ratio):</strong></p>
+          <p>Using Initiation-Response-Feedback analysis, real classroom statistics range from 0.37-0.49. The simulation measured 0.28-0.64, showing AI agents meaningfully reproduce core classroom structures.</p>
+
+          <p><strong>2. Social Interaction:</strong></p>
+          <p>Agents don't unrealistically interact with every student. They communicate based on seating arrangement, other agents' behavior, and personal chemistry. Network density of 30-40% indicates localized participation that reflects reality.</p>
+
+          <p><strong>3. Environmental Responsiveness:</strong></p>
+          <p>When desk arrangements changed (e.g., collaborative groupings vs. rigid rows), student positive attitudes and higher-order thinking changed accordingly - just as in reality.</p>
+
+          <p><strong>4. Educational Adaptation:</strong></p>
+          <p>Passive students gradually spoke more and adapted to the class - demonstrating practical educational learning patterns.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 7: Future Applications -->
+    <h2>Future Applications in Education</h2>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-user-tie"></i> Teacher Training: Virtual Classrooms <span class="tier-indicator tier-2">Tier 2</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>Education involves not just knowledge delivery but handling students' diverse reactions. Social simulation enables:</p>
+          <ul>
+            <li>Virtual classrooms with whole classes of student agents</li>
+            <li>Training teachers to adapt to situations arising from agent personality and interactions</li>
+            <li>Practice beyond scripted scenarios - real emergent classroom dynamics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-users"></i> Student Learning: Study Club Simulation <span class="tier-indicator tier-2">Tier 2</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>The best way to study is to teach someone else - but we can't always get friends to teach to. In simulation:</p>
+          <ul>
+            <li>Students become leaders of study clubs with agent members at various knowledge levels and personalities</li>
+            <li>Agents don't just sit and listen - they ask sharp questions: "That explanation doesn't make logical sense" or "Can we solve this problem using what we learned today?"</li>
+            <li>Agents debate among themselves</li>
+            <li>Through answering, students recognize gaps in their understanding and reach deeper comprehension beyond memorization</li>
+          </ul>
+          <blockquote>
+            <p>"This kind of technology offers a living education rather than fixed, rigid, passive learning."</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 8: Challenges and Concerns -->
+    <h2>Challenges and Ethical Considerations</h2>
+
+    <div class="warning-box">
+      <h4><i class="fas fa-exclamation-triangle"></i> Current Limitations</h4>
+      <ul>
+        <li><strong>Hardware constraints:</strong> Running large numbers of agents requires significant computational resources</li>
+        <li><strong>Perfect world problem:</strong> Creating a general society requires implementing all rules, contexts, and correlations - not a simple task</li>
+        <li><strong>Excessive data:</strong> Simulations generate enormous amounts of data requiring new algorithms and tools</li>
+      </ul>
+    </div>
+
+    <div class="expandable-section active">
+      <div class="expandable-header" onclick="toggleExpand(this)">
+        <h4><i class="fas fa-balance-scale"></i> Ethical Dilemmas <span class="tier-indicator tier-3">Tier 3</span></h4>
+        <i class="fas fa-chevron-down expand-icon"></i>
+      </div>
+      <div class="expandable-content">
+        <div class="expandable-body">
+          <p>Social simulation pursues high fidelity to target persons, which raises profound questions:</p>
+          <ul>
+            <li><strong>Digital cloning:</strong> Is it ethical to clone a human mind?</li>
+            <li><strong>Identity questions:</strong> If an agent can think and act just like me, is it me? How do we define ourselves?</li>
+          </ul>
+          <p>While technical constraints and ethical dilemmas remain, addressing these challenges is essential for the field's future.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discussion Section -->
+    <h2>Discussion Highlights</h2>
+
+    <div class="dialogue-section">
+      <h4><i class="fas fa-comments"></i> Critical Questions from the Audience</h4>
+
+      <div class="dialogue-item">
+        <p class="dialogue-speaker">On Simulation vs. Reality (Knut Neumann):</p>
+        <p class="dialogue-text">"I typically teach my students that you can't use a simulation to prove a physics law because it's already built into the simulation. To what extent are we reinforcing what standard human behavior would be? Humans in different compositions can act differently and create something new - can we capture that?"</p>
+      </div>
+
+      <div class="dialogue-item">
+        <p class="dialogue-speaker">On Subtle Human Cues:</p>
+        <p class="dialogue-text">"So much of human interaction depends on subtle cues - do people like each other? You bring five people in a room and the outcome depends on nuances that AI agents might not capture. Sometimes I don't like someone and I don't know why."</p>
+      </div>
+
+      <div class="dialogue-item">
+        <p class="dialogue-speaker">On Contextual Fidelity (Response):</p>
+        <p class="dialogue-text">"Every cue we include increases accuracy, but we're not targeting exact same outcomes as reality - we try to reach close to real society results. In our Korean election studies, we implemented five contextual layers and continued to approach actual election outputs. We never reach exactly, but we're getting close."</p>
+      </div>
+
+      <div class="dialogue-item">
+        <p class="dialogue-speaker">On Teacher Training Applications:</p>
+        <p class="dialogue-text">"I can totally see how we can use these systems to train teachers to react to students' answers on a cognitive level. But a real classroom would be different because there would be social information exchanged - a teacher annoyed by a student wearing a baseball cap all lesson will react differently, communicating 'I don't like what you're doing.'"</p>
+      </div>
+    </div>
+
+    <!-- Conclusion -->
+    <h2>The Path Forward</h2>
+
+    <p>Social simulation will evolve beyond virtual experimentation to become a powerful tool for bridging the gap between theoretical models and complex real-world phenomena. The key is understanding both its potential and its limitations.</p>
+
+    <div class="highlight-box">
+      <h4><i class="fas fa-road"></i> Two Distinct Use Cases</h4>
+      <ul>
+        <li><strong>Human-in-the-loop simulations:</strong> Creating environments for humans to practice interactions (teacher training, leadership development) - high potential</li>
+        <li><strong>Pure research simulations:</strong> Answering behavioral questions without humans - requires careful interpretation of limitations</li>
+      </ul>
+    </div>
+
+    <blockquote>
+      <p>"Ultimately, social simulation will evolve beyond virtual experimentation to become the most powerful tool for bridging the gap between theoretical models and complex real world."</p>
+    </blockquote>
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="social-simulation-ai-agents-education"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM Unjournal</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual AIET IN STEM Forum - Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+            <li><a href="../event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleExpand(header) {
+      const section = header.parentElement;
+      section.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

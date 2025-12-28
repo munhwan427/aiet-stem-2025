@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Facial Expression Research in Science Education - Using AI to read students' cognitive and emotional states during counterintuitive science demonstrations.">
+  <title>Reading Students' Minds: Facial Expression AI in Science Education | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .post-content h2 {
+      color: var(--primary);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+    }
+
+    .post-content p {
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .post-content ul, .post-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li {
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .post-content blockquote {
+      border-left: 4px solid #7C3AED;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      background: var(--background-alt);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .post-content blockquote p {
+      margin-bottom: 0;
+      font-style: italic;
+      color: var(--text-light);
+    }
+
+    /* 3-Tier Section Styles */
+    .tier-section {
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+    }
+
+    .tier-1-title {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tier-1-title i {
+      color: #7C3AED;
+    }
+
+    .tier-1-summary {
+      color: var(--text-light);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .details-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #7C3AED;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: gap 0.2s ease;
+    }
+
+    .details-link:hover {
+      gap: 0.75rem;
+    }
+
+    .details-link i {
+      transition: transform 0.3s ease;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    /* Tier 2: Details */
+    .tier-2 {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #FAF5FF;
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      max-height: 2000px;
+    }
+
+    .tier-2-content {
+      padding: 1.5rem;
+    }
+
+    .tier-2-content p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Tier 3: Original Quote */
+    .tier-3 {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #EDE9FE;
+      border-top: 1px dashed #C4B5FD;
+    }
+
+    .tier-3.visible {
+      max-height: 1500px;
+    }
+
+    .tier-3-content {
+      padding: 1.5rem;
+    }
+
+    .quote-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #6D28D9;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #DDD6FE;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .quote-toggle:hover {
+      background: #C4B5FD;
+    }
+
+    .original-quote {
+      font-style: italic;
+      color: #5B21B6;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      font-style: normal;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #4C1D95;
+    }
+
+    /* Inspiration Box */
+    .inspiration-box {
+      background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      color: white;
+    }
+
+    .inspiration-box h4 {
+      color: #F1F5F9;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .inspiration-box p {
+      color: #CBD5E1;
+    }
+
+    /* Experiment Box */
+    .experiment-box {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .experiment-box h4 {
+      color: #B45309;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .experiment-box p, .experiment-box li {
+      color: #92400E;
+    }
+
+    /* Research Journey */
+    .journey-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .journey-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .journey-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #A78BFA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .journey-content h5 {
+      margin: 0 0 0.25rem 0;
+      color: var(--text);
+    }
+
+    .journey-content p {
+      margin: 0;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero {
+        padding: 8rem 0 3rem;
+      }
+
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <header class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Forum 2025</span>
+        <span class="post-tag">Facial Expression AI</span>
+        <span class="post-date">December 2025</span>
+      </div>
+      <h1>Reading Students' Minds: Facial Expression AI in Science Education</h1>
+      <p class="subtitle">What if teachers could read students' cognitive and emotional states through their facial expressions during counterintuitive science demonstrations?</p>
+
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="https://scholar.lib.ntnu.edu.tw/files-asset/105108388/meihungchiu.png" alt="Mei-Hung Chiu" style="object-position: top;">
+        </div>
+        <div class="post-author-info">
+          <h4>Prof. Mei-Hung Chiu, Ed.D.</h4>
+          <p>National Taiwan Normal University, Taiwan</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p>Can we use AI to understand what students are thinking during science lessons? Prof. Mei-Hung Chiu shares groundbreaking research on using facial expression analysis to detect students' cognitive and emotional states - and how this could transform science teaching.</p>
+
+    <!-- Research Journey -->
+    <h2>A Research Journey</h2>
+
+    <p>Prof. Chiu's research has evolved through multiple domains, each building on the last:</p>
+
+    <div class="journey-timeline">
+      <div class="journey-item">
+        <div class="journey-icon"><i class="fas fa-brain"></i></div>
+        <div class="journey-content">
+          <h5>Student Science & Conceptual Change</h5>
+          <p>How students construct knowledge and change their minds</p>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon"><i class="fas fa-cube"></i></div>
+        <div class="journey-content">
+          <h5>Modeling-Based Instruction</h5>
+          <p>Using models to support science understanding</p>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon"><i class="fas fa-vr-cardboard"></i></div>
+        <div class="journey-content">
+          <h5>Augmented & Virtual Reality</h5>
+          <p>Immersive technologies for science education</p>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon"><i class="fas fa-smile"></i></div>
+        <div class="journey-content">
+          <h5>Facial Expression Research</h5>
+          <p>Reading students' cognitive states through their faces</p>
+        </div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-icon"><i class="fas fa-robot"></i></div>
+        <div class="journey-content">
+          <h5>AI in Science Education</h5>
+          <p>Current focus: integrating AI to support learning</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Inspiration -->
+    <h2>The Inspiration: "Lie to Me"</h2>
+
+    <div class="inspiration-box">
+      <h4><i class="fas fa-tv"></i> From TV to Classroom</h4>
+      <p>The research was inspired by the American TV sitcom "Lie to Me." Prof. Chiu and colleagues wondered: if we can read deception through facial expressions, why not read students' understanding?</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-lightbulb"></i>
+          The Core Idea
+        </div>
+        <p class="tier-1-summary">If teachers could read students' minds through their facial expressions, they could provide more targeted guidance during learning. Facial expressions reveal cognitive and emotional states that words might not capture.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The research question: Can we use facial expression analysis to:</p>
+          <ul>
+            <li>Detect when students are confused or surprised?</li>
+            <li>Identify moments of cognitive conflict (when reality contradicts expectations)?</li>
+            <li>Help teachers intervene at the right moments?</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Mei-Hung Chiu:</span>
+              "So my colleagues and I watched the TV, and then we said, why don't we apply this facial expression in science education in our classroom? If the teachers could read the students' mind through their facial expressions, then maybe the teachers could provide some guidance to their learning. So that was the beginning of the story."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Experiment -->
+    <h2>The Flask Experiment: Counterintuitive Science</h2>
+
+    <div class="experiment-box">
+      <h4><i class="fas fa-flask"></i> The Demonstration</h4>
+      <p>Heat water in a flask until it boils. Then flip the flask upside down and place ice on top. Ask students: What will happen next?</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-question-circle"></i>
+          The Counterintuitive Result
+        </div>
+        <p class="tier-1-summary">Students expect the ice to melt and the boiling to stop. But something surprising happens: the water starts "boiling" again - even with ice on top. This creates cognitive conflict perfect for studying facial expressions.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>What students expect:</strong></p>
+          <ul>
+            <li>Ice will melt</li>
+            <li>Water will cool down</li>
+            <li>Boiling will stop</li>
+          </ul>
+          <p><strong>What actually happens:</strong></p>
+          <ul>
+            <li>Bubbles appear inside the flask</li>
+            <li>Water appears to "boil" again</li>
+            <li>Ice is on top, but bubbles form below</li>
+          </ul>
+          <p><strong>The science:</strong> The ice cools the air in the flask, reducing pressure inside. This lowers the boiling point of water, causing it to boil at a lower temperature - a counterintuitive demonstration of vapor pressure principles.</p>
+          <p>This cognitive conflict - when reality contradicts expectation - creates visible facial expressions that can be analyzed.</p>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> Original Quote
+          </div>
+        </div>
+        <div class="tier-3">
+          <div class="tier-3-content">
+            <p class="original-quote">
+              <span class="quote-speaker">Mei-Hung Chiu:</span>
+              "Because we put the ice cube on the top, and the water was boiling, so it's supposed to have the ice melting, right? But in fact, you see the bubbles inside the flask. Did you see that counterintuitive thinking? Because you have the ice on the top, but you also see the water boiling again. So that's our scenario for the students to make a prediction before they see the rest of the part of the video."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Research Design -->
+    <h2>Research Design: Capturing Facial Expressions</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-video"></i>
+          The Method
+        </div>
+        <p class="tier-1-summary">Students watch the demonstration video, make predictions, then see the counterintuitive result. Their facial expressions are recorded and analyzed to detect moments of surprise, confusion, and realization.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p><strong>The procedure:</strong></p>
+          <ol>
+            <li>Show students the video of water boiling in a flask</li>
+            <li>Stop the video before the ice is placed</li>
+            <li>Ask students to predict: "What will happen if we put ice on top?"</li>
+            <li>Resume the video showing the counterintuitive result</li>
+            <li>Capture and analyze facial expressions throughout</li>
+          </ol>
+          <p><strong>What we're looking for:</strong></p>
+          <ul>
+            <li>Surprise expressions when predictions are violated</li>
+            <li>Confusion when trying to reconcile expectations with reality</li>
+            <li>Engagement patterns during conceptual conflict</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Implications -->
+    <h2>Implications for Teaching</h2>
+
+    <p>Facial expression analysis offers a window into student thinking that traditional assessments cannot provide:</p>
+
+    <ul>
+      <li><strong>Real-time feedback:</strong> Teachers can see when students are confused without asking</li>
+      <li><strong>Non-verbal communication:</strong> Some students won't voice confusion verbally</li>
+      <li><strong>Cognitive conflict detection:</strong> Identify moments when misconceptions are challenged</li>
+      <li><strong>Adaptive instruction:</strong> Respond to emotional and cognitive states in the moment</li>
+    </ul>
+
+    <blockquote>
+      <p>By reading facial expressions, we can detect moments of cognitive conflict - when students' expectations clash with reality. These are the teachable moments where real learning happens.</p>
+    </blockquote>
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="facial-expression-ai-science-education"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM Unjournal</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual AIET IN STEM Forum - Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+            <li><a href="../event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier2 = toggle.closest('.tier-2-content');
+      const tier3 = tier2.nextElementSibling;
+      tier3.classList.toggle('visible');
+
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Original Quote';
+      }
+    }
+  </script>
+</body>
+</html>

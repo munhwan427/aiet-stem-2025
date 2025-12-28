@@ -11,8 +11,69 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=30">
+  <style>
+    /* Forum 2025 Sub-navigation */
+    .subnav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 90px;
+      z-index: 99;
+    }
+
+    .subnav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .subnav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .subnav-link:hover {
+      color: var(--primary);
+    }
+
+    .subnav-link.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .subnav-link i {
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .subnav-container {
+        overflow-x: auto;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .subnav-link {
+        padding: 0.75rem 1rem;
+        white-space: nowrap;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -23,18 +84,26 @@
       </a>
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="speakers.html" class="nav-link">Speakers</a></li>
-        <li><a href="program.html" class="nav-link active">Program</a></li>
-        <li><a href="travel.html" class="nav-link">Travel & Accommodation</a></li>
-        <li><a href="updates.html" class="nav-link">Updates</a></li>
-        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-        <li><a href="event2023.html" class="nav-link">2023 Event</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="speakers.html" class="nav-link">Network</a></li>
+        <li><a href="program.html" class="nav-link active">Forum 2025</a></li>
+        <li><a href="event2023.html" class="nav-link">Forum 2023</a></li>
       </ul>
+      <div id="auth-container"></div>
       <div class="nav-toggle" onclick="toggleMenu()">
         <span></span>
         <span></span>
         <span></span>
       </div>
+    </div>
+  </nav>
+
+  <!-- Forum 2025 Sub-navigation -->
+  <nav class="subnav">
+    <div class="subnav-container">
+      <a href="program.html" class="subnav-link active"><i class="fas fa-calendar-alt"></i> Program</a>
+      <a href="updates.html" class="subnav-link"><i class="fas fa-newspaper"></i> Updates</a>
+      <a href="gallery.html" class="subnav-link"><i class="fas fa-images"></i> Gallery</a>
     </div>
   </nav>
 
@@ -425,42 +494,41 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-section">
-          <h4>AIET IN STEM 2025</h4>
-          <p>Global Initiative on AI and Emerging Technologies in STEM Education</p>
-          <p style="margin-top: 1rem;">December 16-20, 2025<br>Jeju, South Korea</p>
+          <h4>AIET IN STEM Unjournal</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual AIET IN STEM Forum · Jeju, South Korea</p>
         </div>
 
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="speakers.html">Speakers</a></li>
-            <li><a href="program.html">Program</a></li>
-            <li><a href="travel.html">Travel & Accommodation</a></li>
-            <li><a href="updates.html">Daily Updates</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="speakers.html">Network</a></li>
+            <li><a href="program.html">Forum 2025</a></li>
+            <li><a href="event2023.html">Forum 2023</a></li>
           </ul>
         </div>
 
         <div class="footer-section">
-          <h4>Organizers</h4>
-          <p><strong>Jeju National University</strong><br>South Korea</p>
-          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute</strong><br>Michigan State University, USA</p>
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
         </div>
 
         <div class="footer-section">
           <h4>Contact</h4>
-          <p>For inquiries about the forum:</p>
           <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
         </div>
       </div>
 
       <div class="footer-bottom">
         <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Supported by Jeju National University RISE Initiative</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

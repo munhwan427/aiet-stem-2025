@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Multi-Agent AI for Elementary Science Assessment - Using Multiple AI Agents to Detect Uncertainty and Support Teacher Decision-Making">
+  <title>Multi-Agent AI for Elementary Science Assessment | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .post-content h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--text);
+    }
+
+    .post-content h3 {
+      font-size: 1.35rem;
+      margin: 2rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .post-content ul, .post-content ol {
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+
+    .post-content li {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    /* 3-Tier Expandable Sections */
+    .tier-section {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+
+    .tier-1-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tier-1-title i {
+      color: #2563EB;
+    }
+
+    .tier-1-summary {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .details-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #2563EB;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .details-link:hover {
+      opacity: 0.8;
+    }
+
+    .details-link i {
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-section.expanded .details-link span {
+      display: none;
+    }
+
+    .tier-section.expanded .details-link::after {
+      content: 'Hide Details';
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    .tier-2-content p {
+      margin-bottom: 1rem;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0 1rem 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-3-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #2563EB;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .tier-3-toggle:hover {
+      opacity: 0.8;
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #2563EB;
+    }
+
+    .tier-3.visible {
+      display: block;
+    }
+
+    .tier-3-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #2563EB;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .actual-quote {
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: #2563EB;
+      font-style: normal;
+    }
+
+    /* Key Insight Box */
+    .key-insight {
+      background: linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 100%);
+      border-left: 4px solid #2563EB;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .key-insight-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1D4ED8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .key-insight p {
+      margin: 0;
+      color: #1E3A8A;
+      font-weight: 500;
+    }
+
+    /* Project Stats */
+    .project-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      padding: 1.25rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1E40AF;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #3B82F6;
+    }
+
+    /* Navigation */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .post-nav a {
+      color: #2563EB;
+      font-weight: 500;
+    }
+
+    /* Related Posts */
+    .related-posts {
+      background: var(--background-alt);
+      padding: 3rem 0;
+    }
+
+    .related-posts h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .related-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .related-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .related-card p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+
+      .project-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <section class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Research Note</span>
+        <span class="post-date">December 2025 · AIET Forum Session</span>
+      </div>
+      <h1>Multi-Agent AI for Elementary Science Assessment</h1>
+      <p class="subtitle">Using five AI agents instead of one to detect uncertainty, identify where humans need to intervene, and support teacher decision-making in scoring student written responses.</p>
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="../images/speakers/Shin_Photo1.jpg" alt="Namsoo Shin">
+        </div>
+        <div class="post-author-info">
+          <h4>Namsoo Shin</h4>
+          <p>Associate Professor, Teacher Education · Michigan State University</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <div class="key-insight">
+      <div class="key-insight-label">Core Finding</div>
+      <p>When AI is uncertain about a student's response, humans are uncertain about exactly the same things. AI uncertainty mirrors human uncertainty—signaling where teacher judgment is most needed.</p>
+    </div>
+
+    <h2>The Project: AI-Powered Elementary Science Assessment</h2>
+
+    <!-- Section 1: Project Overview -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-flask"></i>
+          U.S. Department of Education Research Initiative
+        </div>
+        <p class="tier-1-summary">A $10 million, 5-year project bringing together four institutions to study how AI can support elementary science and literacy education through project-based learning.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>This is a <strong>large-scale randomized controlled trial</strong> examining whether AI-assisted assessment improves student learning outcomes compared to traditional approaches.</p>
+
+          <div class="project-stats">
+            <div class="stat-card">
+              <div class="stat-number">$10M</div>
+              <div class="stat-label">DOE Funding</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Years</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">160</div>
+              <div class="stat-label">First-Grade Teachers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">6,400</div>
+              <div class="stat-label">Students</div>
+            </div>
+          </div>
+
+          <h4>Partner Institutions:</h4>
+          <ul>
+            <li><strong>Michigan State University</strong> – Lead institution, AI development</li>
+            <li><strong>University of Alabama</strong> – Implementation site</li>
+            <li><strong>New York University</strong> – Research collaboration</li>
+            <li><strong>Excellent Learning</strong> – Curriculum publisher for dissemination</li>
+            <li><strong>WestEd</strong> – Independent evaluator</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">From the Forum</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Namsoo Shin:</span> "This is the 10 million grant, it's a five years grant. We just started this year... We are going to conduct a randomized trial, whether the AI using or not, controlling treatment group. We are going to do the comparison study. So each year, we are going to deal with 3,200 students. And then the total, the impact of this project is 6,400 students in 80 elementary schools in Alabama."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The Innovation: Multi-Agent AI Scoring</h2>
+
+    <!-- Section 2: Why Multiple Agents -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-users-gear"></i>
+          Five Agents Instead of One
+        </div>
+        <p class="tier-1-summary">Rather than using a single AI model, the system deploys five different agent models to score each student response. When agents disagree, that disagreement signals uncertainty—and the need for human review.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The multi-agent approach fundamentally changes the goal of AI assessment. Instead of simply scoring, the system is designed to <strong>detect its own mistakes</strong> and identify where human judgment is needed.</p>
+
+          <h4>How It Works:</h4>
+          <ul>
+            <li><strong>Agent diversity:</strong> Each agent has different characteristics—one is generous, another is strict and conservative</li>
+            <li><strong>Aggregation:</strong> All five agents score the same response, and results are aggregated</li>
+            <li><strong>Uncertainty detection:</strong> When agents disagree (e.g., 3 say "A", 2 say "B"), the system flags this as uncertain</li>
+            <li><strong>Rationale provision:</strong> Each agent provides its reasoning, not just a score</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">From the Forum</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Namsoo Shin:</span> "What we did is instead of using the one agent model, we're using the five different agent models scoring the same student responses. And what we did to kind of give the agent one score, the B, agent 2A, agent 3A, and agent 4AA, and we aggregated all of the student response, the agent output. And the major fault is A. However, because there was 2B, and we provided the rationale why we analyzed this data, and also the uncertainty level."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: The Key Finding -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-lightbulb"></i>
+          AI Uncertainty = Human Uncertainty
+        </div>
+        <p class="tier-1-summary">A remarkable finding: when AI agents are uncertain about a response, human experts are uncertain about the exact same responses. The points of confusion are identical.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>This finding validates the multi-agent approach: if AI uncertainty reliably signals where humans would also struggle, then <strong>uncertainty detection becomes a tool for efficiently allocating human attention</strong>.</p>
+
+          <h4>Why This Happens:</h4>
+          <p>Elementary students' writing often contains ambiguous or unclear expressions—misspellings, incomplete thoughts, or creative interpretations. When a first-grader writes "stream" as "scream" or "mountain" as "wanting," both AI and human raters face the same interpretive challenge.</p>
+
+          <h4>Practical Implication:</h4>
+          <p>Rather than having teachers review every AI-scored response, they can focus on the flagged uncertain cases—dramatically reducing workload while maintaining accuracy where it matters most.</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">From the Forum</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Namsoo Shin:</span> "But where you're uncertain, between you and your coder, and where AI is uncertain, between you and the AI, are those the same kinds of errors? Yes. Yeah? Yeah. Yes. That's important. That is very amazingly, kind of because we're putting our data, human data, and so AI analyzed the student's written responses. It's very similar to the uncertainty. The point is very similar. For example, kind of elementary students writing it, stream, scream, and then some mountain and wanting. So it's the kind of we don't know is that that kind of wording is whether you mean this one or that one. We are certain, and the AI also uncertain. So it's very same points."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The Human-in-the-Loop Process</h2>
+
+    <!-- Section 4: Two Levels of Human Involvement -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-people-arrows"></i>
+          Two Levels of Human Review
+        </div>
+        <p class="tier-1-summary">The system involves humans at two critical stages: the research team iteratively refines the AI during development, and teachers review uncertain cases before feedback reaches students.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <h4>Level 1: Development Team</h4>
+          <ul>
+            <li>Iteratively review AI scoring results</li>
+            <li>Revise rubrics based on where AI makes mistakes</li>
+            <li>Continue until achieving at least 80% human-AI agreement (typically reaching 87-90%)</li>
+          </ul>
+
+          <h4>Level 2: Teachers in Classrooms</h4>
+          <ul>
+            <li>Receive AI scores along with uncertainty levels and rationales</li>
+            <li>Can modify AI scores based on their knowledge of individual students</li>
+            <li>Revise automated feedback before sending to students</li>
+          </ul>
+
+          <p>This dual-layer approach means <strong>no AI decision reaches students without the possibility of human review</strong>—and the system actively identifies which decisions most need that review.</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">From the Forum</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Namsoo Shin:</span> "We gave that information to teacher. But teacher is not only final score. It's uncertainty level, and why this student response is very uncertain. So teacher can make a decision, and then they can change the AI score, and then they can revise the feedback, and then they can send it to the student. So it's kind of the, Jiliang mentions that, is we have two group of the human, the group, for developing and delivering the feedback to students."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: The Real Challenge -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-wrench"></i>
+          The Surprising Bottleneck: Rubric Development
+        </div>
+        <p class="tier-1-summary">The main challenge isn't the AI, the data, or the prompting. It's rubric development. Humans intuitively understand rubrics, but AI needs explicit, step-by-step logical chains.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>A critical insight for anyone implementing AI assessment: <strong>most problems trace back to how rubrics are specified</strong>, not to AI limitations or data quality.</p>
+
+          <h4>The Translation Problem:</h4>
+          <ul>
+            <li><strong>Human rubrics:</strong> Written for human interpretation, relying on implicit understanding and context</li>
+            <li><strong>AI rubrics:</strong> Need explicit, step-by-step logical chains with no assumed knowledge</li>
+            <li><strong>The gap:</strong> What's obvious to human experts must be made explicit for AI</li>
+          </ul>
+
+          <h4>The Iterative Solution:</h4>
+          <p>The team revises rubrics iteratively, analyzing where AI makes mistakes and adding the specificity needed. This process continues until reaching the 80% agreement threshold—though most attempts achieve 87% or higher.</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">From the Forum</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Namsoo Shin:</span> "And then most of our problem is rubric development, not data, or AI, or prompting. It's more our rubric is a kind of human, intuitively understand the rubric content, but AI need very specific direction to how to analyze the student response step by step, logical chain. So we revised the rubric iteratively until we got at least 80% agreement. And so far, most of our attempt is 87% agreement."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Efficiency Gains</h2>
+
+    <!-- Section 6: Reduced Data Requirements -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-chart-line"></i>
+          From 1,500 to Less Than 100 Training Samples
+        </div>
+        <p class="tier-1-summary">Previous machine learning approaches required 1,500 labeled student responses per item. The new approach achieves similar accuracy with fewer than 100 examples—dramatically reducing human annotation effort.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>This efficiency gain comes from <strong>leveraging large language models' pre-existing language understanding</strong> combined with carefully specified rubrics.</p>
+
+          <h4>Comparison:</h4>
+          <ul>
+            <li><strong>Traditional ML:</strong> 1,500 labeled examples per assessment item</li>
+            <li><strong>Multi-agent LLM:</strong> Less than 100 examples, total around 300 students</li>
+            <li><strong>Reduction:</strong> ~93% less human labeling effort</li>
+          </ul>
+
+          <p>This makes it <strong>feasible to develop AI assessment for new items quickly</strong>—a critical factor for practical classroom implementation.</p>
+
+          <div class="tier-3-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">From the Forum</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Namsoo Shin:</span> "Before, kind of, we have two grant, and the one is the, we, first one is we're using the machine learning. That time, we're using the 1,500 student's data for item. But this time, we're using the only the... less than 100 students, and the total is a little bit more than 300 students. That means human effort to scoring, and annotating, and we reduced a lot."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="post-nav">
+      <a href="../blog.html">← Back to Blog</a>
+      <a href="ai-evolution-assessment.html">AI Evolution in Assessment →</a>
+    </div>
+  </article>
+
+  <!-- Related Posts -->
+  <section class="related-posts">
+    <div class="container">
+      <h3>Related Content</h3>
+      <div class="related-grid">
+        <a href="ai-evolution-assessment.html" class="related-card">
+          <h4>AI Evolution and Assessment</h4>
+          <p>Jiliang Tang's foundational presentation on how AI paradigms shape educational assessment.</p>
+        </a>
+        <a href="panel-discussion-human-ai.html" class="related-card">
+          <h4>The Human-AI Partnership Debate</h4>
+          <p>Panel discussion on when to trust AI for high-stakes educational decisions.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="multi-agent-ai-assessment"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM Unjournal</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual AIET IN STEM Forum · Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+            <li><a href="../event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Email: <a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('visible');
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> View Original Quote';
+      }
+    }
+
+    function toggleMenu() {
+      document.querySelector('.nav-menu').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Evolution and Its Impact on Educational Assessment - From Expert Systems to Generative AI">
+  <title>AI Evolution and Its Impact on Educational Assessment | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Specific Styles */
+    .post-hero {
+      background: linear-gradient(135deg, #1f4952 0%, #3d7d8a 100%);
+      color: var(--white);
+      padding: 10rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-hero .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .post-hero .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .post-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-info h4 {
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .post-content h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--text);
+    }
+
+    .post-content h3 {
+      font-size: 1.35rem;
+      margin: 2rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .post-content ul, .post-content ol {
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+
+    .post-content li {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    /* 3-Tier Expandable Sections */
+    .tier-section {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+
+    .tier-1-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tier-1-title i {
+      color: var(--primary);
+    }
+
+    .tier-1-summary {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .details-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .details-link:hover {
+      color: var(--primary-dark);
+    }
+
+    .details-link i {
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-section.expanded .details-link span {
+      display: none;
+    }
+
+    .tier-section.expanded .details-link::after {
+      content: 'Hide Details';
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    .tier-2-content p {
+      margin-bottom: 1rem;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0 1rem 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-3-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .tier-3-toggle:hover {
+      color: var(--primary-light);
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .tier-3.visible {
+      display: block;
+    }
+
+    .tier-3-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .actual-quote {
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: var(--primary);
+      font-style: normal;
+    }
+
+    /* Key Insight Box */
+    .key-insight {
+      background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 100%);
+      border-left: 4px solid #0284C7;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .key-insight-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #0284C7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .key-insight p {
+      margin: 0;
+      color: #0C4A6E;
+      font-weight: 500;
+    }
+
+    /* Navigation */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .post-nav a {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Related Posts */
+    .related-posts {
+      background: var(--background-alt);
+      padding: 3rem 0;
+    }
+
+    .related-posts h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .related-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .related-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .related-card p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Hero -->
+  <section class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <span class="post-tag">Research Note</span>
+        <span class="post-date">December 2025 · AIET Forum Session</span>
+      </div>
+      <h1>AI Evolution and Its Impact on Educational Assessment</h1>
+      <p class="subtitle">From hard-coded expert systems to emergent generative AI: How the evolution of artificial intelligence fundamentally changes the way we can assess student learning.</p>
+      <div class="post-author">
+        <div class="post-author-avatar">
+          <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang">
+        </div>
+        <div class="post-author-info">
+          <h4>Jiliang Tang</h4>
+          <p>Foundation Professor, Computer Science · Michigan State University</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <p>At the 2025 AIET IN STEM Forum, Professor Jiliang Tang presented a comprehensive overview of AI's evolution and its implications for educational assessment. This post captures the key insights from that session, structured to allow progressive exploration from summary to detailed analysis to actual forum quotes.</p>
+
+    <div class="key-insight">
+      <div class="key-insight-label">Core Thesis</div>
+      <p>The evolution of AI in education mirrors the evolution of AI itself. As AI changed from rule-based to learning-based to generative, so did its potential applications in education—from rigid tutoring systems to adaptive assessment to transparent, explainable feedback.</p>
+    </div>
+
+    <h2>The Three Stages of AI Evolution</h2>
+
+    <!-- Section 1: Expert Systems -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-microchip"></i>
+          Stage 1: Expert Systems (Rule-Based AI)
+        </div>
+        <p class="tier-1-summary">AI as programmed rules: Experts encode domain knowledge into if-then logic. Rigid, brittle, and limited to known scenarios.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>In the early stages of AI, the approach was fundamentally about <strong>programming intelligence</strong>. Domain experts would analyze a problem, extract rules, and hard-code them into a system.</p>
+          <ul>
+            <li><strong>How it works:</strong> Experts provide domain-specific rules (e.g., "If fever + cough + positive test → diagnose influenza")</li>
+            <li><strong>Who could build it:</strong> Only domain experts, since they needed to articulate all the rules</li>
+            <li><strong>Key limitation:</strong> Any situation outside the programmed rules causes failure. No ability to handle out-of-distribution cases.</li>
+          </ul>
+          <p>This is why we call them "expert systems"—they can only be created by experts who provide all the domain-specific rules.</p>
+
+          <div class="tier-3-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Actual Forum Quote</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Jiliang Tang:</span> "What's AI? At any stage, AI, we're trying to, how can we make AI think? How can we make AI work? What we are doing is just to express the program. So we tell a lot of rules. We gather those rules from experts. And then we program it. And then once the situation, the input come in, we just go through those rules... Of course, people, I mean, the users of this expert system think the machine can think. But actually it cannot because all those rules are hard-coded. And if there are some new situations occur, the system will fail."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Machine Learning -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-brain"></i>
+          Stage 2: Machine Learning (Learning from Data)
+        </div>
+        <p class="tier-1-summary">Instead of programming rules, we show examples. The machine learns to recognize patterns—just like teaching a child what a cat looks like.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The breakthrough of machine learning was a fundamental shift: <strong>let the machine learn rules from examples</strong> rather than having experts program them directly.</p>
+          <ul>
+            <li><strong>How it works:</strong> Show many labeled examples (cat/not cat), and the machine learns to identify patterns</li>
+            <li><strong>Who could build it:</strong> Normal users could train models—just provide examples</li>
+            <li><strong>Key formula:</strong> AI = Algorithm + Data</li>
+            <li><strong>Analogy:</strong> This mirrors how we teach children—we don't explain rules for identifying cats, we show many examples</li>
+          </ul>
+          <p>Data becomes central. The quality and quantity of labeled examples determines the model's capability.</p>
+
+          <div class="tier-3-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Actual Forum Quote</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Jiliang Tang:</span> "So instead of giving AI the rules, we just show examples. And we want AI to learn those rules or summarize those rules from examples... Why do we think this can work? Because this is similar to how we teach our kids. For example, we want the kids to learn what is cat. We don't tell all kinds of rules to identify a cat, but we just show a lot of examples to the kids. Okay, this is a dog, this is a cat. So if we show a lot of these kinds of examples, the kids will learn."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Generative AI -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-wand-magic-sparkles"></i>
+          Stage 3: Generative AI (Creation & Emergent Abilities)
+        </div>
+        <p class="tier-1-summary">From classification to generation. Models don't just categorize—they create sentences, images, code. Emergent abilities appear at scale.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The current era represents another paradigm shift: from <strong>classification to generation</strong>. Instead of "cat or not cat," AI now creates—sentences, emails, images, code.</p>
+
+          <h4>Three Training Stages of Large Models:</h4>
+          <ol>
+            <li><strong>Pre-training:</strong> Learn from virtually all internet data using unsupervised learning (predicting next word). The model becomes "knowledgeable" but not yet useful.</li>
+            <li><strong>Supervised Fine-tuning:</strong> Teach specific tasks (e.g., "summarize this article") with labeled examples</li>
+            <li><strong>Alignment:</strong> Ensure values match human values (e.g., don't teach how to make bombs)</li>
+          </ol>
+
+          <p>The surprise is <strong>emergent abilities</strong>—capabilities that appear unexpectedly as model size increases: summarization, translation, programming, image generation.</p>
+
+          <div class="tier-3-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Actual Forum Quote</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Jiliang Tang:</span> "So if you can imagine, so the old machine learning, we just do the classification. So cat or not cat. But now we are entering into the generative AI. Generation. Everything is generation. Instead of cat or not cat, we create a sentence, write an email, create a new picture of cat... The pre-training is just like a student. Before you choose a major, you learn the foundations. You learn everything. You are not a PhD in math, PhD in biology. You just learn everything."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Impact on Educational Assessment: Auto-Grading Case Study</h2>
+
+    <!-- Section 4: Traditional Pipeline -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-clock-rotate-left"></i>
+          The Traditional Auto-Grading Pipeline
+        </div>
+        <p class="tier-1-summary">Experts create rubrics → Annotators label data → Train model → Predict. Human expertise flows through data, not direct communication.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Traditional auto-grading treated scoring as a <strong>classification problem</strong>: map input (student response) to output (score category) using labeled training data.</p>
+
+          <h4>The Pipeline:</h4>
+          <ol>
+            <li>Experts build rubrics</li>
+            <li>Annotators (trained with rubrics) label student responses</li>
+            <li>Train classification model on labeled data</li>
+            <li>Model predicts scores on new responses</li>
+          </ol>
+
+          <h4>Two Critical Problems:</h4>
+          <ul>
+            <li><strong>No direct communication:</strong> Experts cannot interact directly with the algorithm—everything flows through annotators and labeled data</li>
+            <li><strong>Feedback gap:</strong> If the model makes mistakes, experts can't directly correct it. They must relabel data and retrain.</li>
+          </ul>
+
+          <div class="tier-3-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Actual Forum Quote</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Jiliang Tang:</span> "So the problem, actually, so there are two problems. So for example, the first one is, actually, it's very hard for the human to interact with the algorithm, for the human experts to interact with the algorithm. It's because everything, if you check the information flow, everything is through the annotators... If the algorithm has problems, how can we get the feedback from a human, right? We cannot directly get feedback from a human. We must go through, we need to label it again."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: New Paradigm -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-arrows-rotate"></i>
+          The New Paradigm: Direct Rubric Understanding
+        </div>
+        <p class="tier-1-summary">Remove the annotation bottleneck. AI directly understands rubrics through language. Experts and AI communicate directly.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>With generative AI, we can <strong>remove the annotation step entirely</strong>. The model directly understands rubrics, and experts can directly communicate feedback.</p>
+
+          <h4>Three Key Advantages:</h4>
+          <ol>
+            <li><strong>Generalization:</strong> Change rubrics, and the model immediately applies to new domains, problems, and disciplines</li>
+            <li><strong>Engagability:</strong> Human experts can directly instruct the model with domain knowledge—no data labeling required</li>
+            <li><strong>Transparency:</strong> The reasoning process is visible in natural language</li>
+          </ol>
+
+          <p>This enables new capabilities: uncertainty quantification (telling teachers when to get involved), human-in-the-loop verification, and direct knowledge injection.</p>
+
+          <div class="tier-3-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Actual Forum Quote</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Jiliang Tang:</span> "Can we just remove the annotation part, right? So can we learn the model, understand, directly understand the gradient [rubric], and then, any feedback, any domain knowledge, we can directly instruct the model to do this... So this is the first one. The second one is engagable. So that means, if the human experts have the feedback, or you have domain knowledge, you're trying to pull this up, you can directly write in a way, machine learning can understand. So previously, machine learning to understand human experts through the labeled data. Now, everything's based on language."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The Central Question: AI's Role in Education</h2>
+
+    <!-- Section 6: Human in the Loop -->
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-users-gear"></i>
+          AI as Assistant, Not Replacement
+        </div>
+        <p class="tier-1-summary">AI in education should assist, not replace. Probability-based systems require human verification. Transparency and collaboration are essential.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span>Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>A fundamental point that emerged from the forum discussion: <strong>AI's role is to assist, not to replace human decision-making</strong>.</p>
+
+          <h4>Three Principles:</h4>
+          <ul>
+            <li><strong>Assistance over replacement:</strong> Based on how AI models are trained (probability-based), they always require human verification</li>
+            <li><strong>Transparency:</strong> Make the reasoning process visible to humans, provide evidence for decisions</li>
+            <li><strong>Human-AI partnership:</strong> Collaboration where AI enhances human capability rather than substituting for it</li>
+          </ul>
+
+          <p>Just like self-driving cars—even on highways where the technology is reliable, humans must remain engaged. We hold AI to higher standards than humans, forgiving human mistakes more readily.</p>
+
+          <div class="tier-3-toggle" onclick="event.stopPropagation(); toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View Original Quote
+          </div>
+          <div class="tier-3">
+            <div class="tier-3-label">Actual Forum Quote</div>
+            <p class="actual-quote">
+              <span class="quote-speaker">Jiliang Tang:</span> "So basically, one thing I want to clarify is what's the role of AI in education? I think AI in education is to assist. It's going to replace the decision humans should make, right? So we, there's no, because based on the nature of the way we train the AI model, it's a probability. Always a probability. Always need a human to verify. So that means probably there's no one field we can totally trust without any human intervention or human involvement. So that's why we emphasize the role of AI is to assist. It's not to replace. It's to enhance."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-insight">
+      <div class="key-insight-label">Takeaway</div>
+      <p>The paradigm shift isn't just technical—it's relational. For the first time, educational researchers and AI systems can communicate in the same language. This opens possibilities for transparent, adaptable, and human-centered AI in assessment.</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="post-nav">
+      <a href="../blog.html"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+      <a href="panel-discussion-human-ai.html">Next: Panel Discussion <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </article>
+
+  <!-- Related Posts -->
+  <section class="related-posts">
+    <div class="container">
+      <h3>Related Posts</h3>
+      <div class="related-grid">
+        <a href="panel-discussion-human-ai.html" class="related-card">
+          <h4>The Human-AI Partnership Debate</h4>
+          <p>Forum panelists discuss reliability, domain specificity, and when AI truly needs human oversight.</p>
+        </a>
+        <a href="#" class="related-card">
+          <h4>Multi-Agent Scoring Systems</h4>
+          <p>Using multiple AI agents to detect uncertainty and improve assessment reliability.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="ai-evolution-assessment"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('visible');
+      const icon = toggle.querySelector('i');
+      if (tier3.classList.contains('visible')) {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> Hide Quote';
+      } else {
+        toggle.innerHTML = '<i class="fas fa-quote-left"></i> View Original Quote';
+      }
+    }
+  </script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+</body>
+</html>

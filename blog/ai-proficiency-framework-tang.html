@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jiliang Tang's keynote on AI Proficiency in Education: opportunities, risks, and a framework for building AI literacy in students and teachers.">
+  <title>AI Proficiency in Education: Opportunities, Risks, and a Framework | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/style.css?v=30">
+  <style>
+    /* Blog Post Styles */
+    .blog-post-hero {
+      background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+      color: var(--white);
+      padding: 8rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .blog-post-hero h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      max-width: 800px;
+      margin-bottom: 1rem;
+    }
+
+    .blog-post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .blog-post-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .blog-post-date {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .blog-post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .blog-post-content h2 {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .blog-post-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    /* Speaker Card */
+    .speaker-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .speaker-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    .speaker-info h3 {
+      color: var(--white);
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .speaker-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Opportunity Box */
+    .opportunity-box {
+      background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+      border-left: 4px solid #22C55E;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .opportunity-box h4 {
+      color: #166534;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .opportunity-box p {
+      margin: 0;
+      color: #15803D;
+    }
+
+    /* Risk Box */
+    .risk-box {
+      background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+      border-left: 4px solid #EF4444;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .risk-box h4 {
+      color: #B91C1C;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .risk-box p {
+      margin: 0;
+      color: #991B1B;
+    }
+
+    /* Framework Box */
+    .framework-box {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border-left: 4px solid #3B82F6;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .framework-box h4 {
+      color: #1E40AF;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .framework-box p {
+      margin: 0;
+      color: #1E3A8A;
+    }
+
+    /* Warning Box */
+    .warning-box {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-left: 4px solid #F59E0B;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .warning-box h4 {
+      color: #B45309;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .warning-box p {
+      margin: 0;
+      color: #92400E;
+    }
+
+    /* 3-Tier System */
+    .tier-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .tier-1 {
+      padding: 1.5rem;
+    }
+
+    .tier-1-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tier-1-summary {
+      color: var(--text);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .details-link {
+      color: var(--primary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.75rem;
+      font-weight: 500;
+    }
+
+    .details-link:hover {
+      text-decoration: underline;
+    }
+
+    .details-link i {
+      transition: transform 0.2s;
+      font-size: 0.75rem;
+    }
+
+    .tier-section.expanded .details-link i {
+      transform: rotate(90deg);
+    }
+
+    .tier-2 {
+      display: none;
+      padding: 1.5rem;
+      background: var(--background-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .tier-section.expanded .tier-2 {
+      display: block;
+    }
+
+    .tier-2-content {
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .tier-2-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .tier-2-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-toggle {
+      color: var(--text-light);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(0,0,0,0.05);
+      border-radius: 6px;
+    }
+
+    .quote-toggle:hover {
+      background: rgba(0,0,0,0.08);
+    }
+
+    .tier-3 {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--white);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .tier-3.expanded {
+      display: block;
+    }
+
+    .tier-3-quote {
+      font-style: italic;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .quote-speaker {
+      font-weight: 600;
+      color: var(--primary);
+      font-style: normal;
+    }
+
+    /* Framework Diagram */
+    .framework-diagram {
+      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .framework-title {
+      text-align: center;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .dimensions-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .dimension-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .dimension-card:nth-child(1) { border-color: #3B82F6; }
+    .dimension-card:nth-child(2) { border-color: #22C55E; }
+    .dimension-card:nth-child(3) { border-color: #F59E0B; }
+
+    .dimension-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+      font-size: 1.25rem;
+      color: white;
+    }
+
+    .dimension-card:nth-child(1) .dimension-icon { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+    .dimension-card:nth-child(2) .dimension-icon { background: linear-gradient(135deg, #22C55E, #16A34A); }
+    .dimension-card:nth-child(3) .dimension-icon { background: linear-gradient(135deg, #F59E0B, #D97706); }
+
+    .dimension-title {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .dimension-desc {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* Levels Pyramid */
+    .levels-pyramid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .level-bar {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      color: white;
+    }
+
+    .level-bar.level-3 {
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+      width: 60%;
+    }
+
+    .level-bar.level-2 {
+      background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+      width: 80%;
+    }
+
+    .level-bar.level-1 {
+      background: linear-gradient(135deg, #22C55E, #16A34A);
+      width: 100%;
+    }
+
+    /* Case Study Box */
+    .case-study-box {
+      background: linear-gradient(135deg, #FDF4FF 0%, #FAE8FF 100%);
+      border: 2px solid #E9D5FF;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .case-study-box h4 {
+      color: #7E22CE;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .case-study-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #7E22CE;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #6B21A8;
+    }
+
+    /* Back Link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .blog-post-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .blog-post-content {
+        padding: 2rem 1rem;
+      }
+
+      .dimensions-row {
+        grid-template-columns: 1fr;
+      }
+
+      .case-study-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .speaker-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="../speakers.html" class="nav-link">Network</a></li>
+        <li><a href="../program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="../event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Post Hero -->
+  <section class="blog-post-hero">
+    <div class="container">
+      <h1>AI Proficiency in Education: Opportunities, Risks, and a Framework</h1>
+      <div class="blog-post-meta">
+        <span class="blog-post-tag">Keynote</span>
+        <span class="blog-post-date">December 2025</span>
+      </div>
+      <div class="speaker-card">
+        <img src="https://edge.sitecorecloud.io/michiganstab57e-msustrategi129d-prod9868-7e5e/media/project/msu/egr/images/faculty-directory---main/s-x/tang-jiliang-cropped.jpg" alt="Jiliang Tang">
+        <div class="speaker-info">
+          <h3>Jiliang Tang</h3>
+          <p>Professor, Michigan State University<br>AI & Machine Learning Expert</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Post Content -->
+  <article class="blog-post-content">
+    <a href="../blog.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Blog
+    </a>
+
+    <p class="lead" style="font-size: 1.15rem; color: var(--text); line-height: 1.8;">
+      Every opportunity comes paired with risks and challenges. In this keynote, Prof. Jiliang Tang presents a comprehensive framework for building AI proficiency - not learning to code, but understanding how to use AI responsibly, critically, and effectively in education.
+    </p>
+
+    <div class="framework-box">
+      <h4><i class="fas fa-key"></i> The Core Message</h4>
+      <p>"There is no free lunch. Every opportunity is paired with risks and challenges. We need to build AI proficiency - not to code, not to build models, but to use AI in the right way: for inquiry, creation, critical thinking, and responsibility."</p>
+    </div>
+
+    <!-- Opportunities -->
+    <h2>The Opportunities: AI as an Equalizer</h2>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-globe-americas"></i>
+          Breaking Down Barriers
+        </div>
+        <p class="tier-1-summary">AI can be an interactive partner that co-constructs knowledge with teachers and empowers them to think, create, and engage deeply with students. Most importantly, it can provide equal access to educational resources for everyone.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>AI opens doors that were previously closed:</p>
+          <ul>
+            <li>Students with limited resources can access the same educational infrastructure</li>
+            <li>Students with disabilities can share classrooms with all students</li>
+            <li>A student in Africa could join a classroom in Korea</li>
+            <li>AI acts as an intellectual partner, not just a tool</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original quote
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "AI provides new opportunities for everything. There are many students with very limited resources. There are many students with disabilities. With AI, they can share the same educational resources, the same educational infrastructure with normal students. You can imagine in the future, one day, a student in Africa can join a classroom in Korea to share the same educational resources with Korean students."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Risks -->
+    <h2>The Risks: No Free Lunch</h2>
+
+    <div class="risk-box">
+      <h4><i class="fas fa-exclamation-triangle"></i> The Hard Truth</h4>
+      <p>AI is fundamentally a "guessing machine" - a probabilistic statistical model that predicts the next word. This creates hallucinations that are undetectable by the model itself.</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-ghost"></i>
+          Hallucination: The Confident Lie
+        </div>
+        <p class="tier-1-summary">Give AI "Georgia National" and it predicts "University" - correct, Georgia National University exists. Give it "Georgia State" and it also predicts "University" - but Georgia State University doesn't exist. AI cannot verify its own outputs.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>This creates serious problems in education:</p>
+          <ul>
+            <li>AI generates "comfortable but inaccurate content"</li>
+            <li>In domains where procedure matters, small errors compound</li>
+            <li>A mathematical error or flawed scientific explanation can damage learning</li>
+            <li>Students without verification skills will absorb misinformation</li>
+            <li>There's no mechanism in the model itself to detect these errors</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original quote
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "Nowadays, AI is a probability statistical model. It's a guessing machine. If you give AI 'Georgia National,' AI will predict 'University.' That's good - Georgia National University exists. But if you give AI 'Georgia State,' AI will also predict 'University.' But Georgia State University does not exist. That is a hallucination. The worst thing is this hallucination is undetectable. There is no mechanism from the model itself to verify this output."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-balance-scale"></i>
+          Bias and Privacy
+        </div>
+        <p class="tier-1-summary">AI is trained on internet data that carries biases and stereotypes. Models inherit these problems. Meanwhile, AI continuously collects data - but who owns it? How is it stored? How is it used?</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Critical questions that remain unanswered:</p>
+          <ul>
+            <li>Training data from the internet carries society's biases</li>
+            <li>Models inherit stereotypes from their training data</li>
+            <li>Who owns the data collected from students and teachers?</li>
+            <li>How is data stored and secured?</li>
+            <li>Will your data be used to train the next model?</li>
+            <li>We don't have education-specific AI ethics guidelines yet</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original quote
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "How do you get the data? We collect the data from the internet. Unfortunately, the data collected from the internet carries bias. It carries stereotype. The model trained on this data will inherit those biases. In Europe, the US, China, we have some guidelines on how to use AI ethically. But for education, we need specific and dedicated efforts. Unfortunately, today, we don't have this kind of guidelines."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Real-World Example -->
+    <h2>A Real Example: The Over-Reliance Problem</h2>
+
+    <div class="case-study-box">
+      <h4><i class="fas fa-university"></i> From Prof. Tang's Class</h4>
+      <p>An undergraduate course at Michigan State University with ~200 students. Assessment had two parts: take-home homework (AI allowed) and closed-book in-class exams.</p>
+      <div class="case-study-stats">
+        <div class="stat-item">
+          <div class="stat-number">200</div>
+          <div class="stat-label">Students</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">Perfect</div>
+          <div class="stat-label">Take-Home Scores</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">80%</div>
+          <div class="stat-label">Failed In-Class</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-calculator"></i>
+          The Calculator Problem, Amplified
+        </div>
+        <p class="tier-1-summary">If you outsource too much thinking to AI, you lose the opportunity to build fundamental knowledge. Like over-reliance on calculators that led students to lose basic mathematical intuition - but worse.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>The implications are serious:</p>
+          <ul>
+            <li>Students performed perfectly on take-home work (using AI)</li>
+            <li>80% failed when they couldn't use AI</li>
+            <li>They outsourced the learning, not just the work</li>
+            <li>Like calculators - students lost the ability to do basic math</li>
+            <li>This affects their capacity for advanced learning</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original quote
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "I just finished all the final grades. Students performed perfectly on take-home homework. But 80% of them failed the in-class exam. Why? Over-reliance and misuse of AI. If you rely on AI too much, you're outsourcing too much thinking to AI. You lose the opportunity to train your own fundamental knowledge. Many people compare current AI to a calculator. Students who over-relied on calculators lost the ability to learn advanced mathematics."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Framework -->
+    <h2>The AI Proficiency Framework</h2>
+
+    <div class="framework-box">
+      <h4><i class="fas fa-info-circle"></i> What AI Proficiency Is NOT</h4>
+      <p>AI proficiency doesn't mean learning to code. It doesn't mean learning advanced machine learning. It doesn't mean building models from scratch. It means using AI correctly.</p>
+    </div>
+
+    <div class="framework-diagram">
+      <div class="framework-title">Three Dimensions of AI Proficiency</div>
+      <div class="dimensions-row">
+        <div class="dimension-card">
+          <div class="dimension-icon">
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="dimension-title">AI Literacy</div>
+          <div class="dimension-desc">Understand how AI works. Know that AI is not perfect - it's a probabilistic model that guesses.</div>
+        </div>
+        <div class="dimension-card">
+          <div class="dimension-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <div class="dimension-title">AI Practice</div>
+          <div class="dimension-desc">Use AI for inquiry, creation, critical thinking. Don't 100% trust or 100% outsource to AI.</div>
+        </div>
+        <div class="dimension-card">
+          <div class="dimension-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="dimension-title">AI Access</div>
+          <div class="dimension-desc">Ensure safety, transparency, privacy, and human centrality when using AI.</div>
+        </div>
+      </div>
+
+      <div class="framework-title" style="margin-top: 2rem;">Three Levels for Students</div>
+      <div class="levels-pyramid">
+        <div class="level-bar level-3">
+          <i class="fas fa-brain"></i> Higher-Order Skills
+          <div style="font-size: 0.8rem; font-weight: 400; margin-top: 0.25rem;">Creativity, critical evaluation, human-AI collaboration</div>
+        </div>
+        <div class="level-bar level-2">
+          <i class="fas fa-graduation-cap"></i> Disciplinary-Specific
+          <div style="font-size: 0.8rem; font-weight: 400; margin-top: 0.25rem;">Different requirements for different fields</div>
+        </div>
+        <div class="level-bar level-1">
+          <i class="fas fa-users"></i> Fundamental (All Students)
+          <div style="font-size: 0.8rem; font-weight: 400; margin-top: 0.25rem;">Basic understanding: What is a model? What is data? Why hallucination?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-question-circle"></i>
+          Fundamental Questions Every Student Should Answer
+        </div>
+        <p class="tier-1-summary">What is a model? What is data? Where does the data come from? Why does AI hallucinate? Where does bias come from? If you can't answer these, you can't use AI responsibly.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Basic AI literacy questions:</p>
+          <ul>
+            <li>What is a model? (You've heard of GPT, ChatGPT - but what IS a model?)</li>
+            <li>What is data? How is it collected?</li>
+            <li>Why is the model biased? (If you don't know where data comes from, you can't understand bias)</li>
+            <li>Why does AI hallucinate? What causes errors?</li>
+            <li>Why can't AI verify its own outputs?</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original quote
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "When you use AI, you need to have some basic understandings. We know they are AI models. But ask yourself - what is a model? AI is data-centric. What is data? How do we get the data? If you don't know where the data is from, you cannot understand why the model is biased."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-brain"></i>
+          Higher-Order Skills: What Makes Us Human
+        </div>
+        <p class="tier-1-summary">AI should enhance, not replace, higher-order skills. Creativity remains uniquely human. Critical evaluation of AI outputs is a new essential skill. Human-AI collaboration is a new competency we must develop.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>Skills to enhance and develop:</p>
+          <ul>
+            <li><strong>Creativity:</strong> Even the best AI has very limited creativity - this is uniquely human</li>
+            <li><strong>Critical Evaluation:</strong> New skill - ability to evaluate AI outputs since hallucination can't be eliminated</li>
+            <li><strong>Human-AI Collaboration:</strong> Not just human-to-human - learning to collaborate with AI agents</li>
+            <li><strong>Problem Composition:</strong> Breaking down problems for effective AI assistance</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original quote
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "AI should enhance instead of weakening our higher-order skills. Some of these skills are a gift to our human beings. Creativity - even for the best AI model currently, they have very limited ability for creativity. We need to critically evaluate AI output instead of 100% trusting it. In the future, AI agents will interact with human beings. We need to learn how to do this kind of collaboration. Human-AI collaboration - there are new opportunities, new skills. We need to learn."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- For Teachers -->
+    <h2>For Teachers: New Challenges, New Skills</h2>
+
+    <div class="warning-box">
+      <h4><i class="fas fa-chalkboard-teacher"></i> The Challenge Ahead</h4>
+      <p>"In the future classroom, AI will become an intellectual company. That means it will challenge our teachers dramatically."</p>
+    </div>
+
+    <div class="tier-section expanded">
+      <div class="tier-1">
+        <div class="tier-1-title">
+          <i class="fas fa-graduation-cap"></i>
+          Supporting Teachers in the AI Era
+        </div>
+        <p class="tier-1-summary">Teachers need new PCK (Pedagogical Content Knowledge) for AI. They must learn to evaluate AI outputs in student work. Pedagogy itself needs adjustment when AI is part of the classroom.</p>
+        <div class="details-link" onclick="toggleSection(this.closest('.tier-section'))">
+          <i class="fas fa-chevron-right"></i>
+          <span class="expand-text">View Details</span>
+        </div>
+      </div>
+      <div class="tier-2">
+        <div class="tier-2-content">
+          <p>What teachers need:</p>
+          <ul>
+            <li>Professional development on evaluating AI outputs</li>
+            <li>New PCK specifically for AI in teaching</li>
+            <li>Adjusted pedagogical strategies for AI-integrated classrooms</li>
+            <li>Clear guidance on safety and ethics</li>
+            <li>Time for training (currently lacking)</li>
+            <li>Infrastructure support (hardware and software)</li>
+          </ul>
+          <div class="quote-toggle" onclick="toggleQuote(this)">
+            <i class="fas fa-quote-left"></i> View original quote
+          </div>
+          <div class="tier-3">
+            <p class="tier-3-quote">
+              <span class="quote-speaker">Jiliang Tang:</span>
+              "We must support our teachers from many perspectives. I'm working with my colleague Yasemin about PCK - Pedagogical Content Knowledge. We also need to develop professional development on how to evaluate AI. In the future, students' homework and assignments - probably part of them are from AI. Teachers must have the ability to verify. We need to adjust our pedagogy because AI is part of the classroom now."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="opportunity-box">
+      <h4><i class="fas fa-flag-checkered"></i> The Goal</h4>
+      <p>Enjoy the advantages, mitigate the risks, make it possible. Build AI proficiency so that students and teachers can use AI responsibly, critically, and effectively - keeping human beings at the center.</p>
+    </div>
+
+  </article>
+
+  <!-- Comments Section -->
+  <section class="section">
+    <div class="container">
+      <div id="comments-section" data-post-id="ai-proficiency-framework-tang"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../speakers.html">Network</a></li>
+            <li><a href="../program.html">Forum 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/comments.js"></script>
+  <script>
+    function toggleSection(section) {
+      section.classList.toggle('expanded');
+      const expandText = section.querySelector('.expand-text');
+      if (expandText) {
+        expandText.textContent = section.classList.contains('expanded') ? 'Hide Details' : 'View Details';
+      }
+    }
+
+    function toggleQuote(toggle) {
+      const tier3 = toggle.nextElementSibling;
+      tier3.classList.toggle('expanded');
+      toggle.innerHTML = tier3.classList.contains('expanded')
+        ? '<i class="fas fa-quote-left"></i> Hide original quote'
+        : '<i class="fas fa-quote-left"></i> View original quote';
+    }
+  </script>
+</body>
+</html>

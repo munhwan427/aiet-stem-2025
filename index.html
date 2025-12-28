@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AIET IN STEM 2025 - Global Initiative on AI and Emerging Technologies in STEM Education. December 16-20, 2025 at Jeju National University, South Korea.">
-  <meta name="keywords" content="AI, STEM, Education, Conference, Jeju, Korea, 2025">
-  <title>AIET IN STEM 2025 | Global Forum on AI in STEM Education</title>
+  <meta name="description" content="AIET IN STEM Unjournal - a global commons for AI and emerging technologies in STEM education, paired with the annual AIET IN STEM Forum.">
+  <meta name="keywords" content="AI, STEM, Education, Unjournal, Research, Global Initiative, Forum">
+  <title>AIET IN STEM Unjournal | Global Research Commons</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=23">
+  <link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body>
   <!-- Navigation -->
@@ -27,13 +27,12 @@
       </a>
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link active">Home</a></li>
-        <li><a href="speakers.html" class="nav-link">Speakers</a></li>
-        <li><a href="program.html" class="nav-link">Program</a></li>
-        <li><a href="travel.html" class="nav-link">Travel & Accommodation</a></li>
-        <li><a href="updates.html" class="nav-link">Updates</a></li>
-        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-        <li><a href="event2023.html" class="nav-link">2023 Event</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="speakers.html" class="nav-link">Network</a></li>
+        <li><a href="program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="event2023.html" class="nav-link">Forum 2023</a></li>
       </ul>
+      <div id="auth-container"></div>
       <div class="nav-toggle" onclick="toggleMenu()">
         <span></span>
         <span></span>
@@ -43,343 +42,163 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">Global Initiative <span class="badge-year">2025</span></div>
-      <h1>AI and Emerging Technologies in STEM Education</h1>
-      <p class="hero-subtitle">Exploring Education and Collaboration: Bridging Minds and Machines</p>
-
+  <section class="unjournal-hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Global Unjournal <span class="badge-year">AIET IN STEM</span></div>
+        <h1 style="color: #fff;">AI and Emerging Technologies in STEM Education</h1>
+        <p class="hero-subtitle">A research commons for rapid ideas, evidence, and practice — paired with the annual AIET IN STEM Forum.</p>
+        <div class="hero-buttons">
+          <a href="#latest" class="btn btn-primary">Read the Latest</a>
+          <a href="#collaborate" class="btn btn-outline">Propose a Topic</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Global Collaboration Section -->
-  <section class="global-collab-section">
-    <div class="global-stage">
-      <!-- Stage 1: Logos Zoom Animation - Americas -->
-      <div class="stage-slide stage-logos active">
-        <div class="zoom-logo-container americas-logos">
-          <div class="continent-header">🇺🇸 Americas</div>
-          <div class="logos-row">
-            <div class="zoom-logo zoom-logo-1">
-              <div class="logo-box-img">
-                <img src="images/logos/msu.svg" alt="Michigan State University">
-                <span class="logo-location">Michigan State University</span>
-              </div>
-            </div>
-            <div class="zoom-logo zoom-logo-2">
-              <div class="logo-box-img">
-                <img src="images/logos/rutgers.svg" alt="Rutgers University">
-                <span class="logo-location">Rutgers University</span>
-              </div>
-            </div>
-            <div class="zoom-logo zoom-logo-3">
-              <div class="logo-box-img">
-                <img src="images/logos/usc.svg" alt="University of Southern California">
-                <span class="logo-location">U of Southern California</span>
-              </div>
-            </div>
-            <div class="zoom-logo zoom-logo-4">
-              <div class="logo-box-img">
-                <img src="images/logos/umich.svg" alt="University of Michigan">
-                <span class="logo-location">University of Michigan</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h2 class="stage-title">Leading Universities from Americas</h2>
-      </div>
-
-      <!-- Stage 2: Europe & Africa -->
-      <div class="stage-slide stage-logos-2">
-        <div class="zoom-logo-container split-logos">
-          <div class="continent-group">
-            <div class="continent-header">🇩🇪 Europe</div>
-            <div class="zoom-logo">
-              <div class="logo-box-img">
-                <img src="images/logos/ipn.svg" alt="IPN Leibniz Institute">
-                <span class="logo-location">IPN Leibniz, Kiel</span>
-              </div>
-            </div>
-          </div>
-          <div class="continent-group">
-            <div class="continent-header">🇿🇦 Africa</div>
-            <div class="zoom-logo">
-              <div class="logo-box-img">
-                <img src="images/logos/요한네스 대학교.png" alt="University of Johannesburg">
-                <span class="logo-location">University of Johannesburg</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h2 class="stage-title">Europe & Africa Join the Mission</h2>
-      </div>
-
-      <!-- Stage 3: Asia -->
-      <div class="stage-slide stage-logos-3">
-        <div class="zoom-logo-container asia-logos">
-          <div class="continent-header">🇰🇷 🇹🇼 🇸🇬 Asia</div>
-          <div class="logos-row">
-            <div class="zoom-logo zoom-logo-1">
-              <div class="logo-box-img">
-                <img src="images/logos/제주대.jpg" alt="Jeju National University">
-                <span class="logo-location">Jeju National University</span>
-              </div>
-            </div>
-            <div class="zoom-logo zoom-logo-2">
-              <div class="logo-box-img">
-                <img src="images/logos/계명대.png" alt="Keimyung University">
-                <span class="logo-location">Keimyung University</span>
-              </div>
-            </div>
-            <div class="zoom-logo zoom-logo-3">
-              <div class="logo-box-img">
-                <img src="images/logos/타이완대학교.png" alt="National Taiwan Normal University">
-                <span class="logo-location">National Taiwan Normal U</span>
-              </div>
-            </div>
-            <div class="zoom-logo zoom-logo-4">
-              <div class="logo-box-img">
-                <img src="images/logos/난양공대.png" alt="Nanyang Technological University">
-                <span class="logo-location">NTU Singapore</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h2 class="stage-title">Asia Hosts & Collaborates</h2>
-      </div>
-
-      <!-- Stage 4: World Map with all university logos -->
-      <div class="stage-slide stage-map">
-        <div class="world-map-bg"></div>
-        <div class="map-logos">
-          <!-- Americas -->
-          <div class="map-logo-marker" style="top: 28%; left: 12%;">
-            <img src="images/logos/msu.svg" alt="MSU">
-            <span>MSU</span>
-          </div>
-          <div class="map-logo-marker" style="top: 32%; left: 18%;">
-            <img src="images/logos/umich.svg" alt="UMich">
-            <span>UMich</span>
-          </div>
-          <div class="map-logo-marker" style="top: 38%; left: 10%;">
-            <img src="images/logos/usc.svg" alt="USC">
-            <span>USC</span>
-          </div>
-          <div class="map-logo-marker" style="top: 26%; left: 22%;">
-            <img src="images/logos/rutgers.svg" alt="Rutgers">
-            <span>Rutgers</span>
-          </div>
-          <!-- Europe -->
-          <div class="map-logo-marker" style="top: 22%; left: 48%;">
-            <img src="images/logos/ipn.svg" alt="IPN">
-            <span>IPN Kiel</span>
-          </div>
-          <!-- Africa -->
-          <div class="map-logo-marker" style="top: 58%; left: 52%;">
-            <img src="images/logos/요한네스 대학교.png" alt="UJ">
-            <span>U of Johannesburg</span>
-          </div>
-          <!-- Asia -->
-          <div class="map-logo-marker" style="top: 35%; left: 85%;">
-            <img src="images/logos/제주대.jpg" alt="JNU">
-            <span>Jeju National U</span>
-          </div>
-          <div class="map-logo-marker" style="top: 30%; left: 80%;">
-            <img src="images/logos/계명대.png" alt="Keimyung">
-            <span>Keimyung U</span>
-          </div>
-          <div class="map-logo-marker" style="top: 40%; left: 82%;">
-            <img src="images/logos/타이완대학교.png" alt="NTNU">
-            <span>Taiwan Normal U</span>
-          </div>
-          <div class="map-logo-marker" style="top: 55%; left: 78%;">
-            <img src="images/logos/난양공대.png" alt="NTU">
-            <span>NTU Singapore</span>
-          </div>
-        </div>
-        <h2 class="stage-title">Connected Across the Globe</h2>
-      </div>
-
-      <!-- Stage 3: Jeju Island -->
-      <div class="stage-slide stage-jeju">
-        <img src="images/index/jeju2.jpg" alt="Jeju Island" class="stage-bg">
-        <h2 class="stage-title">The Beautiful Island of Jeju</h2>
-      </div>
-
-      <!-- Stage 4: Global Scholars 1 -->
-      <div class="stage-slide stage-people1">
-        <img src="images/photo/Image.jpeg" alt="Global Scholars" class="stage-bg stage-bg-contain">
-        <h2 class="stage-title">Global Minds Gathering</h2>
-      </div>
-
-      <!-- Stage 5: Global Scholars 2 -->
-      <div class="stage-slide stage-people2">
-        <img src="images/photo/Image-1.jpeg" alt="Global Scholars" class="stage-bg stage-bg-contain">
-        <h2 class="stage-title">Shaping the Future Together</h2>
-      </div>
-
-      <!-- Stage 6: JNU Campus -->
-      <div class="stage-slide stage-campus">
-        <img src="images/activity/kickoff.jpg" alt="Jeju National University" class="stage-bg">
-        <h2 class="stage-title">Jeju National University</h2>
-      </div>
-
-      <!-- Stage 7: Final Message -->
-      <div class="stage-slide stage-final">
-        <div class="final-messages">
-          <p class="final-question">"Will AI transform or disrupt education?"</p>
-          <p class="final-journey">"From Jeju to Johannesburg,<br>from Michigan to Kiel..."</p>
-        </div>
-      </div>
-
-      <!-- Fullscreen Button -->
-      <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
-        <i class="fas fa-expand"></i>
-      </button>
-    </div>
-  </section>
-
-  <!-- About Section -->
+  <!-- Founding Network -->
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <h2>About the Initiative</h2>
-        <p>Bringing together global leaders to shape the future of AI in education</p>
+        <h2>Founding Network</h2>
+        <p>Steering Board members and partner institutions form the backbone of this initiative.</p>
       </div>
-
-      <div class="travel-grid">
-        <div class="travel-card">
-          <h3>
-            <span class="travel-card-icon"><i class="fas fa-bullseye"></i></span>
-            Purpose
-          </h3>
-          <p>To respond to the growing influence of Artificial Intelligence and Emerging Technologies (AIET) across all areas of Science, Technology, Engineering, and Mathematics Education (STEM), this Global Initiative brings together leading scholars to define the core agenda for AIET in STEM and develop a practical, actionable roadmap for guiding global dialogue around future AIET in STEM.</p>
+      <div class="network-highlight">
+        <div class="network-card">
+          <h3>Steering Board</h3>
+          <p>10 founding speakers leading the unjournal and annual forum. Profiles and affiliations will be highlighted here.</p>
+          <a href="speakers.html" class="btn btn-secondary">View the Board</a>
         </div>
-
-        <div class="travel-card">
-          <h3>
-            <span class="travel-card-icon"><i class="fas fa-lightbulb"></i></span>
-            Theme
-          </h3>
-          <p>This Global initiative brings together educators, researchers, and innovators to examine how education and collaborative efforts can guide the integration of artificial intelligence into K-16 STEM education. Through presentations and interactive discussions, we aim to foster shared understanding, promote ethical practices, and develop innovative solutions for a future where humans lead leveraging AI as an intellectual partner.</p>
+        <div class="network-card">
+          <h3>Partner Institutions</h3>
+          <p>Institutional partners connected to each founding speaker. Logo gallery will be showcased in the Network page.</p>
+          <a href="speakers.html" class="btn btn-secondary">Explore Partners</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Deliverables Section -->
+  <!-- Latest from Blog -->
+  <section class="section section-alt" id="latest">
+    <div class="container">
+      <div class="section-header">
+        <h2>Latest from the Blog</h2>
+        <p>Ideas, research notes, and discussions from our global network of scholars.</p>
+      </div>
+      <div class="feed-grid">
+        <article class="feed-card">
+          <span class="feed-tag" style="background: #FEF3C7; color: #B45309;">Keynote</span>
+          <h3><a href="blog/ai-proficiency-framework-tang.html" style="color: inherit; text-decoration: none;">AI Proficiency in Education: Opportunities, Risks, and a Framework</a></h3>
+          <p>There is no free lunch. Every AI opportunity comes with risks. A framework for building AI proficiency - not coding, but using AI responsibly.</p>
+          <div class="feed-meta">Dec 2025 · Jiliang Tang</div>
+        </article>
+        <article class="feed-card">
+          <span class="feed-tag" style="background: #FEF3C7; color: #B45309;">Presentation</span>
+          <h3><a href="blog/caltsteam-vr-ar-ai-education.html" style="color: inherit; text-decoration: none;">CALTSTEAM: Culturally-Anchored VR, AR, and AI for STEM</a></h3>
+          <p>Bridging African indigenous knowledge with emerging technologies. VR for cultural-science connections, Socratic AI tutors.</p>
+          <div class="feed-meta">Dec 2025 · Umesh Ramnarain</div>
+        </article>
+        <article class="feed-card">
+          <span class="feed-tag" style="background: #FEF3C7; color: #B45309;">Presentation</span>
+          <h3><a href="blog/inqits-scalable-ai-science-inquiry.html" style="color: inherit; text-decoration: none;">InqITS: Scalable AI for Science Inquiry Assessment</a></h3>
+          <p>Real-time AI assessment solving the "Billy vs Johnny" problem. 20M+ investigations, Rex AI tutor, and teacher dashboards.</p>
+          <div class="feed-meta">Dec 2025 · Janice Gobert</div>
+        </article>
+        <article class="feed-card">
+          <span class="feed-tag" style="background: #FEF3C7; color: #B45309;">Presentation</span>
+          <h3><a href="blog/ai-proficiency-literacy-education.html" style="color: inherit; text-decoration: none;">AI Proficiency and Literacy: The Next Frontier in Education</a></h3>
+          <p>From information literacy to AI literacy. Faculty workshops, LLM as intellectual partner, and what educators need to know.</p>
+          <div class="feed-meta">Dec 2025 · Chris Quintana</div>
+        </article>
+      </div>
+      <div class="text-center mt-4">
+        <a href="blog.html" class="btn btn-primary">View All Blog Posts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collaboration CTA -->
+  <section class="section" id="collaborate">
+    <div class="container">
+      <div class="section-header">
+        <h2>Collaborate with the Network</h2>
+        <p>We prioritize discussion and shared work over static listings.</p>
+      </div>
+      <div class="cta-grid">
+        <div class="cta-card">
+          <h3>Submit an Essay</h3>
+          <p>Contribute a blog post, research note, or article to our network.</p>
+          <a href="submit.html?type=essay" class="btn btn-secondary">Write Essay</a>
+        </div>
+        <div class="cta-card">
+          <h3>Propose a Topic</h3>
+          <p>Submit a focus area for collaborative inquiry and public discussion.</p>
+          <a href="submit.html?type=research" class="btn btn-secondary">Propose Topic</a>
+        </div>
+        <div class="cta-card">
+          <h3>Start a Discussion</h3>
+          <p>Frame a question or dilemma to gather global perspectives.</p>
+          <a href="submit.html?type=discussion" class="btn btn-secondary">Start Discussion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collaborating Institutions -->
   <section class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <h2>Key Deliverables</h2>
-        <p>Outcomes that will shape the future of AI in STEM education globally</p>
+        <h2>Collaborating Institutions</h2>
+        <p>Research centers and institutions engaged in our global network.</p>
       </div>
-
-      <div class="travel-grid">
-        <div class="travel-card">
-          <h3>
-            <span class="travel-card-icon"><i class="fas fa-calendar-alt"></i></span>
-            Annual Global Forum
-          </h3>
-          <p>Establish the foundation and build a sustainable structure for an annual Global Forum and Conference on AIET in STEM over the next five years, co-hosted with leading international institutes and Jeju National University.</p>
-        </div>
-
-        <div class="travel-card">
-          <h3>
-            <span class="travel-card-icon"><i class="fas fa-book-open"></i></span>
-            Journal & Publications
-          </h3>
-          <p>Develop strategic plan to launch a new peer-reviewed journal, conference proceedings, and related publications to advance global collaboration and knowledge sharing in AIET and STEM.</p>
-        </div>
-
-        <div class="travel-card">
-          <h3>
-            <span class="travel-card-icon"><i class="fas fa-users"></i></span>
-            Open Forum Sessions
-          </h3>
-          <ul style="color: var(--text-light); padding-left: 1.25rem;">
-            <li style="margin-bottom: 0.5rem;">AI in the Classroom: Opportunities, Risks, and Building Literacy</li>
-            <li style="margin-bottom: 0.5rem;">AI in STEM: Building Skills for Science, Mathematics, and Beyond</li>
-            <li>Panel Discussion: From Vision to Action - A Global Roadmap for AI and Emerging Technologies in STEM Education</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Venue Section -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <h2>Venue</h2>
-        <p>Experience the beauty of Jeju Island while engaging in transformative discussions</p>
-      </div>
-
-      <div class="travel-grid">
-        <div class="travel-card">
-          <h3>
-            <span class="travel-card-icon"><i class="fas fa-hotel"></i></span>
-            Grand Hyatt Jeju
-          </h3>
-          <p><strong>Address:</strong><br>12 Noyeon-ro, Jeju-si, Jeju-do 63082, South Korea</p>
-          <p style="margin-top: 1rem;">A world-class resort offering exceptional facilities for international conferences, with stunning ocean views and modern amenities.</p>
-          <a href="travel.html" class="btn btn-secondary" style="margin-top: 1rem;">Travel Information</a>
-        </div>
-
-        <div class="travel-card">
-          <h3>
-            <span class="travel-card-icon"><i class="fas fa-map-marker-alt"></i></span>
-            About Jeju Island
-          </h3>
-          <p>Jeju Island is a UNESCO World Heritage site known for its volcanic landscapes, pristine beaches, and unique culture. It's often called the "Hawaii of South Korea" and offers a perfect blend of natural beauty and modern infrastructure.</p>
-          <p style="margin-top: 1rem;"><strong>Weather in December:</strong> Average temperature 5-10°C (41-50°F). Mild winter climate.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container text-center">
-      <h2 style="color: white; margin-bottom: 1rem;">Join Us in Jeju</h2>
-      <p style="color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto 2rem;">Be part of this landmark initiative shaping the future of AI in STEM education. Connect with global leaders, share insights, and contribute to meaningful change.</p>
-      <div class="hero-buttons">
-        <a href="program.html" class="btn btn-outline">Explore the Program</a>
-        <a href="travel.html" class="btn btn-outline">Plan Your Trip</a>
+      <div class="collab-logos">
+        <a href="https://jejurise.kr/" target="_blank" title="Jeju RISE Center">
+          <img src="https://jejurise.kr/pub/site/platform/images/ci/logo_02_3x.png" alt="Jeju RISE Center">
+        </a>
+        <a href="https://create4stem.msu.edu/" target="_blank" title="CREATE for STEM Institute">
+          <img src="https://create4stem.msu.edu/sites/default/files/create-logo-caterpiller.png" alt="CREATE for STEM Institute">
+        </a>
+        <a href="https://www.uj.ac.za/faculties/education/centres/caltsteam/" target="_blank" title="CALTSTEAM - University of Johannesburg">
+          <img src="https://www.uj.ac.za/wp-content/uploads/2021/11/university-of-johannesburg.webp" alt="University of Johannesburg - CALTSTEAM">
+        </a>
+        <a href="https://www.leibniz-ipn.de/en" target="_blank" title="IPN - Leibniz Institute">
+          <img src="https://cdn.brandfetch.io/idJANliTFT/theme/dark/logo.svg" alt="IPN Leibniz Institute">
+        </a>
+        <a href="https://www.inqits.com/" target="_blank" title="Inq-ITS">
+          <img src="https://static.wixstatic.com/media/6d63bc_6ccef00a40704efda18db8cb04fb27d6~mv2.png/v1/fill/w_384,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/inqITS%20logo%20no%20dash.png" alt="Inq-ITS">
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+    <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-section">
-          <h4>AIET IN STEM 2025</h4>
-          <p>Global Initiative on AI and Emerging Technologies in STEM Education</p>
-          <p style="margin-top: 1rem;">December 16-20, 2025<br>Jeju, South Korea</p>
+          <h4>AIET IN STEM Unjournal</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual AIET IN STEM Forum · Jeju, South Korea</p>
         </div>
 
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="speakers.html">Speakers</a></li>
-            <li><a href="program.html">Program</a></li>
-            <li><a href="travel.html">Travel & Accommodation</a></li>
-            <li><a href="updates.html">Daily Updates</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="speakers.html">Network</a></li>
+            <li><a href="program.html">Forum 2025</a></li>
+            <li><a href="event2023.html">Forum 2023</a></li>
           </ul>
         </div>
 
         <div class="footer-section">
-          <h4>Organizers</h4>
-          <p><strong>Jeju National University</strong><br>South Korea</p>
-          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute</strong><br>Michigan State University, USA</p>
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
         </div>
 
         <div class="footer-section">
           <h4>Contact</h4>
-          <p>For inquiries about the forum:</p>
           <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
           <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
         </div>
@@ -387,85 +206,11 @@
 
       <div class="footer-bottom">
         <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Supported by Jeju National University RISE Initiative</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    // Stage Animation Controller
-    const StageAnimation = {
-      stages: null,
-      currentStage: 0,
-      timeoutId: null,
-      intervals: [12000, 9000, 9000, 7000, 6000, 6000, 6000, 6000, 0],
-
-      init() {
-        this.stages = document.querySelectorAll('.stage-slide');
-        if (this.stages.length === 0) return;
-        this.start();
-      },
-
-      start() {
-        this.currentStage = 0;
-        this.stages.forEach(s => s.classList.remove('active'));
-        this.stages[0].classList.add('active');
-        this.timeoutId = setTimeout(() => this.showNextStage(), this.intervals[0]);
-      },
-
-      restart() {
-        if (this.timeoutId) clearTimeout(this.timeoutId);
-        this.start();
-      },
-
-      showNextStage() {
-        this.stages[this.currentStage].classList.remove('active');
-        this.currentStage++;
-
-        if (this.currentStage >= this.stages.length) {
-          this.currentStage = this.stages.length - 1;
-          this.stages[this.currentStage].classList.add('active');
-          return;
-        }
-
-        this.stages[this.currentStage].classList.add('active');
-
-        if (this.intervals[this.currentStage] > 0) {
-          this.timeoutId = setTimeout(() => this.showNextStage(), this.intervals[this.currentStage]);
-        }
-      }
-    };
-
-    // Initialize animation
-    StageAnimation.init();
-
-    // Fullscreen Toggle - restart animation on fullscreen
-    function toggleFullscreen() {
-      const stage = document.querySelector('.global-stage');
-      const btn = document.querySelector('.fullscreen-btn i');
-
-      if (!document.fullscreenElement) {
-        stage.requestFullscreen().then(() => {
-          btn.classList.remove('fa-expand');
-          btn.classList.add('fa-compress');
-          StageAnimation.restart();
-        });
-      } else {
-        document.exitFullscreen().then(() => {
-          btn.classList.remove('fa-compress');
-          btn.classList.add('fa-expand');
-        });
-      }
-    }
-
-    document.addEventListener('fullscreenchange', () => {
-      const btn = document.querySelector('.fullscreen-btn i');
-      if (!document.fullscreenElement) {
-        btn.classList.remove('fa-compress');
-        btn.classList.add('fa-expand');
-      }
-    });
-  </script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

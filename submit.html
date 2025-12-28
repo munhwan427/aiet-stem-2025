@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Submit content to AIET IN STEM - Essays, Research Notes, and Discussion Topics.">
+  <title>Submit Content | AIET IN STEM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css?v=30">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="speakers.html" class="nav-link">Network</a></li>
+        <li><a href="program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div id="auth-container"></div>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Submit Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Submit Content</h1>
+      <p>Contribute to the AIET IN STEM network with your ideas and research.</p>
+    </div>
+  </section>
+
+  <!-- Submit Form Section -->
+  <section class="section">
+    <div class="container">
+      <div class="submit-container">
+        <!-- Login Required Message (shown when not logged in) -->
+        <div id="submit-login-required" class="submit-login-prompt" style="display: none;">
+          <div class="login-prompt-icon"><i class="fas fa-lock"></i></div>
+          <h3>Member Access Required</h3>
+          <p>Please sign in with your member account to submit content.</p>
+          <button onclick="openLoginModal()" class="btn btn-primary">Sign In</button>
+          <p class="login-prompt-note">Contact <a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a> to request access</p>
+        </div>
+
+        <!-- Submit Form (shown when logged in) -->
+        <div id="submit-form-container" style="display: none;">
+          <div class="submit-header">
+            <h2>New Submission</h2>
+            <p>Your submission will be reviewed by the organizers before publishing.</p>
+          </div>
+
+          <form id="submit-form" onsubmit="handleSubmission(event)">
+            <div class="form-group">
+              <label for="submit-type">Submission Type *</label>
+              <select id="submit-type" required>
+                <option value="">Select a type...</option>
+                <option value="essay">Essay / Blog Post</option>
+                <option value="research">Research Note / Topic Proposal</option>
+                <option value="discussion">Discussion Starter</option>
+              </select>
+              <div class="form-hint">
+                <strong>Essay:</strong> Full blog post or article<br>
+                <strong>Research Note:</strong> Brief research insight or topic proposal<br>
+                <strong>Discussion:</strong> Question or topic for community discussion
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="submit-title">Title *</label>
+              <input type="text" id="submit-title" placeholder="Enter a clear, descriptive title" required>
+            </div>
+
+            <div class="form-group">
+              <label for="submit-content">Content *</label>
+              <textarea id="submit-content" rows="12" placeholder="Write your content here. You can use plain text or basic formatting." required></textarea>
+              <div class="form-hint">For essays, aim for 500-2000 words. For research notes and discussions, brief is fine.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="submit-tags">Tags (optional)</label>
+              <input type="text" id="submit-tags" placeholder="e.g., AI, Assessment, STEM Education (comma-separated)">
+            </div>
+
+            <div class="form-group">
+              <label for="submit-attachment">File Attachment (optional)</label>
+              <div class="file-upload-area" id="file-upload-area">
+                <input type="file" id="submit-attachment" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.png,.jpg,.jpeg,.gif" onchange="handleFileSelect(event)">
+                <div class="file-upload-placeholder" id="file-placeholder">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <p>Click or drag file here</p>
+                  <span class="file-hint">PDF, Word, PowerPoint, Excel, Images (max 10MB)</span>
+                </div>
+                <div class="file-selected" id="file-selected" style="display: none;">
+                  <i class="fas fa-file"></i>
+                  <span id="file-name"></span>
+                  <button type="button" class="file-remove" onclick="removeFile()"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <div id="submit-error" class="form-error"></div>
+            <div id="submit-success" class="form-success"></div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="submit-btn">
+                <i class="fas fa-paper-plane"></i> Submit for Review
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guidelines Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Submission Guidelines</h2>
+        <p>Help us maintain quality and relevance in our research commons.</p>
+      </div>
+      <div class="guidelines-grid">
+        <div class="guideline-card">
+          <i class="fas fa-edit"></i>
+          <h4>Essays & Blog Posts</h4>
+          <p>Share insights, perspectives, or analyses on AI and emerging technologies in STEM education. Original content that advances the conversation.</p>
+        </div>
+        <div class="guideline-card">
+          <i class="fas fa-flask"></i>
+          <h4>Research Notes</h4>
+          <p>Brief research findings, methodology notes, or proposals for collaborative inquiry. Early-stage ideas welcome.</p>
+        </div>
+        <div class="guideline-card">
+          <i class="fas fa-comments"></i>
+          <h4>Discussion Starters</h4>
+          <p>Frame questions, dilemmas, or provocations to gather global perspectives from the network.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual Forum - Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="speakers.html">Network</a></li>
+            <li><a href="program.html">Forum 2025</a></li>
+            <li><a href="event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/submissions.js"></script>
+  <script>
+    // Check login status and show appropriate content
+    document.addEventListener('DOMContentLoaded', function() {
+      updateSubmitPageUI();
+    });
+
+    function updateSubmitPageUI() {
+      const user = getCurrentUser();
+      const loginRequired = document.getElementById('submit-login-required');
+      const formContainer = document.getElementById('submit-form-container');
+
+      if (user) {
+        loginRequired.style.display = 'none';
+        formContainer.style.display = 'block';
+        // Pre-select type from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type');
+        if (type) {
+          const typeSelect = document.getElementById('submit-type');
+          if (typeSelect) {
+            typeSelect.value = type;
+          }
+        }
+      } else {
+        loginRequired.style.display = 'block';
+        formContainer.style.display = 'none';
+      }
+    }
+
+    // Re-check after login
+    const originalUpdateAuthUI = updateAuthUI;
+    updateAuthUI = function() {
+      originalUpdateAuthUI();
+      updateSubmitPageUI();
+    };
+
+    // File handling
+    let selectedFile = null;
+
+    function handleFileSelect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Check file size (10MB max)
+      const maxSize = 10 * 1024 * 1024;
+      if (file.size > maxSize) {
+        showToast('File too large. Maximum size is 10MB.');
+        event.target.value = '';
+        return;
+      }
+
+      selectedFile = file;
+      document.getElementById('file-placeholder').style.display = 'none';
+      document.getElementById('file-selected').style.display = 'flex';
+      document.getElementById('file-name').textContent = file.name;
+    }
+
+    function removeFile() {
+      selectedFile = null;
+      document.getElementById('submit-attachment').value = '';
+      document.getElementById('file-placeholder').style.display = 'flex';
+      document.getElementById('file-selected').style.display = 'none';
+    }
+
+    // Drag and drop
+    const uploadArea = document.getElementById('file-upload-area');
+    if (uploadArea) {
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+      });
+      uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+      });
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file) {
+          document.getElementById('submit-attachment').files = e.dataTransfer.files;
+          handleFileSelect({ target: { files: [file] } });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

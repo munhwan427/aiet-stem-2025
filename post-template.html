@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="[POST_DESCRIPTION]">
+  <meta name="keywords" content="AI, STEM, Education, [KEYWORDS]">
+  <title>[POST_TITLE] | AIET IN STEM Blog</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css?v=30">
+  <style>
+    /* Blog Post Styles */
+    .post-header {
+      background: linear-gradient(135deg, #1f4952 0%, #3d7d8a 100%);
+      color: var(--white);
+      padding: 8rem 0 4rem;
+      margin-top: 90px;
+    }
+
+    .post-header .container {
+      max-width: 800px;
+    }
+
+    .post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .post-tag {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .post-tag.essay { background: #E0F2FE; color: #0369A1; }
+    .post-tag.research { background: #F3E8FF; color: #7C3AED; }
+    .post-tag.forum { background: #FEF3C7; color: #B45309; }
+    .post-tag.update { background: #ECFDF5; color: #059669; }
+    .post-tag.discussion { background: #FEE2E2; color: #DC2626; }
+
+    .post-date {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    .post-header h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+
+    .post-author-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .post-author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .post-author-details {
+      color: var(--white);
+    }
+
+    .post-author-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .post-author-affiliation {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* Post Content */
+    .post-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .post-content h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--text);
+    }
+
+    .post-content h3 {
+      font-size: 1.35rem;
+      margin: 2rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    .post-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .post-content ul, .post-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .post-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: var(--background-alt);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+
+    .post-content blockquote p {
+      margin-bottom: 0;
+      color: var(--text);
+    }
+
+    .post-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 2rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    .post-content a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .post-content a:hover {
+      color: var(--primary-light);
+    }
+
+    .post-content code {
+      background: var(--background-alt);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+
+    .post-content pre {
+      background: #1F2937;
+      color: #E5E7EB;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .post-content pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+
+    /* Key Takeaways Box */
+    .key-takeaways {
+      background: linear-gradient(135deg, #EEF2FF 0%, #F3E8FF 100%);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .key-takeaways h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .key-takeaways ul {
+      margin-bottom: 0;
+    }
+
+    .key-takeaways li {
+      font-size: 1rem;
+    }
+
+    /* Topic Tags */
+    .post-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .post-topic-tag {
+      background: var(--background-alt);
+      color: var(--text-light);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    /* Share & Actions */
+    .post-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .share-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .share-btn.twitter { background: #1DA1F2; }
+    .share-btn.linkedin { background: #0A66C2; }
+    .share-btn.email { background: var(--text); }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    /* Related Posts */
+    .related-posts {
+      padding: 3rem 0;
+      background: var(--background-alt);
+    }
+
+    .related-posts .container {
+      max-width: 1000px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .related-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .related-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .related-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .related-card h4 a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .related-card h4 a:hover {
+      color: var(--primary);
+    }
+
+    .related-card p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .related-card-meta {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* Back to Blog */
+    .back-to-blog {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .back-to-blog:hover {
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .post-header h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content {
+        padding: 2rem 1rem;
+      }
+
+      .post-content p,
+      .post-content li {
+        font-size: 1rem;
+      }
+
+      .post-actions {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/index/logo.png" alt="AIET IN STEM" class="nav-logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="speakers.html" class="nav-link">Network</a></li>
+        <li><a href="program.html" class="nav-link">Forum 2025</a></li>
+        <li><a href="event2023.html" class="nav-link">Forum 2023</a></li>
+      </ul>
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Post Header -->
+  <header class="post-header">
+    <div class="container">
+      <a href="blog.html" class="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+      <div class="post-meta">
+        <span class="post-tag essay">Essay</span>
+        <span class="post-date">December 2025</span>
+      </div>
+      <h1>AI Evolution and Its Impact on Educational Assessment</h1>
+      <div class="post-author-info">
+        <div class="post-author-avatar">NS</div>
+        <div class="post-author-details">
+          <div class="post-author-name">Namsoo Shin</div>
+          <div class="post-author-affiliation">Michigan State University · CREATE for STEM Institute</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <p class="lead"><strong>A focused breakdown of AI's progression from expert systems to generative models, and what this transformation means for how we assess student learning.</strong></p>
+
+    <h2>The Three Waves of AI in Education</h2>
+
+    <p>When we look at the history of artificial intelligence in educational settings, we can identify three distinct waves, each bringing its own affordances and limitations for assessment.</p>
+
+    <h3>Wave 1: Expert Systems (1980s-2000s)</h3>
+
+    <p>The first wave relied on carefully crafted rules and decision trees. Systems like MYCIN in medicine or early intelligent tutoring systems encoded expert knowledge into if-then rules. For assessment, this meant:</p>
+
+    <ul>
+      <li>Highly predictable responses based on predefined patterns</li>
+      <li>Limited to domains where expertise could be fully articulated</li>
+      <li>Assessment focused on matching student responses to expected answers</li>
+    </ul>
+
+    <h3>Wave 2: Machine Learning (2000s-2010s)</h3>
+
+    <p>The second wave introduced statistical pattern recognition. Systems learned from data rather than explicit rules. This enabled:</p>
+
+    <ul>
+      <li>Automated essay scoring based on feature extraction</li>
+      <li>Learning analytics that could identify at-risk students</li>
+      <li>Personalized learning paths based on performance patterns</li>
+    </ul>
+
+    <h3>Wave 3: Generative AI (2020s-Present)</h3>
+
+    <p>The current wave fundamentally changes the game. Large language models can generate human-like responses, engage in dialogue, and adapt to context in ways previous systems could not.</p>
+
+    <blockquote>
+      <p>"AI won't replace humans. But humans who don't use AI will be replaced by humans who do."</p>
+    </blockquote>
+
+    <h2>Implications for Assessment</h2>
+
+    <p>This evolution forces us to rethink what we're actually trying to assess. If a student can use AI to produce a well-written essay, what are we really measuring? Here are key considerations:</p>
+
+    <div class="key-takeaways">
+      <h4>Key Takeaways</h4>
+      <ul>
+        <li><strong>Process over product:</strong> We need to assess how students engage with AI tools, not just their final outputs.</li>
+        <li><strong>Critical evaluation:</strong> Can students identify when AI-generated content is incorrect or misleading?</li>
+        <li><strong>Prompt engineering:</strong> The quality of the question determines the quality of the answer.</li>
+        <li><strong>Domain knowledge matters:</strong> AI tools amplify existing knowledge rather than replacing the need for it.</li>
+      </ul>
+    </div>
+
+    <h2>A Path Forward</h2>
+
+    <p>Rather than viewing AI as a threat to traditional assessment, we should see it as an opportunity to assess higher-order skills that have always been important but were difficult to measure:</p>
+
+    <ol>
+      <li><strong>Metacognition:</strong> How well do students understand their own learning process?</li>
+      <li><strong>Information synthesis:</strong> Can students combine multiple sources (including AI) into coherent understanding?</li>
+      <li><strong>Ethical reasoning:</strong> Do students understand when and how to use AI appropriately?</li>
+    </ol>
+
+    <p>The transition won't be easy, but it's necessary. Our assessment systems must evolve as quickly as the technologies our students will use in their careers.</p>
+
+    <!-- Topic Tags -->
+    <div class="post-topics">
+      <span class="post-topic-tag">AI & Assessment</span>
+      <span class="post-topic-tag">Generative AI</span>
+      <span class="post-topic-tag">Educational Technology</span>
+      <span class="post-topic-tag">Learning Analytics</span>
+    </div>
+
+    <!-- Share Actions -->
+    <div class="post-actions">
+      <div>
+        <strong>Share this post:</strong>
+      </div>
+      <div class="share-buttons">
+        <a href="#" class="share-btn twitter" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="share-btn linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:?subject=AIET IN STEM: AI Evolution and Its Impact on Educational Assessment" class="share-btn email" title="Share via Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related Posts -->
+  <section class="related-posts">
+    <div class="container">
+      <h3 class="text-center">Related Posts</h3>
+      <div class="related-grid">
+        <article class="related-card">
+          <h4><a href="#">Two-Loop Systems: Designing AI Feedback Architectures</a></h4>
+          <p>Inner loop + Outer loop framework for human-AI teaching partnerships.</p>
+          <span class="related-card-meta">Chris Leonetti · Dec 2025</span>
+        </article>
+        <article class="related-card">
+          <h4><a href="#">Learning Progressions, Domain Specificity, and AI Limits</a></h4>
+          <p>Why domain knowledge matters in AI-powered learning systems.</p>
+          <span class="related-card-meta">Knut Neumann · Dec 2025</span>
+        </article>
+        <article class="related-card">
+          <h4><a href="#">AI is Co-Pilot, Not Pilot: Rethinking Human-AI Collaboration</a></h4>
+          <p>Why students and teachers must learn to ask good questions.</p>
+          <span class="related-card-meta">Yasemin Kahyaoğlu · Dec 2025</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container text-center">
+      <h3>Join the Discussion</h3>
+      <p style="max-width: 600px; margin: 0 auto 1.5rem;">Have thoughts on AI and assessment? Share your perspective with our global network.</p>
+      <a href="mailto:namsoo@msu.edu?subject=Response to: AI Evolution and Its Impact on Educational Assessment" class="btn btn-primary">Respond to This Post</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>AIET IN STEM</h4>
+          <p>Global initiative on AI and emerging technologies in STEM education.</p>
+          <p style="margin-top: 1rem;">Annual Forum · Jeju, South Korea</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="speakers.html">Network</a></li>
+            <li><a href="program.html">Forum 2025</a></li>
+            <li><a href="event2023.html">Forum 2023</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Co-Organizers</h4>
+          <p><strong>Jeju National University RISE Initiative</strong></p>
+          <p style="margin-top: 1rem;"><strong>CREATE for STEM Institute, Michigan State University</strong></p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><a href="mailto:namsoo@msu.edu">namsoo@msu.edu</a></p>
+          <p><a href="mailto:ahn@anarchy.io">ahn@anarchy.io</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 AIET IN STEM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
